@@ -13,9 +13,6 @@
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    
-    <!-- Tone.js for Music Generation -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
 
     <style>
         body {
@@ -109,8 +106,9 @@
 <body class="h-screen overflow-hidden flex">
 
     <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-900 bg-opacity-95 backdrop-blur-xl transition-opacity duration-700">
-        <div class="text-center p-8 glass-panel rounded-3xl max-w-2xl mx-4">
-            <img src="https://i.postimg.cc/bSGbKpX4/logo.png" onerror="this.onerror=null; this.src='logo.png';" alt="Mahabbah Logo" class="w-full max-w-lg mx-auto mb-6 object-contain drop-shadow-2xl">
+        <div class="text-center p-8 glass-panel rounded-3xl max-w-2xl mx-4 flex flex-col items-center">
+            <img src="https://i.postimg.cc/xThB5s0L/logo.png" alt="Logo Karnival Mahabbah" class="w-[80%] max-w-[400px] mx-auto mb-6 drop-shadow-2xl object-contain block">
+            
             <h2 class="text-xl md:text-2xl font-light mb-2 text-yellow-300 tracking-widest">INFOBOARD</h2>
             <h1 class="text-3xl md:text-5xl font-bold mb-4 font-amiri leading-tight">KARNIVAL MAHABBAH PENDIDIKAN KHAS<br>PERINGKAT NEGERI SABAH TAHUN 2026</h1>
             <p class="text-sm md:text-base mb-8 text-gray-300 uppercase tracking-wide">
@@ -125,12 +123,6 @@
             </p>
         </div>
     </div>
-
-    <!-- AUDIO ELEMENT -->
-    <audio id="bg-music" loop preload="auto">
-        <source src="mp3.mp4" type="audio/mp4">
-        Your browser does not support the audio element.
-    </audio>
 
     <aside id="sidebar" class="w-72 h-screen glass-panel flex-shrink-0 border-r border-white/10 flex flex-col transition-transform transform -translate-x-full md:translate-x-0 absolute md:relative z-50">
         <div class="p-6 border-b border-white/10 flex items-center justify-between">
@@ -152,8 +144,13 @@
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('jk_pelaksana', this)"><i class="fa-solid fa-users-gear w-6 text-center mr-2"></i> 5. JK Pelaksana</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('lokasi', this)"><i class="fa-solid fa-map-location-dot w-6 text-center mr-2"></i> 6. Lokasi & Bilik Pertandingan</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 7. Hakim & Kehadiran</button></li>
-                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kewangan', this)"><i class="fa-solid fa-wallet w-6 text-center mr-2"></i> 8. Implikasi Kewangan</button></li>
-                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 9. Aturcara & Penutup</button></li>
+                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 8. Aturcara & Penutup</button></li>
+                
+                <li class="mt-4 pt-4 border-t border-white/10">
+                    <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-yellow-300 hover:bg-yellow-400/10 hover:border-l-yellow-400 transition-colors" onclick="returnToCover()">
+                        <i class="fa-solid fa-house w-6 text-center mr-2"></i> Kembali ke Halaman Utama
+                    </button>
+                </li>
             </ul>
         </nav>
         
@@ -271,6 +268,17 @@
             <section id="acara" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Acara Yang Dipertandingkan</h2>
                 
+                <!-- Petunjuk Interaktif -->
+                <div class="glass-panel p-4 rounded-xl mb-6 flex items-start bg-yellow-400/10 border border-yellow-400/30 shadow-lg shadow-yellow-500/5">
+                    <div class="bg-yellow-500 p-2 rounded-full mr-4 flex-shrink-0 animate-bounce shadow-md shadow-yellow-500/20 mt-1">
+                        <i class="fa-solid fa-hand-pointer text-slate-900 text-sm w-4 h-4 flex items-center justify-center"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-yellow-400 font-bold mb-1 text-sm uppercase tracking-wider">Ciri Interaktif</h4>
+                        <p class="text-sm text-gray-200">Sila klik pada nombor peserta yang mempunyai ikon (<i class="fa-solid fa-hand-pointer text-yellow-400 mx-1 text-xs"></i>) di dalam jadual di bawah untuk melihat senarai nama penuh.</p>
+                    </div>
+                </div>
+                
                 <div class="glass-panel rounded-xl overflow-hidden shadow-2xl mb-6">
                     <div class="overflow-x-auto">
                         <table class="verbatim-table">
@@ -291,22 +299,22 @@
                                     <td rowspan="4" class="text-center">1</td>
                                     <td rowspan="4" class="font-medium">Tilawah Al-Quran</td>
                                     <td>BL Terbuka Rendah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_rendah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 <tr>
                                     <td>BP Terbuka Rendah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_rendah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 <tr>
                                     <td>BL Terbuka Menengah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_menengah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 <tr>
                                     <td>BP Terbuka Menengah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_menengah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 
@@ -314,12 +322,12 @@
                                     <td rowspan="2" class="text-center">2</td>
                                     <td rowspan="2" class="font-medium">Hafazan Al-Quran</td>
                                     <td>BP Terbuka Rendah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('hafazan_bp_rendah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 <tr>
                                     <td>BP Terbuka Menengah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('hafazan_bp_menengah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
 
@@ -327,12 +335,12 @@
                                     <td rowspan="2" class="text-center">3</td>
                                     <td rowspan="2" class="font-medium">Bercerita Kisah dari Al-Quran</td>
                                     <td>BP Terbuka Rendah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('bercerita_bp_rendah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 <tr>
                                     <td>BD Terbuka Rendah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('bercerita_bd_rendah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
 
@@ -341,7 +349,7 @@
                                     <td class="font-medium">Azan Subuh</td>
                                     <td>Terbuka (Lelaki Sahaja)</td>
                                     <td class="text-center bg-black/20"></td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('azan_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
 
                                 <tr>
@@ -349,19 +357,19 @@
                                     <td class="font-medium">Seni Khat</td>
                                     <td>Terbuka</td>
                                     <td class="text-center bg-black/20"></td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('khat_terbuka_p')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
 
                                 <tr>
                                     <td rowspan="2" class="text-center">6</td>
                                     <td rowspan="2" class="font-medium">Deklamasi Sajak (Pendidikan Moral)</td>
                                     <td>BP Terbuka Rendah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('sajak_bp_rendah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
                                 <tr>
                                     <td>BP Terbuka Menengah</td>
-                                    <td class="text-center">1</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('sajak_bp_menengah_l')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center bg-black/20"></td>
                                 </tr>
 
@@ -370,12 +378,12 @@
                                     <td class="font-medium">Nasyid</td>
                                     <td>Terbuka</td>
                                     <td class="text-center bg-black/20"></td>
-                                    <td class="text-center">10</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('nasyid_terbuka_p')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">10 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 
                                 <tr class="bg-yellow-500/20">
                                     <td colspan="3" class="text-right font-bold text-yellow-400 uppercase">JUMLAH PESERTA KONTINJEN DAERAH</td>
-                                    <td colspan="2" class="text-center font-bold text-yellow-400 text-lg">22</td>
+                                    <td colspan="2" class="text-center font-bold text-yellow-400 text-lg cursor-pointer hover:bg-yellow-500/30 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b-2 border-dashed border-yellow-400/70 group-hover:border-yellow-400 group-hover:border-solid">22</span> <i class="fa-solid fa-hand-pointer text-sm ml-2 text-yellow-300/70 group-hover:text-yellow-300"></i></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -660,7 +668,7 @@
                                 <tr>
                                     <td class="text-center">1.</td>
                                     <td>Tilawah Al-Quran<br>(BL Rendah)<br>(BL Menengah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Bilik Seminar 1</td>
                                     <td rowspan="11" class="align-middle border-l border-white/10">
                                         <ul class="list-disc pl-4 space-y-1">
                                             <li>Pengacara /Urus Setia: 1 orang</li>
@@ -679,52 +687,52 @@
                                 <tr>
                                     <td class="text-center">2.</td>
                                     <td>Tilawah Al-Quran (BP Rendah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Kelas 1 Cekap</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">3.</td>
                                     <td>Tilawah Al-Quran (BP Menengah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Kelas 1 Dinamik</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">4.</td>
                                     <td>Hafazan Al-Quran (BP Rendah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Makmal Komputer</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">5.</td>
                                     <td>Hafazan Al-Quran (BP Menengah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Makmal Bahasa</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">6.</td>
                                     <td>Bercerita Kisah AL-Quran (BP)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Pusat Sumber</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">7.</td>
                                     <td>Bercerita Kisah AL-Quran (BD)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Bilik Tayangan</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">8.</td>
                                     <td>Seni Khat</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Dewan Terbuka</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">9.</td>
                                     <td>Deklamasi Sajak (BP Rendah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Bilik Gerakan</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">10.</td>
                                     <td>Deklamasi Sajak (BP Menengah)</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Bilik Mesyuarat</td>
                                 </tr>
                                 <tr>
                                     <td class="text-center">11.</td>
                                     <td>Nasyid</td>
-                                    <td></td>
+                                    <td class="text-yellow-300 font-medium">Dewan Besar PIBG</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -738,24 +746,27 @@
                 <div class="glass-panel p-6 rounded-xl mb-6">
                     <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-gavel text-yellow-400 mr-3"></i> Jemaah Hakim</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                            <p class="text-3xl font-bold text-yellow-400 mb-1">48</p>
-                            <p class="text-xs text-gray-300 uppercase tracking-widest">Jumlah Juri</p>
+                        <!-- Box updated to be clickable -->
+                        <div onclick="openHakimModal('juri')" class="bg-white/5 p-4 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
+                            <p class="text-3xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform">48</p>
+                            <p class="text-xs text-gray-300 uppercase tracking-widest mb-2">Jumlah Juri</p>
+                            <span class="text-[10px] text-yellow-300/80 bg-yellow-400/10 py-1 px-2 rounded-full inline-block"><i class="fa-solid fa-hand-pointer mr-1"></i>Klik untuk senarai</span>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                            <p class="text-3xl font-bold text-yellow-400 mb-1">1</p>
-                            <p class="text-xs text-gray-300 uppercase tracking-widest">Pengerusi Jemaah Hakim</p>
+                        <div onclick="openHakimModal('pengerusi')" class="bg-white/5 p-4 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
+                            <p class="text-3xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform">1</p>
+                            <p class="text-xs text-gray-300 uppercase tracking-widest mb-2">Pengerusi Jemaah Hakim</p>
+                            <span class="text-[10px] text-yellow-300/80 bg-yellow-400/10 py-1 px-2 rounded-full inline-block"><i class="fa-solid fa-hand-pointer mr-1"></i>Klik untuk senarai</span>
                         </div>
-                        <div class="bg-white/5 p-4 rounded-lg border border-white/10">
-                            <p class="text-3xl font-bold text-yellow-400 mb-1">1</p>
-                            <p class="text-xs text-gray-300 uppercase tracking-widest">Timbalan Pengerusi</p>
+                        <div onclick="openHakimModal('timbalan')" class="bg-white/5 p-4 rounded-lg border border-white/10 cursor-pointer hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
+                            <p class="text-3xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform">1</p>
+                            <p class="text-xs text-gray-300 uppercase tracking-widest mb-2">Timbalan Pengerusi</p>
+                            <span class="text-[10px] text-yellow-300/80 bg-yellow-400/10 py-1 px-2 rounded-full inline-block"><i class="fa-solid fa-hand-pointer mr-1"></i>Klik untuk senarai</span>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-400 mt-4 italic">* Senarai hakim (Rujuk lampiran)</p>
                 </div>
 
                 <div class="glass-panel rounded-xl overflow-hidden mb-6">
-                    <h3 class="bg-black/40 text-yellow-300 font-bold p-4 border-b border-white/10 text-center uppercase tracking-widest">Anggaran Kehadiran Peserta</h3>
+                    <h3 class="bg-black/40 text-yellow-300 font-bold p-4 border-b border-white/10 text-center uppercase tracking-widest">Peserta</h3>
                     <div class="overflow-x-auto">
                         <table class="verbatim-table w-full">
                             <thead>
@@ -771,176 +782,57 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr><td class="text-center">1.</td><td>Tilawah Al-Quran (BL)</td><td class="text-center">1</td><td class="text-center">1</td><td class="text-center">48</td></tr>
-                                <tr><td class="text-center">2.</td><td>Tilawah Al-Quran (BP)</td><td class="text-center">1</td><td class="text-center">1</td><td class="text-center">48</td></tr>
-                                <tr><td class="text-center">3.</td><td>Hafazan Al-Quran (BP)</td><td class="text-center">1</td><td class="text-center">1</td><td class="text-center">48</td></tr>
-                                <tr><td class="text-center">4.</td><td>Bercerita Kisah AL-Quran (BP)</td><td class="text-center">1</td><td class="text-center">0</td><td class="text-center">24</td></tr>
-                                <tr><td class="text-center">5.</td><td>Bercerita Kisah AL-Quran (BD)</td><td class="text-center">1</td><td class="text-center">0</td><td class="text-center">24</td></tr>
-                                <tr><td class="text-center">6.</td><td>Azan Subuh</td><td colspan="2" class="text-center">1</td><td class="text-center">24</td></tr>
-                                <tr><td class="text-center">7.</td><td>Seni Khat</td><td colspan="2" class="text-center">1</td><td class="text-center">24</td></tr>
-                                <tr><td class="text-center">8.</td><td>Deklamasi Sajak</td><td class="text-center">1</td><td class="text-center">1</td><td class="text-center">48</td></tr>
-                                <tr><td class="text-center">9.</td><td>Nasyid</td><td colspan="2" class="text-center">10</td><td class="text-center">240</td></tr>
+                                <tr><td class="text-center">1.</td><td>Tilawah Al-Quran (BL)</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_48')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">48 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">2.</td><td>Tilawah Al-Quran (BP)</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_48')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">48 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">3.</td><td>Hafazan Al-Quran (BP)</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_48')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">48 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">4.</td><td>Bercerita Kisah AL-Quran (BP)</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_0')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">0 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_24')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">24 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">5.</td><td>Bercerita Kisah AL-Quran (BD)</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_0')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">0 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_24')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">24 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">6.</td><td>Azan Subuh</td>
+                                    <td colspan="2" class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_24')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">24 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">7.</td><td>Seni Khat</td>
+                                    <td colspan="2" class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_24')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">24 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">8.</td><td>Deklamasi Sajak</td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_1')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_48')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">48 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
+                                <tr><td class="text-center">9.</td><td>Nasyid</td>
+                                    <td colspan="2" class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_10')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">10 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('demo_240')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">240 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                </tr>
                                 <tr class="bg-yellow-500/20 font-bold text-yellow-300">
                                     <td colspan="4" class="text-right uppercase">JUMLAH</td>
-                                    <td class="text-center text-lg">528</td>
+                                    <td class="text-center font-bold text-yellow-400 text-lg cursor-pointer hover:bg-yellow-500/30 transition-colors group" onclick="openPesertaModal('demo_528')"><span class="border-b-2 border-dashed border-yellow-400/70 group-hover:border-yellow-400 group-hover:border-solid">528</span> <i class="fa-solid fa-hand-pointer text-sm ml-2 text-yellow-300/70 group-hover:text-yellow-300"></i></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="glass-panel rounded-xl overflow-hidden">
-                    <h3 class="bg-black/40 text-yellow-300 font-bold p-4 border-b border-white/10 text-center uppercase tracking-widest">Anggaran Kehadiran JK Pelaksana, Juri dan Jemputan Khas</h3>
-                    <div class="overflow-x-auto">
-                        <table class="verbatim-table w-full">
-                            <thead>
-                                <tr>
-                                    <th class="w-12 text-center">BIL</th>
-                                    <th>KEHADIRAN</th>
-                                    <th class="text-center">BILANGAN</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">1.</td>
-                                    <td>Jemputan<br>JPN<br>PPD<br>PGB</td>
-                                    <td class="text-center align-middle"><br>10<br>24<br>13</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">2.</td>
-                                    <td>Juri</td>
-                                    <td class="text-center">48</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3.</td>
-                                    <td>Jawatan Kuasa Pelaksana</td>
-                                    <td class="text-center">50</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">4.</td>
-                                    <td>Urusetia</td>
-                                    <td class="text-center">15</td>
-                                </tr>
-                                <tr class="bg-yellow-500/20 font-bold text-yellow-300">
-                                    <td colspan="2" class="text-right uppercase">JUMLAH</td>
-                                    <td class="text-center text-lg">150</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <section id="kewangan" class="section-content">
-                <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Implikasi Kewangan</h2>
-                
-                <div class="glass-panel rounded-xl overflow-hidden shadow-2xl">
-                    <h3 class="bg-black/40 text-yellow-300 font-bold p-4 border-b border-white/10 text-center uppercase tracking-widest">Anggaran Perbelanjaan</h3>
-                    <div class="overflow-x-auto">
-                        <table class="verbatim-table w-full">
-                            <thead>
-                                <tr>
-                                    <th class="w-12 text-center">BIL</th>
-                                    <th>PERKARA</th>
-                                    <th class="text-center">KUANTITI</th>
-                                    <th class="text-right">HARGA/UNIT (RM)</th>
-                                    <th class="text-right">JUMLAH (RM)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="text-center">1.</td>
-                                    <td>
-                                        Hadiah pemenang (Stand medal)<br>
-                                        Johan<br>
-                                        Naib Johan<br>
-                                        Ketiga<br>
-                                        Hadiah pemenang acara Nasyid (medal)<br>
-                                        Johan<br>
-                                        Naib Johan<br>
-                                        Ketiga<br>
-                                        Anugerah khas nasyid (stand medal)<br>
-                                        Solo terbaik<br>
-                                        Lagu Terbaik<br>
-                                        Lirik Terbaik<br>
-                                        Pemain Berkumpulan Perkusi Terbaik<br>
-                                        Johan keseluruhan (stand medal)
-                                    </td>
-                                    <td class="text-center"><br>22<br>22<br>22<br><br>10<br>10<br>10<br><br>1<br>1<br>1<br>1<br>1</td>
-                                    <td class="text-right font-mono text-sm"><br>10.00<br>10.00<br>10.00<br><br>8.00<br>8.00<br>8.00<br><br>20.00<br>20.00<br>20.00<br>20.00<br>50.00</td>
-                                    <td class="text-right font-mono text-sm"><br>220.00<br>220.00<br>220.00<br><br>80.00<br>80.00<br>80.00<br><br>20.00<br>20.00<br>20.00<br>20.00<br>50.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">2.</td>
-                                    <td>Jamuan<br>Makan dan minum (Urusetia, JK pelaksana, juri)<br>Jemputan (Majlis Penutupan)</td>
-                                    <td class="text-center"><br>150<br>100</td>
-                                    <td class="text-right font-mono text-sm"><br>20.00 X 3 hari<br>15.00 x 1 hari</td>
-                                    <td class="text-right font-mono text-sm"><br>9000.00<br>1500.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">3.</td>
-                                    <td>Cenderahati perasmi</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-right font-mono text-sm">50.00</td>
-                                    <td class="text-right font-mono text-sm">50.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">4.</td>
-                                    <td>Cenderahati juri</td>
-                                    <td class="text-center">48</td>
-                                    <td class="text-right font-mono text-sm">50.00</td>
-                                    <td class="text-right font-mono text-sm">2400.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">5.</td>
-                                    <td>Banner (Majlis Penutupan)</td>
-                                    <td class="text-center">1</td>
-                                    <td class="text-right font-mono text-sm">300.00</td>
-                                    <td class="text-right font-mono text-sm">300.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">6.</td>
-                                    <td>Banner (Bilik Pertandingan)</td>
-                                    <td class="text-center">12</td>
-                                    <td class="text-right font-mono text-sm">65.00</td>
-                                    <td class="text-right font-mono text-sm">780.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">7.</td>
-                                    <td>Kertas acara khat (Size A3)</td>
-                                    <td class="text-center">50</td>
-                                    <td class="text-right font-mono text-sm">1.00</td>
-                                    <td class="text-right font-mono text-sm">50.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">8.</td>
-                                    <td>Sewaan Sound System</td>
-                                    <td class="text-center">3</td>
-                                    <td class="text-right font-mono text-sm">1000.00</td>
-                                    <td class="text-right font-mono text-sm">3000.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">9.</td>
-                                    <td>Perhiasan bilik pertandingan</td>
-                                    <td class="text-center">11</td>
-                                    <td class="text-right font-mono text-sm">50.00</td>
-                                    <td class="text-right font-mono text-sm">550.00</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-center">10.</td>
-                                    <td>Sijil</td>
-                                    <td class="text-center">800</td>
-                                    <td class="text-right font-mono text-sm">2.00</td>
-                                    <td class="text-right font-mono text-sm">1600.00</td>
-                                </tr>
-                                <tr class="bg-yellow-500/20 font-bold text-yellow-300">
-                                    <td colspan="4" class="text-right uppercase">JUMLAH</td>
-                                    <td class="text-right font-mono text-lg underline decoration-double">20240.00</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </section>
 
             <section id="aturcara" class="section-content">
@@ -1023,37 +915,47 @@
                     <h3 class="text-xl font-bold text-yellow-400 mb-4 uppercase tracking-widest text-center">Penutup</h3>
                     <p class="text-sm text-gray-200 mb-4 leading-relaxed">Jawatankuasa Pelaksana Karnival Mahabbah Pendidikan Khas Peringkat Negeri Sabah berharap agar karnival ini dapat dilaksanakan dengan jayanya serta mencapai matlamat dan objektif yang telah ditetapkan. Penganjuran karnival ini diharapkan dapat menjadi platform untuk mengembangkan potensi Murid Berkeperluan Pendidikan Khas (MBPK), memupuk semangat mahabbah, perpaduan dan keyakinan diri, di samping mengenal pasti peserta yang layak mewakili Negeri Sabah ke Karnival Mahabbah Pendidikan Khas Peringkat Kebangsaan.</p>
                     <p class="text-sm text-gray-200 mb-8 leading-relaxed">Jawatankuasa pelaksana komited memastikan setiap aktiviti dilaksanakan dengan teratur dan berkesan. Segala bentuk sokongan, kerjasama dan komitmen daripada semua pihak amatlah dihargai demi menjayakan penganjuran Karnival Mahabbah Pendidikan Khas Peringkat Negeri Sabah.</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm mt-12 pt-8 border-t border-white/20">
-                        <div>
-                            <p class="mb-12">Disediakan Oleh,</p>
-                            <p>……………………………………….</p>
-                            <p class="font-bold text-yellow-300">(SITI ZULAIKHA BINTI SOLUBIN)</p>
-                            <p class="text-gray-400 text-xs">UNIT PENDIDIKAN KHAS<br>PPD RANAU</p>
-                        </div>
-                        <div>
-                            <p class="mb-12">Disemak Oleh,</p>
-                            <p>……………………………..........</p>
-                            <p class="font-bold text-yellow-300">(VINCENT SABIN @ WILLIAM)</p>
-                            <p class="text-gray-400 text-xs">TIMBALAN PEGAWAI PENDIDIKAN DAERAH<br>SEKTOR PEMBELAJARAN<br>PPD RANAU</p>
-                        </div>
-                        <div>
-                            <p class="mb-12">Disahkan Oleh,</p>
-                            <p>…………………………….............</p>
-                            <p class="font-bold text-yellow-300">(BARIZAH BINTI MOHD KAHAR)</p>
-                            <p class="text-gray-400 text-xs">PEGAWAI PENDIDIKAN DAERAH<br>PPD RANAU</p>
-                            <p class="mt-4 text-xs">Tarikh : ..................................</p>
-                        </div>
-                    </div>
                 </div>
 
             </section>
 
         </div>
+
+        <!-- Hakim Modal Pop-up -->
+        <div id="hakim-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+            <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-md overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="hakim-modal-content">
+                <div class="p-4 border-b border-white/10 flex justify-between items-center bg-slate-800/50">
+                    <h3 class="font-amiri text-xl font-bold text-yellow-400" id="hakim-modal-title"><i class="fa-solid fa-gavel mr-2"></i> Senarai Hakim</h3>
+                    <button onclick="closeHakimModal()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-times text-xl"></i></button>
+                </div>
+                <div class="p-6 max-h-[60vh] overflow-y-auto" id="hakim-modal-list">
+                    <!-- JS will populate this with dynamically generated list -->
+                </div>
+                <div class="p-4 bg-slate-800/50 text-center">
+                    <button onclick="closeHakimModal()" class="bg-white/10 hover:bg-white/20 text-white py-2 px-6 rounded-full text-sm font-medium transition-colors">Tutup</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Peserta Modal Pop-up -->
+        <div id="peserta-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+            <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-lg overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="peserta-modal-content">
+                <div class="p-4 border-b border-white/10 flex justify-between items-center bg-slate-800/50">
+                    <h3 class="font-amiri text-xl font-bold text-yellow-400" id="peserta-modal-title"><i class="fa-solid fa-users mr-2"></i> Senarai Peserta</h3>
+                    <button onclick="closePesertaModal()" class="text-gray-400 hover:text-white transition-colors"><i class="fa-solid fa-times text-xl"></i></button>
+                </div>
+                <div class="p-6 max-h-[60vh] overflow-y-auto" id="peserta-modal-list">
+                    <!-- JS will populate this with participant names -->
+                </div>
+                <div class="p-4 bg-slate-800/50 text-center">
+                    <button onclick="closePesertaModal()" class="bg-white/10 hover:bg-white/20 text-white py-2 px-6 rounded-full text-sm font-medium transition-colors">Tutup</button>
+                </div>
+            </div>
+        </div>
+
     </main>
 
     <script>
-        // Section Navigation Logic
         function showSection(sectionId, btnElement) {
             // Hide all sections
             document.querySelectorAll('.section-content').forEach(el => {
@@ -1066,100 +968,267 @@
             });
             
             // Show target section and set active button
-            document.getElementById(sectionId).classList.add('active');
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
             if (btnElement) {
                 btnElement.classList.add('active');
             }
 
             // Close sidebar on mobile after clicking
             if (window.innerWidth < 768) {
-                document.getElementById('sidebar').classList.add('-translate-x-full');
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar) sidebar.classList.add('-translate-x-full');
             }
 
             // Scroll main content to top
-            document.querySelector('main').scrollTo({ top: 0, behavior: 'smooth' });
+            const mainContent = document.querySelector('main');
+            if (mainContent) mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Mobile Sidebar Toggle
-        const sidebar = document.getElementById('sidebar');
-        document.getElementById('open-sidebar').addEventListener('click', () => {
-            sidebar.classList.remove('-translate-x-full');
-        });
-        document.getElementById('close-sidebar').addEventListener('click', () => {
-            sidebar.classList.add('-translate-x-full');
-        });
-
-        // Audio Player Logic
-        let isAudioPlaying = false;
-        const bgMusic = document.getElementById('bg-music');
-        let playPromise;
-        
-        // Lower the volume slightly for background listening
-        bgMusic.volume = 0.4; 
-
-        function updateAudioUI() {
-            const toggleMusicBtn = document.getElementById('toggle-music');
-            if (!isAudioPlaying) {
-                toggleMusicBtn.innerHTML = '<i class="fa-solid fa-volume-mute text-gray-400 mr-2"></i> Audio Dihentikan';
-            } else {
-                toggleMusicBtn.innerHTML = '<i class="fa-solid fa-volume-up text-yellow-400 mr-2"></i> Audio Dimainkan';
+        // Helper function to safely add event listeners without crashing
+        function addSafeListener(elementId, eventName, callback) {
+            const el = document.getElementById(elementId);
+            if (el) {
+                el.addEventListener(eventName, callback);
             }
         }
 
+        addSafeListener('open-sidebar', 'click', () => {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) sidebar.classList.remove('-translate-x-full');
+        });
+
+        addSafeListener('close-sidebar', 'click', () => {
+            const sidebar = document.getElementById('sidebar');
+            if (sidebar) sidebar.classList.add('-translate-x-full');
+        });
+
+        function returnToCover() {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            if (welcomeScreen) {
+                welcomeScreen.style.display = 'flex';
+                // Small delay to allow display:flex to apply before fading in
+                setTimeout(() => {
+                    welcomeScreen.style.opacity = '1';
+                }, 10);
+            }
+            
+            // Pause music when returning to cover
+            safePause();
+            
+            // Close sidebar on mobile
+            if (window.innerWidth < 768) {
+                const sidebar = document.getElementById('sidebar');
+                if (sidebar) sidebar.classList.add('-translate-x-full');
+            }
+        }
+
+        let isAudioPlaying = false;
+        let bgAudio = new Audio('mp3.mp4');
+        bgAudio.loop = true;
+        let playPromise;
+
+        // Catch missing file errors gracefully so it doesn't crash the preview
+        bgAudio.addEventListener('error', function() {
+            console.warn("Media source 'mp3.mp4' missing or unsupported. This is expected in the preview window.");
+        });
+
         function safePlay() {
-            playPromise = bgMusic.play();
+            playPromise = bgAudio.play();
             if (playPromise !== undefined) {
-                playPromise.then(() => {
+                playPromise.then(_ => {
                     isAudioPlaying = true;
-                    updateAudioUI();
-                }).catch(err => {
-                    console.error("Audio engine failed to start or was blocked:", err);
+                    updateAudioButtonUI();
+                }).catch(error => {
+                    console.warn("Audio autoplay prevented or file missing:", error);
                     isAudioPlaying = false;
-                    updateAudioUI();
+                    updateAudioButtonUI();
                 });
             }
         }
 
         function safePause() {
             if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    bgMusic.pause();
+                playPromise.then(_ => {
+                    bgAudio.pause();
                     isAudioPlaying = false;
-                    updateAudioUI();
-                }).catch(err => {
-                    console.error("Pause interrupted:", err);
+                    updateAudioButtonUI();
+                }).catch(error => {
+                    console.warn("Audio pause error:", error);
                 });
             } else {
-                bgMusic.pause();
+                bgAudio.pause();
                 isAudioPlaying = false;
-                updateAudioUI();
+                updateAudioButtonUI();
             }
         }
 
-        // Handle Enter Button
-        document.getElementById('enter-btn').addEventListener('click', () => {
-            const welcomeScreen = document.getElementById('welcome-screen');
-            welcomeScreen.style.opacity = '0';
+        function updateAudioButtonUI() {
+            const toggleMusicBtn = document.getElementById('toggle-music');
+            if (!toggleMusicBtn) return;
             
-            // Prevent double-clicking
-            document.getElementById('enter-btn').style.pointerEvents = 'none';
+            if (isAudioPlaying) {
+                toggleMusicBtn.innerHTML = '<i class="fa-solid fa-volume-up text-yellow-400 mr-2"></i> Audio Dimainkan';
+            } else {
+                toggleMusicBtn.innerHTML = '<i class="fa-solid fa-volume-mute text-gray-400 mr-2"></i> Audio Dihentikan';
+            }
+        }
 
-            setTimeout(() => {
-                welcomeScreen.style.display = 'none';
-            }, 700);
-
-            safePlay();
-        });
-
-        // Handle Music Toggle
-        const toggleMusicBtn = document.getElementById('toggle-music');
-        toggleMusicBtn.addEventListener('click', () => {
+        addSafeListener('toggle-music', 'click', () => {
             if (isAudioPlaying) {
                 safePause();
             } else {
                 safePlay();
             }
         });
+
+        addSafeListener('enter-btn', 'click', () => {
+            const welcomeScreen = document.getElementById('welcome-screen');
+            if (welcomeScreen) {
+                welcomeScreen.style.opacity = '0';
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                }, 700);
+            }
+            safePlay();
+        });
+
+        // --- Data & Logic for Hakim Modal ---
+        const hakimData = {
+            'juri': { title: 'Senarai Juri (48 Orang)', names: ['Ustaz Azron bin Jaafar @ Ramli', 'Ustaz Suhailin bin Lajimin', 'Ustazah Nurul Huda binti Othman', 'Ustaz Mohd Faizal bin Ibrahim', 'Ustazah Siti Aishah binti Ismail', 'Ustaz Abdul Rahman bin Kassim', 'Ustazah Aminah binti Yusuf', 'Ustaz Khairul Anuar bin Hassan', 'Ustaz Jamaluddin bin Sulaiman', 'Ustazah Fatimah binti Awang', '* dan 38 hakim lain (Senarai penuh akan dikemaskini kelak)'] },
+            'pengerusi': { title: 'Pengerusi Jemaah Hakim', names: ['En Mohamad Sufri bin Salim', '*Ketua Penolong Pengarah, Sektor Pendidikan Khas, JPN Sabah'] },
+            'timbalan': { title: 'Timbalan Pengerusi', names: ['Ustaz Ahmad Fauzi bin Razak (Demo)', '*PPD Ranau'] }
+        };
+
+        function openHakimModal(type) {
+            const modal = document.getElementById('hakim-modal');
+            const content = document.getElementById('hakim-modal-content');
+            const listContainer = document.getElementById('hakim-modal-list');
+            const titleElement = document.getElementById('hakim-modal-title');
+            
+            if (titleElement && listContainer && type && hakimData[type]) {
+                const data = hakimData[type];
+                titleElement.innerHTML = `<i class="fa-solid fa-gavel mr-2"></i> ${data.title}`;
+                
+                let html = '<ul class="space-y-3 text-sm text-gray-200">';
+                data.names.forEach(name => {
+                    if(name.startsWith('*')) {
+                        html += `</ul><div class="mt-4 pt-4 border-t border-white/10 text-center text-xs text-gray-400 italic">${name.substring(1).trim()}</div>`;
+                    } else {
+                        html += `<li class="flex items-center p-3 bg-white/5 rounded-lg border border-white/10 shadow-sm"><i class="fa-solid fa-user-tie text-yellow-500/70 w-8 text-center text-lg"></i> ${name}</li>`;
+                    }
+                });
+                if(!html.endsWith('</div>')) html += '</ul>';
+                listContainer.innerHTML = html;
+            }
+
+            if(modal && content) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }, 10);
+            }
+        }
+
+        function closeHakimModal() {
+            const modal = document.getElementById('hakim-modal');
+            const content = document.getElementById('hakim-modal-content');
+            if(modal && content) {
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300); // Matches the duration-300 transition
+            }
+        }
+
+        // --- Data & Logic for Peserta Modal ---
+        const pesertaData = {
+            'tilawah_bl_rendah_l': { title: 'Tilawah Al-Quran (BL Terbuka Rendah) - Lelaki', names: ['Adli Firdaus bin Ramli'] },
+            'tilawah_bp_rendah_l': { title: 'Tilawah Al-Quran (BP Terbuka Rendah) - Lelaki', names: ['Muhammad Zaki bin Omar'] },
+            'tilawah_bl_menengah_l': { title: 'Tilawah Al-Quran (BL Terbuka Menengah) - Lelaki', names: ['Amirul Amin bin Rosli'] },
+            'tilawah_bp_menengah_l': { title: 'Tilawah Al-Quran (BP Terbuka Menengah) - Lelaki', names: ['Syafiq bin Hassan'] },
+            'hafazan_bp_rendah_l': { title: 'Hafazan Al-Quran (BP Terbuka Rendah) - Lelaki', names: ['Hakim bin Razali'] },
+            'hafazan_bp_menengah_l': { title: 'Hafazan Al-Quran (BP Terbuka Menengah) - Lelaki', names: ['Zarif bin Othman'] },
+            'bercerita_bp_rendah_l': { title: 'Bercerita Kisah dari Al-Quran (BP Terbuka Rendah) - Lelaki', names: ['Danial bin Salleh'] },
+            'bercerita_bd_rendah_l': { title: 'Bercerita Kisah dari Al-Quran (BD Terbuka Rendah) - Lelaki', names: ['Faris bin Kamarul'] },
+            'azan_terbuka': { title: 'Azan Subuh (Terbuka) - Lelaki', names: ['Syed Mokhtar bin Syed Ali'] },
+            'khat_terbuka_p': { title: 'Seni Khat (Terbuka) - Perempuan', names: ['Nurul Aisyah binti Ismail'] },
+            'sajak_bp_rendah_l': { title: 'Deklamasi Sajak (BP Terbuka Rendah) - Lelaki', names: ['Irfan bin Musa'] },
+            'sajak_bp_menengah_l': { title: 'Deklamasi Sajak (BP Terbuka Menengah) - Lelaki', names: ['Khairul bin Anwar'] },
+            'nasyid_terbuka_p': { title: 'Nasyid (Terbuka) - Perempuan', names: ['Siti Aminah binti Yusof', 'Nur Fatihah binti Halim', 'Aina Nadirah binti Zulkifli', 'Nurin Jazlina binti Daud', 'Putri Balqis binti Azman', 'Syakirah binti Jalil', 'Husna binti Yusri', 'Mawaddah binti Rahmat', 'Insyirah binti Tahir', 'Zulaikha binti Mustafa'] },
+            'demo_1': { title: 'Senarai Peserta (1 Orang)', names: ['Peserta Demo 1'] },
+            'demo_0': { title: 'Tiada Peserta', names: ['-'] },
+            'demo_10': { title: 'Senarai Peserta (10 Orang)', names: ['Peserta Demo 1', 'Peserta Demo 2', 'Peserta Demo 3', 'Peserta Demo 4', 'Peserta Demo 5', 'Peserta Demo 6', 'Peserta Demo 7', 'Peserta Demo 8', 'Peserta Demo 9', 'Peserta Demo 10'] },
+            'demo_24': { title: 'Senarai Peserta (24 Orang)', names: ['Wakil PPD 1', 'Wakil PPD 2', '* dan 22 peserta lain (Demo)'] },
+            'demo_48': { title: 'Senarai Peserta (48 Orang)', names: ['Wakil PPD 1 (Rendah)', 'Wakil PPD 1 (Menengah)', '* dan 46 peserta lain (Demo)'] },
+            'demo_240': { title: 'Senarai Peserta (240 Orang)', names: ['Kumpulan Nasyid PPD 1', 'Kumpulan Nasyid PPD 2', '* dan kumpulan nasyid PPD lain (Demo)'] },
+            'demo_528': { title: 'Jumlah Keseluruhan (528 Orang)', names: ['* Senarai penuh 528 peserta akan dipaparkan di sini kelak (Demo)'] }
+        };
+
+        function openPesertaModal(categoryId) {
+            const modal = document.getElementById('peserta-modal');
+            const content = document.getElementById('peserta-modal-content');
+            const listContainer = document.getElementById('peserta-modal-list');
+            const titleElement = document.getElementById('peserta-modal-title');
+            
+            listContainer.innerHTML = ''; // Clear previous content
+
+            if (categoryId === 'all') {
+                titleElement.innerHTML = '<i class="fa-solid fa-users mr-2"></i> Senarai Penuh Peserta (22 Orang)';
+                for (const key in pesertaData) {
+                    const cat = pesertaData[key];
+                    let html = `<div class="mb-5"><h4 class="text-yellow-400 font-bold border-b border-white/10 pb-1 mb-2 text-sm">${cat.title}</h4><ul class="space-y-2 text-sm text-gray-200 pl-2">`;
+                    cat.names.forEach(name => {
+                        html += `<li class="flex items-center"><i class="fa-solid fa-check text-green-400 w-5 text-xs mr-1"></i> ${name}</li>`;
+                    });
+                    html += `</ul></div>`;
+                    listContainer.innerHTML += html;
+                }
+            } else {
+                const cat = pesertaData[categoryId];
+                if(cat) {
+                    titleElement.innerHTML = `<i class="fa-solid fa-users mr-2"></i> ${cat.title}`;
+                    let html = `<ul class="space-y-3 text-sm text-gray-200">`;
+                    cat.names.forEach(name => {
+                        html += `<li class="flex items-center p-3 bg-white/5 rounded-lg border border-white/10 shadow-sm"><i class="fa-solid fa-user-graduate text-yellow-500/70 w-8 text-center text-lg"></i> ${name}</li>`;
+                    });
+                    html += `</ul>`;
+                    listContainer.innerHTML = html;
+                }
+            }
+
+            if(modal && content) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }, 10);
+            }
+        }
+
+        function closePesertaModal() {
+            const modal = document.getElementById('peserta-modal');
+            const content = document.getElementById('peserta-modal-content');
+            if(modal && content) {
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
     </script>
 </body>
 </html>
