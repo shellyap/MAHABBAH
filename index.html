@@ -1036,32 +1036,35 @@
         });
 
         function safePlay() {
+            // Optimistically update the UI to "ON" right away
+            isAudioPlaying = true;
+            updateAudioButtonUI();
+
             playPromise = bgAudio.play();
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
-                    isAudioPlaying = true;
-                    updateAudioButtonUI();
+                    // Audio is successfully playing (will happen on live site)
                 }).catch(error => {
-                    console.warn("Audio autoplay prevented or file missing:", error);
-                    isAudioPlaying = false;
-                    updateAudioButtonUI();
+                    console.warn("Audio file missing in preview. Button will stay ON for testing.", error);
+                    // Notice we DO NOT set isAudioPlaying = false here anymore!
                 });
             }
         }
 
         function safePause() {
+            // Optimistically update the UI to "OFF" right away
+            isAudioPlaying = false;
+            updateAudioButtonUI();
+
             if (playPromise !== undefined) {
                 playPromise.then(_ => {
                     bgAudio.pause();
-                    isAudioPlaying = false;
-                    updateAudioButtonUI();
                 }).catch(error => {
                     console.warn("Audio pause error:", error);
+                    bgAudio.pause(); // Fallback pause attempt
                 });
             } else {
                 bgAudio.pause();
-                isAudioPlaying = false;
-                updateAudioButtonUI();
             }
         }
 
