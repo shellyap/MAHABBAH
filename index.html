@@ -56,13 +56,29 @@
         .verbatim-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.875rem;
+            font-size: 0.65rem; /* Smaller font for mobile to fit all columns */
+            table-layout: fixed; /* Forces the table to fit within screen width */
+        }
+        @media (min-width: 768px) {
+            .verbatim-table {
+                font-size: 0.875rem; /* Normal font size for tablets and desktop */
+                table-layout: auto; /* Reverts to flexible layout on larger screens */
+            }
         }
         .verbatim-table th, .verbatim-table td {
             border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 0.75rem 1rem;
+            padding: 0.4rem 0.25rem; /* Tighter padding for mobile */
             text-align: left;
-            vertical-align: top;
+            vertical-align: middle;
+            word-wrap: break-word; /* Forces long words to wrap instead of stretching the table */
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+        @media (min-width: 768px) {
+            .verbatim-table th, .verbatim-table td {
+                padding: 0.75rem 1rem;
+                vertical-align: top;
+            }
         }
         .verbatim-table th {
             background-color: rgba(250, 204, 21, 0.15);
@@ -165,7 +181,10 @@
         <!-- Mobile Header -->
         <header class="md:hidden bg-slate-900/80 backdrop-blur-md border-b border-white/10 p-4 sticky top-0 z-40 flex items-center justify-between">
             <div class="flex items-center">
-                <button id="open-sidebar" class="text-white mr-4"><i class="fa-solid fa-bars text-xl"></i></button>
+                <button id="open-sidebar" class="text-white mr-4 flex items-center bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/20 transition-colors">
+                    <i class="fa-solid fa-bars text-lg mr-2"></i>
+                    <span class="text-sm font-bold tracking-wider">MENU</span>
+                </button>
                 <h1 class="font-bold text-yellow-400 font-amiri truncate">Infoboard Mahabbah 2026</h1>
             </div>
         </header>
