@@ -162,6 +162,25 @@
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 7. Hakim & Kehadiran</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 8. Aturcara & Penutup</button></li>
                 
+                <!-- Tab Baru: Pautan Google Form -->
+                <li>
+                    <a href="https://forms.gle/JWV6BcTmQHZ4XUhy6" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors">
+                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 9. Daftar Kehadiran <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://forms.gle/ABEDo39QWFiKVEaR9" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors">
+                        <i class="fa-solid fa-face-smile w-6 text-center mr-2"></i> 10. Maklum Balas Kepuasan Pelanggan <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
+                    </a>
+                </li>
+                
+                <!-- Tab Baru: Buku Pelawat Digital (Interaktif dalam Dashboard) -->
+                <li>
+                    <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-purple-300 hover:bg-purple-400/10 hover:border-l-purple-400 transition-colors" onclick="showSection('buku_pelawat', this)">
+                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 11. Buku Pelawat Digital
+                    </button>
+                </li>
+                
                 <li class="mt-4 pt-4 border-t border-white/10">
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-yellow-300 hover:bg-yellow-400/10 hover:border-l-yellow-400 transition-colors" onclick="returnToCover()">
                         <i class="fa-solid fa-house w-6 text-center mr-2"></i> Kembali ke Halaman Utama
@@ -938,6 +957,65 @@
 
             </section>
 
+            <!-- SEKSYEN BUKU PELAWAT (BAHARU) -->
+            <section id="buku_pelawat" class="section-content">
+                <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Buku Pelawat Digital</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Borang Buku Pelawat -->
+                    <div class="glass-panel p-6 rounded-xl h-fit border-t-4 border-t-purple-500">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-pen-nib text-purple-400 mr-3"></i> Tinggalkan Jejak Anda</h3>
+                        
+                        <form id="guestbook-form" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Nama Penuh</label>
+                                <input type="text" id="gb-name" required class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 placeholder-gray-500 transition-all" placeholder="Masukkan nama anda">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Agensi / Sekolah / PPD</label>
+                                <input type="text" id="gb-agency" required class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 placeholder-gray-500 transition-all" placeholder="Cth: SK Pekan Ranau / PPD Ranau">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-300 mb-1">Ucapan & Maklum Balas</label>
+                                <textarea id="gb-message" required rows="3" class="w-full bg-black/30 border border-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 placeholder-gray-500 transition-all" placeholder="Kongsikan ucapan, pandangan atau kata-kata semangat..."></textarea>
+                            </div>
+                            
+                            <button type="submit" id="gb-submit-btn" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-bold py-3 px-4 rounded-lg transition-colors flex items-center justify-center mt-2 shadow-lg shadow-purple-900/50">
+                                <i class="fa-solid fa-paper-plane mr-2"></i> Hantar Jejak
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Paparan Senarai Pelawat -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[500px]">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center border-b border-white/10 pb-3"><i class="fa-solid fa-comments text-purple-400 mr-3"></i> Senarai Jejak Pelawat</h3>
+                        
+                        <div id="guestbook-entries" class="flex-1 overflow-y-auto pr-2 space-y-4">
+                            <!-- Contoh Mesej (Mock Data) -->
+                            <div class="bg-black/20 p-4 rounded-lg border border-white/5 border-l-4 border-l-purple-500">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-purple-300 text-sm">Ustaz Ahmad Kamal</h4>
+                                    <span class="text-[10px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">1 jam lepas</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mb-2 font-medium flex items-center"><i class="fa-solid fa-building text-gray-500 mr-2"></i> PPD Kota Kinabalu</p>
+                                <p class="text-sm text-gray-200 leading-relaxed">Tahniah atas penganjuran yang sangat mantap dan inovatif. Penggunaan infoboard digital ini sangat memudahkan semua pihak rujuk maklumat.</p>
+                            </div>
+
+                            <div class="bg-black/20 p-4 rounded-lg border border-white/5 border-l-4 border-l-purple-500">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h4 class="font-bold text-purple-300 text-sm">Cikgu Aisyah Humaira</h4>
+                                    <span class="text-[10px] text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">2 jam lepas</span>
+                                </div>
+                                <p class="text-xs text-gray-400 mb-2 font-medium flex items-center"><i class="fa-solid fa-building text-gray-500 mr-2"></i> SMK Kundasang</p>
+                                <p class="text-sm text-gray-200 leading-relaxed">Selamat maju jaya kepada semua peserta Karnival Mahabbah. Semoga berjaya ke peringkat kebangsaan!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
         </div>
 
         <!-- Hakim Modal Pop-up -->
@@ -1251,6 +1329,72 @@
                 }, 300);
             }
         }
+        
+        // --- Buku Pelawat Logic ---
+        addSafeListener('guestbook-form', 'submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('gb-name').value;
+            const agency = document.getElementById('gb-agency').value;
+            const message = document.getElementById('gb-message').value;
+            
+            if(!name || !message) return;
+            
+            const entriesContainer = document.getElementById('guestbook-entries');
+            
+            // Format masa semasa
+            const now = new Date();
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            const strTime = hours + ':' + minutes + ' ' + ampm;
+            
+            // Cipta elemen HTML untuk ucapan baharu
+            const newEntry = document.createElement('div');
+            // Menambah animasi fade-in sederhana melalui tailwind class custom
+            newEntry.className = 'bg-black/20 p-4 rounded-lg border border-white/5 border-l-4 border-l-purple-400 transition-all duration-500 opacity-0 transform -translate-x-4';
+            
+            newEntry.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-bold text-purple-300 text-sm">${name}</h4>
+                    <span class="text-[10px] text-yellow-300 bg-yellow-500/10 border border-yellow-500/20 px-2 py-0.5 rounded-full">Terkini (${strTime})</span>
+                </div>
+                <p class="text-xs text-gray-400 mb-2 font-medium flex items-center"><i class="fa-solid fa-building text-gray-500 mr-2"></i> ${agency}</p>
+                <p class="text-sm text-white leading-relaxed">${message}</p>
+            `;
+            
+            // Masukkan ke bahagian atas senarai
+            entriesContainer.prepend(newEntry);
+            
+            // Timbulkan elemen baru dengan animasi
+            setTimeout(() => {
+                newEntry.classList.remove('opacity-0', '-translate-x-4');
+                newEntry.classList.add('opacity-100', 'translate-x-0');
+            }, 50);
+            
+            // Skrol kembali ke atas jika dah ke bawah
+            entriesContainer.scrollTop = 0;
+            
+            // Reset borang
+            this.reset();
+            
+            // Visual feedback pada butang
+            const btn = document.getElementById('gb-submit-btn');
+            const originalContent = btn.innerHTML;
+            
+            btn.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Jejak Berjaya Disimpan!';
+            btn.classList.remove('bg-purple-600', 'hover:bg-purple-500');
+            btn.classList.add('bg-green-600', 'hover:bg-green-500');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.classList.remove('bg-green-600', 'hover:bg-green-500');
+                btn.classList.add('bg-purple-600', 'hover:bg-purple-500');
+            }, 3000);
+        });
     </script>
 </body>
 </html>
