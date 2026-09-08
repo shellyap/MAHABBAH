@@ -1026,13 +1026,13 @@
         }
 
         let isAudioPlaying = false;
-        let bgAudio = new Audio('mp3.mp4');
+        let bgAudio = new Audio('mp3.mp3'); // Changed to a standard audio.mp3 format
         bgAudio.loop = true;
         let playPromise;
 
         // Catch missing file errors gracefully so it doesn't crash the preview
         bgAudio.addEventListener('error', function() {
-            console.warn("Media source 'mp3.mp4' missing or unsupported. This is expected in the preview window.");
+            console.warn("Media source 'mp3.mp3' missing or unsupported. This is expected in the preview window.");
         });
 
         function safePlay() {
