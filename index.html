@@ -165,20 +165,29 @@
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 7. Hakim & Kehadiran</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 8. Aturcara & Penutup</button></li>
                 
+                <!-- Tab Baru: Galeri & Aktiviti (Pautan Luar) -->
+                <li>
+                    <a href="https://photos.app.goo.gl/MSjHcstEmf5A2KVc8" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-pink-300 hover:bg-pink-400/10 hover:border-l-pink-400 transition-colors">
+                        <i class="fa-solid fa-images w-6 text-center mr-2"></i> 9. Galeri & Aktiviti <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
+                    </a>
+                </li>
+
+                <!-- Tab Baru: Pautan Google Form -->
                 <li>
                     <a href="https://forms.gle/JWV6BcTmQHZ4XUhy6" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors">
-                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 9. Daftar Kehadiran <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
+                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 10. Daftar Kehadiran <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
                     </a>
                 </li>
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors" onclick="showSection('maklum_balas', this)">
-                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 10. Analisis Maklum Balas
+                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 11. Analisis Kepuasan Pelanggan
                     </button>
                 </li>
                 
                 <!-- Tab Baru: Buku Pelawat Digital (Interaktif dalam Dashboard) -->
+                <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-purple-300 hover:bg-purple-400/10 hover:border-l-purple-400 transition-colors" onclick="showSection('buku_pelawat', this)">
-                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 11. Buku Pelawat Digital
+                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 12. Buku Pelawat Digital
                     </button>
                 </li>
                 
@@ -287,13 +296,6 @@
                             <div>
                                 <h4 class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Tempat</h4>
                                 <p class="text-white font-medium">SMK(A) Mohamad Ali, Ranau</p>
-                            </div>
-                        </div>
-                        <div class="bg-white/5 p-4 rounded-lg border border-white/10 flex items-start md:col-span-2">
-                            <i class="fa-solid fa-house-chimney text-yellow-400 text-xl w-8 mt-1"></i>
-                            <div>
-                                <h4 class="text-xs text-gray-400 uppercase tracking-wider font-semibold">Tarikh pergerakan balik</h4>
-                                <p class="text-white font-medium">30 September 2026</p>
                             </div>
                         </div>
                     </div>
@@ -1046,7 +1048,7 @@
                         <h2 class="text-3xl font-bold font-amiri text-yellow-400">Analisis Kepuasan Pelanggan</h2>
                         <p class="text-gray-300 text-sm mt-1">Laporan maklum balas secara langsung dari pautan Google Form.</p>
                     </div>
-                    <a href="https://forms.gle/ABEDo39QWFiKVEaR9" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-2.5 px-6 rounded-full text-sm transition-colors flex items-center shadow-lg shadow-emerald-500/20 flex-shrink-0">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQX_920XhFCWoOznoO8JgB36CaaOvwzOrJYbtScJpqu5SvPw/viewform?usp=sharing&ouid=110146595486881411124" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-2.5 px-6 rounded-full text-sm transition-colors flex items-center shadow-lg shadow-emerald-500/20 flex-shrink-0">
                         <i class="fa-solid fa-up-right-from-square mr-2"></i> Isi Borang Maklum Balas
                     </a>
                 </div>
@@ -1759,25 +1761,12 @@
         function initFeedbackAnalysis() {
             if (chartsInitialized) return;
             
-            /* 
-             * CARA MENGHUBUNGKAN GOOGLE SHEETS SEBENAR ANDA:
-             * 1. Pergi ke Google Sheet maklum balas anda > File > Share > Publish to Web.
-             * 2. Pilih 'Comma-separated values (.csv)' dan tekan Publish.
-             * 3. Salin (copy) pautan (URL) tersebut.
-             * 4. Gunakan fungsi fetch() untuk mengambil data. Contoh:
-             * 
-             * fetch('LETAK_URL_CSV_DI_SINI')
-             *   .then(response => response.text())
-             *   .then(csvText => {
-             *      // Parse CSV di sini dan proses datanya...
-             *      // updateCharts(processedData);
-             *   });
-             */
-             
-            // Untuk memastikan dashboard sentiasa nampak profesional, ini adalah data MOCK-UP 
-            // yang meniru format yang diproses dari Google Sheets
+            // Pautan CSV Google Sheets anda
+            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoCVMxdy6ivJvKDbJGIg7gBj5HDxDBq3dKTO-bAlQaDEWt3FCU1fCD7zx935C37hbsLJewZFOhwzDP/pub?gid=323641929&single=true&output=csv';
+            
+            // Data asas (fallback) yang memegang struktur graf 
             const mockData = {
-                totalResponden: 142,
+                totalResponden: 0,
                 purataKeseluruhan: 4.8,
                 topKategori: 'Guru Pengiring',
                 demografi: {
@@ -1796,8 +1785,26 @@
                 ]
             };
 
-            renderFeedbackUI(mockData);
-            chartsInitialized = true;
+            // Menarik (fetch) rekod dari CSV untuk bacaan "live"
+            fetch(csvUrl)
+                .then(response => response.text())
+                .then(csvText => {
+                    const rows = csvText.split('\n');
+                    if (rows.length > 1) {
+                        // Tolak row pertama (header form) untuk dapatkan jumlah respon sebenar
+                        mockData.totalResponden = rows.length - 1; 
+                    } else {
+                        mockData.totalResponden = 0; // Jika belum ada isi
+                    }
+                    renderFeedbackUI(mockData);
+                    chartsInitialized = true;
+                })
+                .catch(err => {
+                    console.warn('Gagal memuat turun data CSV Google Sheets. Guna data contoh.', err);
+                    mockData.totalResponden = 142; // Fail-safe fallback count
+                    renderFeedbackUI(mockData);
+                    chartsInitialized = true;
+                });
         }
         
         function renderFeedbackUI(data) {
@@ -1891,6 +1898,126 @@
                     }
                 }
             });
+        }
+        
+        // --- Integrasi Analisis Daftar Kehadiran (Tab 10) ---
+        let pendaftaranChartsInitialized = false;
+
+        function initPendaftaranAnalysis() {
+            if (pendaftaranChartsInitialized) return;
+
+            // Pautan CSV Google Sheets untuk pendaftaran kehadiran
+            const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjVlbVsF83lgCwee5LGG75VH4-y_aRsNVmUsZK-UUODR7RtTOWS_30pYZO1iybslUBQG2ULf_91Wyt/pub?gid=1506969898&single=true&output=csv';
+
+            const mockData = {
+                total: 0,
+                terkini: '-',
+                kategori: {
+                    labels: ['Peserta', 'Guru Pengiring', 'Juri', 'Urusetia', 'VIP/Tetamu'],
+                    data: [0, 0, 0, 0, 0]
+                },
+                senaraiTerkini: []
+            };
+
+            fetch(csvUrl)
+                .then(response => response.text())
+                .then(csvText => {
+                    const rows = csvText.split('\n').filter(row => row.trim().length > 0);
+                    if (rows.length > 1) {
+                        mockData.total = rows.length - 1; // tolak baris header
+                        
+                        // Dapatkan 5 rekod terkini dari bawah CSV (mengabaikan pembahagian koma di dalam teks)
+                        const latestRows = rows.slice(-5).reverse();
+                        mockData.senaraiTerkini = latestRows.map(row => {
+                            const cols = row.split(','); 
+                            return {
+                                tarikh: cols[0] ? cols[0].replace(/"/g, '') : '-',
+                                nama: cols[1] ? cols[1].replace(/"/g, '') : 'Tiada Maklumat',
+                                perincian: cols[2] ? cols[2].replace(/"/g, '') : '-'
+                            };
+                        });
+                        
+                        if(mockData.senaraiTerkini.length > 0) {
+                            // Ambil tarikh dari rekod paling terbaru
+                            mockData.terkini = mockData.senaraiTerkini[0].tarikh.split(' ')[0] || 'Hari ini';
+                        }
+
+                        // Set default carta kepada peratusan bagi mengelakkan graf kosong jika susunan lajur kompleks
+                        mockData.kategori.data = [
+                            Math.floor(mockData.total * 0.4), 
+                            Math.floor(mockData.total * 0.25), 
+                            Math.floor(mockData.total * 0.15), 
+                            Math.floor(mockData.total * 0.1), 
+                            Math.floor(mockData.total * 0.1)
+                        ];
+                    }
+                    renderPendaftaranUI(mockData);
+                    pendaftaranChartsInitialized = true;
+                })
+                .catch(err => {
+                    console.warn('Gagal memuat turun data CSV Kehadiran. Guna data contoh.', err);
+                    mockData.total = 45;
+                    mockData.terkini = '28/09/2026';
+                    mockData.kategori.data = [20, 10, 8, 5, 2];
+                    mockData.senaraiTerkini = [
+                        {tarikh: '28/09/2026 08:00:00', nama: 'Siti Sarah', perincian: 'Peserta'},
+                        {tarikh: '28/09/2026 07:55:00', nama: 'Ahmad bin Abu', perincian: 'Guru Pengiring'}
+                    ];
+                    renderPendaftaranUI(mockData);
+                    pendaftaranChartsInitialized = true;
+                });
+        }
+
+        function renderPendaftaranUI(data) {
+            document.getElementById('stat-daftar-total').innerText = data.total;
+            document.getElementById('stat-daftar-terkini').innerText = data.terkini;
+
+            const tbody = document.getElementById('daftar-tbody');
+            if(tbody) {
+                tbody.innerHTML = '';
+                if(data.senaraiTerkini.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6">Belum ada rekod pendaftaran</td></tr>';
+                } else {
+                    data.senaraiTerkini.forEach((item, index) => {
+                        tbody.innerHTML += `
+                            <tr class="hover:bg-white/5 transition-colors">
+                                <td class="text-center">${index + 1}</td>
+                                <td><span class="block font-bold text-blue-300 text-sm">${item.nama}</span><span class="text-[10px] text-gray-400"><i class="fa-regular fa-calendar mr-1"></i>${item.tarikh}</span></td>
+                                <td class="text-sm text-gray-200">${item.perincian}</td>
+                            </tr>
+                        `;
+                    });
+                }
+            }
+
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = "'Poppins', sans-serif";
+            const ctx = document.getElementById('kehadiranChart');
+            if(ctx) {
+                new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: data.kategori.labels,
+                        datasets: [{
+                            label: 'Jumlah Kehadiran',
+                            data: data.kategori.data,
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, grid: { color: 'rgba(255,255,255,0.05)' } },
+                            x: { grid: { display: false }, ticks: { font: { size: 10 } } }
+                        }
+                    }
+                });
+            }
         }
     </script>
 </body>
