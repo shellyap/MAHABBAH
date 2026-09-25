@@ -165,26 +165,22 @@
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 7. Hakim & Kehadiran</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 8. Aturcara & Penutup</button></li>
                 
-                <!-- Tab Baru: Galeri & Aktiviti (Pautan Luar) -->
                 <li>
                     <a href="https://photos.app.goo.gl/MSjHcstEmf5A2KVc8" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-pink-300 hover:bg-pink-400/10 hover:border-l-pink-400 transition-colors">
                         <i class="fa-solid fa-images w-6 text-center mr-2"></i> 9. Galeri & Aktiviti <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
                     </a>
                 </li>
 
-                <!-- Tab Baru: Pautan Google Form -->
                 <li>
-                    <a href="https://forms.gle/JWV6BcTmQHZ4XUhy6" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors">
-                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 10. Daftar Kehadiran <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
-                    </a>
+                    <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors" onclick="showSection('daftar_kehadiran', this)">
+                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 10. Daftar Kehadiran
+                    </button>
                 </li>
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors" onclick="showSection('maklum_balas', this)">
                         <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 11. Analisis Kepuasan Pelanggan
                     </button>
                 </li>
-                
-                <!-- Tab Baru: Buku Pelawat Digital (Interaktif dalam Dashboard) -->
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-purple-300 hover:bg-purple-400/10 hover:border-l-purple-400 transition-colors" onclick="showSection('buku_pelawat', this)">
                         <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 12. Buku Pelawat Digital
@@ -202,13 +198,11 @@
 
     <main class="flex-1 h-screen overflow-y-auto bg-black/20 relative">
         
-        <!-- Floating Audio Button (Top Right) -->
         <button id="toggle-music" class="fixed top-3 right-4 md:top-8 md:right-10 z-[60] bg-slate-900/80 md:bg-white/10 hover:bg-slate-800 md:hover:bg-white/20 text-white backdrop-blur-md border border-white/20 rounded-full p-2.5 md:py-2 md:px-4 transition-all flex items-center justify-center shadow-lg">
             <i class="fa-solid fa-volume-up text-yellow-400 md:mr-2 text-lg md:text-sm"></i>
             <span class="hidden md:inline text-sm font-medium">Audio Dimainkan</span>
         </button>
 
-        <!-- Mobile Header -->
         <header class="md:hidden bg-slate-900/80 backdrop-blur-md border-b border-white/10 p-3.5 sticky top-0 z-40 flex items-center justify-between">
             <div class="flex items-center w-[80%]">
                 <button id="open-sidebar" class="text-white mr-3 flex items-center bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/20 transition-colors flex-shrink-0">
@@ -310,7 +304,6 @@
             <section id="acara" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Acara Yang Dipertandingkan</h2>
                 
-                <!-- Petunjuk Interaktif -->
                 <div class="glass-panel p-4 rounded-xl mb-6 flex items-start bg-yellow-400/10 border border-yellow-400/30 shadow-lg shadow-yellow-500/5">
                     <div class="bg-yellow-500 p-2 rounded-full mr-4 flex-shrink-0 animate-bounce shadow-md shadow-yellow-500/20 mt-1">
                         <i class="fa-solid fa-hand-pointer text-slate-900 text-sm w-4 h-4 flex items-center justify-center"></i>
@@ -519,7 +512,6 @@
             <section id="jk_pelaksana" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Jawatankuasa Pelaksana</h2>
                 
-                <!-- Info Boxes JK Pelaksana -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mb-6">
                     <div class="glass-panel bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
                         <div class="text-4xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform flex justify-center items-center">
@@ -541,7 +533,6 @@
                     </div>
                 </div>
 
-                <!-- Smart Search Bar -->
                 <div class="mb-4 relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fa-solid fa-search text-gray-400"></i>
@@ -1041,7 +1032,80 @@
 
             </section>
 
-            <!-- SEKSYEN MAKLUM BALAS KEPELANGGAN (ANALISIS & GRAF) -->
+            <section id="daftar_kehadiran" class="section-content">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/20 pb-4 gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold font-amiri text-yellow-400">Analisis Pendaftaran Kehadiran</h2>
+                        <p class="text-gray-300 text-sm mt-1">Laporan pendaftaran secara langsung dari Google Form.</p>
+                    </div>
+                    <a href="https://forms.gle/JWV6BcTmQHZ4XUhy6" target="_blank" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2.5 px-6 rounded-full text-sm transition-colors flex items-center shadow-lg shadow-blue-500/20 flex-shrink-0">
+                        <i class="fa-solid fa-up-right-from-square mr-2"></i> Borang Kehadiran
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Hadir</p>
+                                <h3 class="text-3xl font-bold text-white" id="stat-daftar-total">-</h3>
+                            </div>
+                            <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400">
+                                <i class="fa-solid fa-users text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-yellow-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Kategori Tertinggi</p>
+                                <h3 class="text-xl font-bold text-white mt-1" id="stat-daftar-top-cat">-</h3>
+                            </div>
+                            <div class="bg-yellow-500/20 p-3 rounded-lg text-yellow-400">
+                                <i class="fa-solid fa-medal text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-purple-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Tarikh Terkini</p>
+                                <h3 class="text-xl font-bold text-white mt-1" id="stat-daftar-terkini">-</h3>
+                            </div>
+                            <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-panel p-6 rounded-xl lg:col-span-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-bar text-blue-400 mr-2"></i> Pecahan Kategori</h3>
+                        <div class="flex-1 relative w-full min-h-[250px]">
+                            <canvas id="kehadiranChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel rounded-xl overflow-hidden lg:col-span-2">
+                        <h3 class="bg-black/40 text-blue-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-list mr-2"></i> Senarai Kehadiran Terkini</h3>
+                        <div class="overflow-x-auto h-[250px] overflow-y-auto">
+                            <table class="verbatim-table w-full relative">
+                                <thead class="sticky top-0 z-10 bg-slate-900 shadow-md">
+                                    <tr>
+                                        <th class="w-12 text-center">Bil</th>
+                                        <th>Nama & Tarikh</th>
+                                        <th>Perincian / Kategori</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="daftar-tbody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="maklum_balas" class="section-content">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/20 pb-4 gap-4">
                     <div>
@@ -1059,7 +1123,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Responden</p>
-                                <h3 class="text-3xl font-bold text-white" id="stat-total">142</h3>
+                                <h3 class="text-3xl font-bold text-white" id="stat-total">-</h3>
                             </div>
                             <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400">
                                 <i class="fa-solid fa-users text-xl"></i>
@@ -1072,7 +1136,7 @@
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Purata Kepuasan</p>
                                 <h3 class="text-3xl font-bold text-white flex items-baseline gap-1">
-                                    <span id="stat-rating">4.8</span><span class="text-lg text-gray-400">/ 5.0</span>
+                                    <span id="stat-rating">-</span><span class="text-lg text-gray-400">/ 5.0</span>
                                 </h3>
                             </div>
                             <div class="bg-emerald-500/20 p-3 rounded-lg text-emerald-400">
@@ -1085,7 +1149,7 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Kategori Tertinggi</p>
-                                <h3 class="text-xl font-bold text-white mt-1 leading-tight" id="stat-top-cat">Guru Pengiring</h3>
+                                <h3 class="text-xl font-bold text-white mt-1 leading-tight" id="stat-top-cat">-</h3>
                             </div>
                             <div class="bg-yellow-500/20 p-3 rounded-lg text-yellow-400">
                                 <i class="fa-solid fa-medal text-xl"></i>
@@ -1131,8 +1195,8 @@
                 <!-- Feedback Verbatim Table -->
                 <div class="glass-panel rounded-xl overflow-hidden">
                     <h3 class="bg-black/40 text-emerald-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-comment-dots mr-2"></i> Ulasan & Cadangan Terpilih</h3>
-                    <div class="overflow-x-auto max-h-[300px] overflow-y-auto">
-                        <table class="verbatim-table w-full">
+                    <div class="overflow-x-auto h-[300px] overflow-y-auto">
+                        <table class="verbatim-table w-full relative">
                             <thead class="sticky top-0 z-10 bg-slate-900 shadow-md">
                                 <tr>
                                     <th class="w-1/4">Tarikh & Kategori</th>
@@ -1149,7 +1213,6 @@
 
             </section>
 
-            <!-- SEKSYEN BUKU PELAWAT -->
             <section id="buku_pelawat" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Buku Pelawat Digital</h2>
                 
@@ -1210,7 +1273,6 @@
 
         </div>
 
-        <!-- Hakim Modal Pop-up -->
         <div id="hakim-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
             <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-md overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="hakim-modal-content">
                 <div class="p-4 border-b border-white/10 flex justify-between items-center bg-slate-800/50">
@@ -1226,7 +1288,6 @@
             </div>
         </div>
 
-        <!-- Peserta Modal Pop-up -->
         <div id="peserta-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
             <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-lg overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="peserta-modal-content">
                 <div class="p-4 border-b border-white/10 flex justify-between items-center bg-slate-800/50">
@@ -1265,9 +1326,11 @@
                 btnElement.classList.add('active');
             }
             
-            // Initialize charts if Maklum Balas section is opened
+            // Initialize dynamic charts if relevant sections are opened
             if (sectionId === 'maklum_balas') {
                 initFeedbackAnalysis();
+            } else if (sectionId === 'daftar_kehadiran') {
+                initPendaftaranAnalysis();
             }
 
             // Close sidebar on mobile after clicking
@@ -1281,7 +1344,6 @@
             if (mainContent) mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Helper function to safely add event listeners without crashing
         function addSafeListener(elementId, eventName, callback) {
             const el = document.getElementById(elementId);
             if (el) {
@@ -1373,7 +1435,6 @@
             safePlay();
         });
 
-        // --- Data & Logic for Hakim Modal ---
         const hakimData = {
             'juri': { title: 'Senarai Juri (50 Orang)', names: ['SULIT'] },
             'pengerusi': { title: 'Pengerusi Jemaah Hakim', names: ['SULIT'] },
@@ -1427,187 +1488,46 @@
             }
         }
 
-        // --- Data & Logic for Peserta Modal ---
         const pesertaData = {
             'tilawah_bp_rendah': { title: 'Tilawah Al-Quran (BP Terbuka Rendah)', names: [
-                'MUHAMMAD ABI HURAIRAH BIN SUHATMAN (KOTA MARUDU)',
-                'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)',
-                'ALYA ASYURA BINTI ABDULLAH (RANAU)',
-                'MOHAMMAD AAKIF RIFHAN BIN AZMEER REZA (KOTA BELUD)',
-                'MOHAMMAD ABDUL RAHMAN BIN SARIPAI (PAPAR)',
-                'MUHAMMAD ADAM NAUFAL BIN MOHD BASIR (KOTA KINABALU)',
-                'MOHAMAD IRWANSHAH BIN MOHD JUMAT NOR (TAWAU)'
+                'MUHAMMAD ABI HURAIRAH BIN SUHATMAN (KOTA MARUDU)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'ALYA ASYURA BINTI ABDULLAH (RANAU)', 'MOHAMMAD AAKIF RIFHAN BIN AZMEER REZA (KOTA BELUD)', 'MOHAMMAD ABDUL RAHMAN BIN SARIPAI (PAPAR)', 'MUHAMMAD ADAM NAUFAL BIN MOHD BASIR (KOTA KINABALU)', 'MOHAMAD IRWANSHAH BIN MOHD JUMAT NOR (TAWAU)'
             ] },
             'tilawah_bp_menengah': { title: 'Tilawah Al-Quran (BP Terbuka Menengah)', names: [
-                'NURAINA KHAIRIAH BINTI MOHAMAD KHAIRUL RAHIM (SANDAKAN)',
-                'SITI SAHIRA BINTI ABDULLAH (KOTA MARUDU)',
-                'NURUL ASYIQIN BINTI ZAINAL (KENINGAU)',
-                'NURUL AISYAH BINTI SENTRIO (RANAU)',
-                'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)',
-                'MUHAMMAD HAFIDHZUDIN MUHAIMIN BIN HARUN (PAPAR)',
-                'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)',
-                'HIDAYATULLAH BIN ANDI HASBULLAH (KOTA KINABALU)',
-                'MUHAMMAD IZZUEL ISLAM BIN JOHARI (LAHAD DATU)',
-                'MOHAMMAD SYUKUR BIN ABDULLAH (PENAMPANG)',
-                'NURHIDAYAH BINTI SHARIL (TAWAU)'
+                'NURAINA KHAIRIAH BINTI MOHAMAD KHAIRUL RAHIM (SANDAKAN)', 'SITI SAHIRA BINTI ABDULLAH (KOTA MARUDU)', 'NURUL ASYIQIN BINTI ZAINAL (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'MUHAMMAD HAFIDHZUDIN MUHAIMIN BIN HARUN (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'HIDAYATULLAH BIN ANDI HASBULLAH (KOTA KINABALU)', 'MUHAMMAD IZZUEL ISLAM BIN JOHARI (LAHAD DATU)', 'MOHAMMAD SYUKUR BIN ABDULLAH (PENAMPANG)', 'NURHIDAYAH BINTI SHARIL (TAWAU)'
             ] },
             'tilawah_bl_rendah': { title: 'Tilawah Al-Quran (BL Terbuka Rendah)', names: [
-                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)',
-                '*kunak'
+                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', '*kunak'
             ] },
             'tilawah_bl_menengah': { title: 'Tilawah Al-Quran (BL Terbuka Menengah)', names: [
                 'MOHAMMAD ILHAM BIN ABDULLAH (TUARAN)'
             ] },
-            
             'hafazan_bp_rendah': { title: 'Hafazan Al-Quran (BP Terbuka Rendah)', names: [
-                'NUR AWLIYA KAUTSAR BINTI MUHAMAD KHAIRUL ZAIYEM (KINABATANGAN)',
-                'MUHAMMAD AIDIL AQMAL B. MOHD AZMI (KOTA MARUDU)',
-                'NUR FATIHAH BINTI REFPAHI (KUALA PENYU)',
-                'MUHAMMAD LUQMAN HAKIM BIN MOHD SHAHRUL NIZAM (BEAUFORT)',
-                'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)',
-                'PUTRA ADAM BIN MOHD NORDIN AZMAIN (RANAU)',
-                'MOHAMAD HYAIKAL BIN ABDUL MANAF (KOTA BELUD)',
-                'MUHAMMAD HANAFI BIN RODY (PAPAR)',
-                'KARL QARLEEF RIZKY BIN DENY SETIAWAN (TUARAN)',
-                'MUHAMMAD DARISH ISYRAFF B ISMAIL (KOTA KINABALU)',
-                'NUR ANIS ATIERA BINTI ABU BAKAR (LAHAD DATU)',
-                'MUHAMMAD FAAIZ HADIF BIN MOHD ZULHAIMI (PENAMPANG)',
-                'HAZRIL BIN HAZMAN (TAWAU)',
-                'UWAIS ALQARNI BIN JULKARNAE (SANDAKAN)'
+                'NUR AWLIYA KAUTSAR BINTI MUHAMAD KHAIRUL ZAIYEM (KINABATANGAN)', 'MUHAMMAD AIDIL AQMAL B. MOHD AZMI (KOTA MARUDU)', 'NUR FATIHAH BINTI REFPAHI (KUALA PENYU)', 'MUHAMMAD LUQMAN HAKIM BIN MOHD SHAHRUL NIZAM (BEAUFORT)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'PUTRA ADAM BIN MOHD NORDIN AZMAIN (RANAU)', 'MOHAMAD HYAIKAL BIN ABDUL MANAF (KOTA BELUD)', 'MUHAMMAD HANAFI BIN RODY (PAPAR)', 'KARL QARLEEF RIZKY BIN DENY SETIAWAN (TUARAN)', 'MUHAMMAD DARISH ISYRAFF B ISMAIL (KOTA KINABALU)', 'NUR ANIS ATIERA BINTI ABU BAKAR (LAHAD DATU)', 'MUHAMMAD FAAIZ HADIF BIN MOHD ZULHAIMI (PENAMPANG)', 'HAZRIL BIN HAZMAN (TAWAU)', 'UWAIS ALQARNI BIN JULKARNAE (SANDAKAN)'
             ] },
             'hafazan_bp_menengah': { title: 'Hafazan Al-Quran (BP Terbuka Menengah)', names: [
-                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)',
-                'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)',
-                'ZULFAHMI BIN ANDI RAUF (SIPITANG)',
-                'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)',
-                'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)',
-                'NURUL AISYAH BINTI SENTRIO (RANAU)',
-                'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)',
-                'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)',
-                'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)',
-                'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)',
-                'NABIL QUSYAIRY BIN YUSUF (LAHAD DATU)',
-                'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)',
-                'ZUNNATUL RASUL (BELURAN)',
-                'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)'
+                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)', 'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)', 'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)', 'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'NABIL QUSYAIRY BIN YUSUF (LAHAD DATU)', 'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)'
             ] },
-            
             'bercerita_bp_rendah': { title: 'Bercerita Kisah dari Al-Quran (BP Terbuka Rendah)', names: [
-                'MUHAMMAD RAYYAN SYARIFUDDIN BIN KAHARUDDIN (KINABATANGAN)',
-                'ARIANA AWFIAH BINTI MOHD RIDHUAN (SANDAKAN)',
-                'NUR HANN ISA BINTI ROY (KOTA MARUDU)',
-                'MUHAMMAD NOR HAZIQ BIN MD JASNIA (KUALA PENYU)',
-                'NUFAIL ANAQI BIN ABDULLAH (BEAUFORT)',
-                'MUHAMMAD AMMAR MIFZHAL BIN FAIDI (KENINGAU)',
-                'ANGELEY ROSLEE (RANAU)',
-                'NUR AQILAH UFAIRAH BINTI MOHD ALIM (KOTA BELUD)',
-                'NUR NATASHA FARHANA BINTI SUHAINI (PAPAR)',
-                'NURFADZIELAH BINTI ABDULLAH (TUARAN)',
-                'HATADI HAUZAN BIN HAMLEY (KOTA KINABALU)',
-                'RAFIQ RAYYAN BIN RIDWAN (LAHAD DATU)',
-                'HAZLIANA BINTI ABDULLAH (PENAMPANG)',
-                'MOHAMMAD AQIL AIMAN BIN PALMAN (TAWAU)'
+                'MUHAMMAD RAYYAN SYARIFUDDIN BIN KAHARUDDIN (KINABATANGAN)', 'ARIANA AWFIAH BINTI MOHD RIDHUAN (SANDAKAN)', 'NUR HANN ISA BINTI ROY (KOTA MARUDU)', 'MUHAMMAD NOR HAZIQ BIN MD JASNIA (KUALA PENYU)', 'NUFAIL ANAQI BIN ABDULLAH (BEAUFORT)', 'MUHAMMAD AMMAR MIFZHAL BIN FAIDI (KENINGAU)', 'ANGELEY ROSLEE (RANAU)', 'NUR AQILAH UFAIRAH BINTI MOHD ALIM (KOTA BELUD)', 'NUR NATASHA FARHANA BINTI SUHAINI (PAPAR)', 'NURFADZIELAH BINTI ABDULLAH (TUARAN)', 'HATADI HAUZAN BIN HAMLEY (KOTA KINABALU)', 'RAFIQ RAYYAN BIN RIDWAN (LAHAD DATU)', 'HAZLIANA BINTI ABDULLAH (PENAMPANG)', 'MOHAMMAD AQIL AIMAN BIN PALMAN (TAWAU)'
             ] },
             'bercerita_bd_rendah': { title: 'Bercerita Kisah dari Al-Quran (BD Terbuka Rendah)', names: [
-                'DARWISY RICHARD NWOSU BIN ABDULLAH (TUARAN)',
-                'KHAYR ADDIN BIN MUHAMMAD AZIZUL FIKRI (PENAMPANG)'
+                'DARWISY RICHARD NWOSU BIN ABDULLAH (TUARAN)', 'KHAYR ADDIN BIN MUHAMMAD AZIZUL FIKRI (PENAMPANG)'
             ] },
-            
             'azan_terbuka': { title: 'Azan Subuh (Terbuka)', names: [
-                'MOHAMMAD AIMAN BIN ABDULLAH (TELUPID)',
-                'MUHAMMAD AKMAL RAMADHAN BIN SAMRI (KINABATANGAN)',
-                'AKMAD PUTRA RIZQI BIN ABDULLAH (SANDAKAN)',
-                'MOHAMAD IZWAN BIN AKIRIN (KOTA MARUDU)',
-                'SHARIF RAZZAHID IMAN BIN SHARIF RAZALI (KUDAT)',
-                'MUHAMMAD MIQAIL BIN ABDULLAH (KUALA PENYU)',
-                'KUZAIME BIN JAMIL (TAMBUNAN)',
-                'ZULFAHMI BIN ANDI RAUF (SIPITANG)',
-                'PUTERA EDDYEN BIN ISKHANDARINO (BEAUFORT)',
-                'AISY DANISH BIN AFZAMIZAM (KENINGAU)',
-                'MUHAMAD ZULKARNAIN BIN MOHD. FIRDAUS (RANAU)',
-                'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)',
-                'ADAM RAYQALL BIN ABDULLAH (PAPAR)',
-                'MOHAMMAD QAYYUM ALIP (TUARAN)',
-                'MUHLIS HUSREV OZKAN (KOTA KINABALU)',
-                'MUHAMAD LUTHFI BIN RAJENDRA (LAHAD DATU)',
-                'MUHAMMAD SYAKIR BIN FAISAL (LAHAD DATU)',
-                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)',
-                'ZUNNATUL RASUL (BELURAN)',
-                'KHAIRUL IKHWAN BIN MOHD KAMIL (TAWAU)'
+                'MOHAMMAD AIMAN BIN ABDULLAH (TELUPID)', 'MUHAMMAD AKMAL RAMADHAN BIN SAMRI (KINABATANGAN)', 'AKMAD PUTRA RIZQI BIN ABDULLAH (SANDAKAN)', 'MOHAMAD IZWAN BIN AKIRIN (KOTA MARUDU)', 'SHARIF RAZZAHID IMAN BIN SHARIF RAZALI (KUDAT)', 'MUHAMMAD MIQAIL BIN ABDULLAH (KUALA PENYU)', 'KUZAIME BIN JAMIL (TAMBUNAN)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'PUTERA EDDYEN BIN ISKHANDARINO (BEAUFORT)', 'AISY DANISH BIN AFZAMIZAM (KENINGAU)', 'MUHAMAD ZULKARNAIN BIN MOHD. FIRDAUS (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'ADAM RAYQALL BIN ABDULLAH (PAPAR)', 'MOHAMMAD QAYYUM ALIP (TUARAN)', 'MUHLIS HUSREV OZKAN (KOTA KINABALU)', 'MUHAMAD LUTHFI BIN RAJENDRA (LAHAD DATU)', 'MUHAMMAD SYAKIR BIN FAISAL (LAHAD DATU)', 'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'KHAIRUL IKHWAN BIN MOHD KAMIL (TAWAU)'
             ] },
-            
             'khat_terbuka': { title: 'Seni Khat (Terbuka)', names: [
-                'MIRCY STACY SELLCY (TELUPID)',
-                'MUHAMMAD AZHAD BIN RONNY (KINABATANGAN)',
-                'NUR AIZYA BINTI NORDIN (SANDAKAN)',
-                'HAFNER FREDERIC TALIS (KOTA MARUDU)',
-                'ALIF ALFFIAN BIN AMRAN (KUDAT)',
-                'NURFATIHAH NABILAH BINTI KAMARULZAMAN (KUALA PENYU)',
-                'ADIKA SHAHRIZZAT AFLYN BIN BAHARIN (SIPITANG)',
-                'NOUR EL SHAM BIN JUDIN (BEAUFORT)',
-                'NURHADIAHTUL BINTI AHMAD (KENINGAU)',
-                'MUHAMMAD HAFIZUDDIN IZZAT BIN HAMDAN (RANAU)',
-                'MAS UMMU AIMAN WASILAH BINTI JEFLIN (KOTA BELUD)',
-                'NURIZZ ZAYANI BINTI NURQHAIRANIZAM (PAPAR)',
-                'INTAN MAYSARAH BINTI ABDUL HANI (TUARAN)',
-                'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)',
-                'MOHAMAD FARA AIDITH BIN MOHD MASAMBA (LAHAD DATU)',
-                'DAYANG SHAHEERA SYAZADAMIA BINTI ABDULLAH (PENAMPANG)',
-                'NAJWA AZZIEATTUL DANIAH BINTI KASLAN (BELURAN)',
-                'NUR ALYA SYUHADA BINTI AKHBAR (TAWAU)'
+                'MIRCY STACY SELLCY (TELUPID)', 'MUHAMMAD AZHAD BIN RONNY (KINABATANGAN)', 'NUR AIZYA BINTI NORDIN (SANDAKAN)', 'HAFNER FREDERIC TALIS (KOTA MARUDU)', 'ALIF ALFFIAN BIN AMRAN (KUDAT)', 'NURFATIHAH NABILAH BINTI KAMARULZAMAN (KUALA PENYU)', 'ADIKA SHAHRIZZAT AFLYN BIN BAHARIN (SIPITANG)', 'NOUR EL SHAM BIN JUDIN (BEAUFORT)', 'NURHADIAHTUL BINTI AHMAD (KENINGAU)', 'MUHAMMAD HAFIZUDDIN IZZAT BIN HAMDAN (RANAU)', 'MAS UMMU AIMAN WASILAH BINTI JEFLIN (KOTA BELUD)', 'NURIZZ ZAYANI BINTI NURQHAIRANIZAM (PAPAR)', 'INTAN MAYSARAH BINTI ABDUL HANI (TUARAN)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'MOHAMAD FARA AIDITH BIN MOHD MASAMBA (LAHAD DATU)', 'DAYANG SHAHEERA SYAZADAMIA BINTI ABDULLAH (PENAMPANG)', 'NAJWA AZZIEATTUL DANIAH BINTI KASLAN (BELURAN)', 'NUR ALYA SYUHADA BINTI AKHBAR (TAWAU)'
             ] },
-            
             'sajak_bp_rendah': { title: 'Deklamasi Sajak (BP Terbuka Rendah)', names: [
-                'MIDDELTON WONG KET HAU (SANDAKAN)',
-                'NICKY NOEL BIN NIKOLAUS OWIN (KOTA MARUDU)',
-                'ARELIYEMUEL BIN LAIPIN (KUDAT)',
-                'SANDY STEPHEN BARD RAYSOND (KUALA PENYU)',
-                'REDDONEY AQUERO EVRA RAIMIS (KENINGAU)',
-                'DANIEL ELVFIEAN DOMI DURAN (RANAU)',
-                'NEREDIS NEREUS (KOTA BELUD)',
-                'THEODAREN JUNIOR (PAPAR)',
-                'KEITH SULLIVAN FERNANDEZ (TUARAN)',
-                'EMMANUEL RAJA YACOOB BIN TAPUI (KOTA KINABALU)',
-                'JOSHUA PINSO TAN (PENAMPANG)',
-                'SHANE NEITHAN ZYON MATA (TAWAU)'
+                'MIDDELTON WONG KET HAU (SANDAKAN)', 'NICKY NOEL BIN NIKOLAUS OWIN (KOTA MARUDU)', 'ARELIYEMUEL BIN LAIPIN (KUDAT)', 'SANDY STEPHEN BARD RAYSOND (KUALA PENYU)', 'REDDONEY AQUERO EVRA RAIMIS (KENINGAU)', 'DANIEL ELVFIEAN DOMI DURAN (RANAU)', 'NEREDIS NEREUS (KOTA BELUD)', 'THEODAREN JUNIOR (PAPAR)', 'KEITH SULLIVAN FERNANDEZ (TUARAN)', 'EMMANUEL RAJA YACOOB BIN TAPUI (KOTA KINABALU)', 'JOSHUA PINSO TAN (PENAMPANG)', 'SHANE NEITHAN ZYON MATA (TAWAU)'
             ] },
             'sajak_bp_menengah': { title: 'Deklamasi Sajak (BP Terbuka Menengah)', names: [
-                'CHARLES CROSE CARLOS (TELUPID)',
-                'MAEGAN VALERIE LOUIS (KOTA MARUDU)',
-                'JORDAN BIN JASWIN (KUDAT)',
-                'CHARLYNA HELLY KATHRYN KIRIN (KUALA PENYU)',
-                'CHELSEA LUCY MATHEW (TAMBUNAN)',
-                'MELANIE GRACE BINTI SALIMAN (SIPITANG)',
-                'BELINDA BIBIANA BINTI BIMBO (BEAUFORT)',
-                'LESNER OVIE EMIH (KENINGAU)',
-                'FILJAMICA MOGINON (RANAU)',
-                'JOL LAJIM (KOTA BELUD)',
-                'CLESDEFBERRA BINTI YANAM @ REZUISE (PAPAR)',
-                'ERNEY CYRISTAL EDWARD (TUARAN)',
-                'NICHELSON NASON (KOTA KINABALU)',
-                'MERRICK FREDDERICK MARINUS (LAHAD DATU)',
-                'STANLEY JORDAN JERALD (PENAMPANG)',
-                'FILYMON WORA ANAK JOS (TAWAU)',
-                '*kunak',
-                '*beluran'
+                'CHARLES CROSE CARLOS (TELUPID)', 'MAEGAN VALERIE LOUIS (KOTA MARUDU)', 'JORDAN BIN JASWIN (KUDAT)', 'CHARLYNA HELLY KATHRYN KIRIN (KUALA PENYU)', 'CHELSEA LUCY MATHEW (TAMBUNAN)', 'MELANIE GRACE BINTI SALIMAN (SIPITANG)', 'BELINDA BIBIANA BINTI BIMBO (BEAUFORT)', 'LESNER OVIE EMIH (KENINGAU)', 'FILJAMICA MOGINON (RANAU)', 'JOL LAJIM (KOTA BELUD)', 'CLESDEFBERRA BINTI YANAM @ REZUISE (PAPAR)', 'ERNEY CYRISTAL EDWARD (TUARAN)', 'NICHELSON NASON (KOTA KINABALU)', 'MERRICK FREDDERICK MARINUS (LAHAD DATU)', 'STANLEY JORDAN JERALD (PENAMPANG)', 'FILYMON WORA ANAK JOS (TAWAU)', '*kunak', '*beluran'
             ] },
-            
             'nasyid_terbuka': { title: 'Nasyid (Terbuka)', names: [
-                'SANDAKAN',
-                'KUDAT',
-                'KUALA PENYU',
-                'BEAUFORT',
-                'KENINGAU',
-                'RANAU',
-                'KOTA BELUD',
-                'PAPAR',
-                'TUARAN',
-                'KOTA KINABALU',
-                'LAHAD DATU',
-                'PENAMPANG',
-                'TAWAU'
+                'SANDAKAN', 'KUDAT', 'KUALA PENYU', 'BEAUFORT', 'KENINGAU', 'RANAU', 'KOTA BELUD', 'PAPAR', 'TUARAN', 'KOTA KINABALU', 'LAHAD DATU', 'PENAMPANG', 'TAWAU'
             ] },
-            
             'all': { title: 'Jumlah Keseluruhan Peserta', names: ['* Sila klik pada nombor bagi setiap kategori untuk melihat senarai penuh peserta.'] }
         };
 
@@ -1623,7 +1543,6 @@
                 titleElement.innerHTML = '<i class="fa-solid fa-users mr-2"></i> Senarai Penuh Peserta';
                 for (const key in pesertaData) {
                     if(key === 'all') continue;
-                    // Only process specific keys if they are clicked in the total rows
                     if (key.startsWith('tilawah_bp_rendah') || key.startsWith('tilawah_bp_menengah') || key.startsWith('tilawah_bl_rendah') || key.startsWith('tilawah_bl_menengah') || key.startsWith('hafazan_bp_rendah') || key.startsWith('hafazan_bp_menengah') || key.startsWith('bercerita_bp_rendah') || key.startsWith('bercerita_bd_rendah') || key.startsWith('azan_terbuka') || key.startsWith('khat_terbuka') || key.startsWith('sajak_bp_rendah') || key.startsWith('sajak_bp_menengah') || key.startsWith('nasyid_terbuka')) {
                         const cat = pesertaData[key];
                         let html = `<div class="mb-5"><h4 class="text-yellow-400 font-bold border-b border-white/10 pb-1 mb-2 text-sm">${cat.title}</h4><ul class="space-y-2 text-sm text-gray-200 pl-2">`;
@@ -1635,7 +1554,6 @@
                     }
                 }
             } else if (categoryId.endsWith('_total')) {
-                // Determine base category from the clicked total ID
                 const baseCategory = categoryId.replace('_total', '');
                 const titleMap = {
                     'tilawah_bp': 'Tilawah Al-Quran (BP)',
@@ -1649,7 +1567,6 @@
                 const displayTitle = titleMap[baseCategory] || baseCategory.replace(/_/g, ' ').toUpperCase();
                 titleElement.innerHTML = `<i class="fa-solid fa-users mr-2"></i> Senarai Peserta: ${displayTitle}`;
                 
-                // Iterate only through data matching the base category
                 for (const key in pesertaData) {
                     if (key.startsWith(baseCategory) && key !== categoryId && key !== 'all') {
                         const cat = pesertaData[key];
@@ -1699,7 +1616,6 @@
             }
         }
         
-        // --- Buku Pelawat Logic ---
         addSafeListener('guestbook-form', 'submit', function(e) {
             e.preventDefault();
             
@@ -1755,101 +1671,200 @@
             }, 3000);
         });
         
-        // --- Integrasi Analisis Maklum Balas (Google Sheets & Chart.js) ---
-        let chartsInitialized = false;
+        function parseCSV(str) {
+            const arr = [];
+            let quote = false; 
+            let row = 0;
+            let col = 0;
+            for (let c = 0; c < str.length; c++) {
+                let cc = str[c], nc = str[c+1];
+                arr[row] = arr[row] || [];
+                arr[row][col] = arr[row][col] || '';
+                if (cc == '"' && quote && nc == '"') { arr[row][col] += cc; ++c; continue; }
+                if (cc == '"') { quote = !quote; continue; }
+                if (cc == ',' && !quote) { ++col; continue; }
+                if (cc == '\r' && nc == '\n' && !quote) { ++row; col = 0; ++c; continue; }
+                if (cc == '\n' && !quote) { ++row; col = 0; continue; }
+                if (cc == '\r' && !quote) { ++row; col = 0; continue; }
+                arr[row][col] += cc;
+            }
+            return arr;
+        }
+
+        let feedbackChartsInitialized = false;
+        let feedbackCharts = {};
         
         function initFeedbackAnalysis() {
-            if (chartsInitialized) return;
+            if (feedbackChartsInitialized) return;
             
-            // Pautan CSV Google Sheets anda
             const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRoCVMxdy6ivJvKDbJGIg7gBj5HDxDBq3dKTO-bAlQaDEWt3FCU1fCD7zx935C37hbsLJewZFOhwzDP/pub?gid=323641929&single=true&output=csv';
             
-            // Data asas (fallback) yang memegang struktur graf 
-            const mockData = {
-                totalResponden: 0,
-                purataKeseluruhan: 4.8,
-                topKategori: 'Guru Pengiring',
-                demografi: {
-                    labels: ['Guru Pengiring', 'Peserta', 'Ibu Bapa/Penjaga', 'Juri', 'Urusetia'],
-                    data: [54, 42, 21, 15, 10]
-                },
-                aspekPenilaian: {
-                    labels: ['Pendaftaran', 'Kemudahan Lokasi', 'Makanan', 'Aturcara Majlis', 'Layanan Urusetia'],
-                    data: [4.8, 4.5, 4.6, 4.9, 4.9] // Purata skala 1-5
-                },
-                ulasan: [
-                    { tarikh: '29/09/2026', kategori: 'Guru Pengiring', teks: 'Pengurusan karnival yang sangat sistematik. Pendaftaran lancar.', rating: 5 },
-                    { tarikh: '30/09/2026', kategori: 'Ibu Bapa/Penjaga', teks: 'Tempat duduk penonton agak terhad, harap dapat diperbaiki tahun hadapan. Selain itu semua terbaik.', rating: 4 },
-                    { tarikh: '30/09/2026', kategori: 'Peserta', teks: 'Sangat gembira dapat menyertai nasyid. Kawan-kawan semua seronok.', rating: 5 },
-                    { tarikh: '01/10/2026', kategori: 'Juri', teks: 'Sistem pengumpulan markah urusetia sangat efisien dan teratur.', rating: 5 }
-                ]
-            };
-
-            // Menarik (fetch) rekod dari CSV untuk bacaan "live"
+            document.getElementById('stat-total').innerText = '...';
+            document.getElementById('stat-top-cat').innerText = '...';
+            document.getElementById('ulasan-tbody').innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Memuat turun rekod dari sumber...</td></tr>';
+            
             fetch(csvUrl)
                 .then(response => response.text())
                 .then(csvText => {
-                    const rows = csvText.split('\n');
+                    const rows = parseCSV(csvText);
                     if (rows.length > 1) {
-                        // Tolak row pertama (header form) untuk dapatkan jumlah respon sebenar
-                        mockData.totalResponden = rows.length - 1; 
+                        const headers = rows[0];
+                        const dataRows = rows.slice(1).filter(r => r.length > 1 && r[0]); 
+                        
+                        let totalResponden = dataRows.length;
+                        let demografiCounts = {};
+                        let ulasanList = [];
+                        
+                        let categoryColIdx = -1;
+                        let ratingColIndices = [];
+                        let ulasanColIdx = -1;
+                        
+                        const sampleRow = dataRows[0] || [];
+                        for(let i = 1; i < sampleRow.length; i++) {
+                            const val = sampleRow[i].trim();
+                            if (!val) continue;
+                            if (!isNaN(val) && parseFloat(val) >= 1 && parseFloat(val) <= 5) {
+                                ratingColIndices.push(i);
+                            } else if (val.length > 25) {
+                                ulasanColIdx = i; 
+                            } else if (categoryColIdx === -1 && isNaN(val)) {
+                                categoryColIdx = i; 
+                            }
+                        }
+                        
+                        if (categoryColIdx === -1) categoryColIdx = 1;
+                        if (ratingColIndices.length === 0) ratingColIndices = [2, 3, 4, 5, 6].filter(i => i < headers.length);
+                        if (ulasanColIdx === -1) ulasanColIdx = headers.length - 1;
+                        
+                        let aspekSums = new Array(ratingColIndices.length).fill(0);
+                        let totalRatingSum = 0;
+
+                        dataRows.forEach(row => {
+                            const timestamp = row[0] || '';
+                            const kategori = row[categoryColIdx] || 'Lain-lain';
+                            const ulasan = row[ulasanColIdx] || '';
+                            
+                            demografiCounts[kategori] = (demografiCounts[kategori] || 0) + 1;
+                            
+                            let rowAvg = 0;
+                            let validRatings = 0;
+                            
+                            ratingColIndices.forEach((colIdx, arrIdx) => {
+                                const r = parseFloat(row[colIdx]);
+                                if(!isNaN(r) && r > 0) {
+                                    aspekSums[arrIdx] += r;
+                                    rowAvg += r;
+                                    validRatings++;
+                                }
+                            });
+                            
+                            if(validRatings > 0) rowAvg = rowAvg / validRatings;
+                            totalRatingSum += rowAvg;
+                            
+                            if(ulasan.trim().length > 0) {
+                                ulasanList.push({
+                                    tarikh: timestamp.split(' ')[0] || timestamp,
+                                    kategori: kategori,
+                                    teks: ulasan,
+                                    rating: Math.round(rowAvg) || 5
+                                });
+                            }
+                        });
+                        
+                        let purataKeseluruhan = totalResponden > 0 ? (totalRatingSum / totalResponden).toFixed(1) : '0.0';
+                        
+                        let topCat = '-';
+                        let maxCount = 0;
+                        for (const [cat, count] of Object.entries(demografiCounts)) {
+                            if (count > maxCount) { maxCount = count; topCat = cat; }
+                        }
+                        
+                        let aspekAvgs = aspekSums.map(sum => totalResponden > 0 ? (sum / totalResponden).toFixed(1) : 0);
+                        let aspekLabels = ratingColIndices.map(colIdx => {
+                            let h = headers[colIdx] || 'Aspek';
+                            return h.replace(/\[|\]/g, '').split('?')[0].trim();
+                        });
+
+                        const dynamicData = {
+                            totalResponden: totalResponden,
+                            purataKeseluruhan: purataKeseluruhan,
+                            topKategori: topCat,
+                            demografi: {
+                                labels: Object.keys(demografiCounts),
+                                data: Object.values(demografiCounts)
+                            },
+                            aspekPenilaian: {
+                                labels: aspekLabels.length > 0 ? aspekLabels : ['Tiada Penilaian Ditemui'],
+                                data: aspekAvgs.length > 0 ? aspekAvgs : [0]
+                            },
+                            ulasan: ulasanList.slice(-10).reverse()
+                        };
+                        
+                        renderFeedbackUI(dynamicData);
                     } else {
-                        mockData.totalResponden = 0; // Jika belum ada isi
+                        renderEmptyFeedbackUI();
                     }
-                    renderFeedbackUI(mockData);
-                    chartsInitialized = true;
+                    feedbackChartsInitialized = true;
                 })
                 .catch(err => {
-                    console.warn('Gagal memuat turun data CSV Google Sheets. Guna data contoh.', err);
-                    mockData.totalResponden = 142; // Fail-safe fallback count
-                    renderFeedbackUI(mockData);
-                    chartsInitialized = true;
+                    console.warn('Gagal memuat turun data Maklum Balas.', err);
+                    renderEmptyFeedbackUI(true);
+                    feedbackChartsInitialized = true;
                 });
         }
         
+        function renderEmptyFeedbackUI(isError = false) {
+            document.getElementById('stat-total').innerText = '0';
+            document.getElementById('stat-rating').innerText = '-';
+            document.getElementById('stat-top-cat').innerText = '-';
+            document.getElementById('ulasan-tbody').innerHTML = `<tr><td colspan="3" class="text-center text-gray-400 py-6">${isError ? 'Gagal berhubung ke sumber data utama.' : 'Tiada rekod data dijumpai setakat ini.'}</td></tr>`;
+            
+            if(feedbackCharts.demo) feedbackCharts.demo.destroy();
+            if(feedbackCharts.penilaian) feedbackCharts.penilaian.destroy();
+        }
+        
         function renderFeedbackUI(data) {
-            // Update Number Cards
             document.getElementById('stat-total').innerText = data.totalResponden;
             document.getElementById('stat-rating').innerText = data.purataKeseluruhan;
             document.getElementById('stat-top-cat').innerText = data.topKategori;
             
-            // Populate Ulasan Table
             const ulasanTbody = document.getElementById('ulasan-tbody');
             ulasanTbody.innerHTML = '';
-            data.ulasan.forEach(item => {
-                let stars = '';
-                for(let i=0; i<5; i++) {
-                    stars += i < item.rating ? '<i class="fa-solid fa-star text-yellow-400 text-[10px]"></i>' : '<i class="fa-regular fa-star text-gray-500 text-[10px]"></i>';
-                }
-                
-                ulasanTbody.innerHTML += `
-                    <tr>
-                        <td><span class="block font-bold text-emerald-300 text-xs">${item.kategori}</span><span class="text-[10px] text-gray-400">${item.tarikh}</span></td>
-                        <td class="text-sm text-gray-200">"${item.teks}"</td>
-                        <td class="text-center">${stars}</td>
-                    </tr>
-                `;
-            });
             
-            // Initialize Chart.js Defaults for Dark Mode
+            if (data.ulasan.length === 0) {
+                ulasanTbody.innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6">Tiada ulasan atau cadangan ditemui dalam rekod.</td></tr>';
+            } else {
+                data.ulasan.forEach(item => {
+                    let stars = '';
+                    for(let i=0; i<5; i++) {
+                        stars += i < item.rating ? '<i class="fa-solid fa-star text-yellow-400 text-[10px]"></i>' : '<i class="fa-regular fa-star text-gray-500 text-[10px]"></i>';
+                    }
+                    
+                    ulasanTbody.innerHTML += `
+                        <tr>
+                            <td><span class="block font-bold text-emerald-300 text-xs">${item.kategori}</span><span class="text-[10px] text-gray-400">${item.tarikh}</span></td>
+                            <td class="text-sm text-gray-200">"${item.teks}"</td>
+                            <td class="text-center">${stars}</td>
+                        </tr>
+                    `;
+                });
+            }
+            
             Chart.defaults.color = '#94a3b8';
             Chart.defaults.font.family = "'Poppins', sans-serif";
             
-            // 1. Demografi Pie/Doughnut Chart
+            if(feedbackCharts.demo) feedbackCharts.demo.destroy();
+            
             const ctxDemo = document.getElementById('demografiChart').getContext('2d');
-            new Chart(ctxDemo, {
+            feedbackCharts.demo = new Chart(ctxDemo, {
                 type: 'doughnut',
                 data: {
-                    labels: data.demografi.labels,
+                    labels: data.demografi.labels.length > 0 ? data.demografi.labels : ['Tiada Data'],
                     datasets: [{
-                        data: data.demografi.data,
-                        backgroundColor: [
-                            'rgba(59, 130, 246, 0.8)', // Blue
-                            'rgba(16, 185, 129, 0.8)', // Emerald
-                            'rgba(245, 158, 11, 0.8)', // Yellow
-                            'rgba(168, 85, 247, 0.8)', // Purple
-                            'rgba(236, 72, 153, 0.8)'  // Pink
-                        ],
+                        data: data.demografi.data.length > 0 ? data.demografi.data : [1],
+                        backgroundColor: data.demografi.data.length > 0 ? [
+                            'rgba(59, 130, 246, 0.8)', 'rgba(16, 185, 129, 0.8)', 'rgba(245, 158, 11, 0.8)', 'rgba(168, 85, 247, 0.8)', 'rgba(236, 72, 153, 0.8)'
+                        ] : ['rgba(255,255,255,0.05)'],
                         borderColor: '#0f172a',
                         borderWidth: 2
                     }]
@@ -1864,9 +1879,10 @@
                 }
             });
             
-            // 2. Aspek Penilaian Bar Chart
+            if(feedbackCharts.penilaian) feedbackCharts.penilaian.destroy();
+            
             const ctxPenilaian = document.getElementById('penilaianChart').getContext('2d');
-            new Chart(ctxPenilaian, {
+            feedbackCharts.penilaian = new Chart(ctxPenilaian, {
                 type: 'bar',
                 data: {
                     labels: data.aspekPenilaian.labels,
@@ -1882,119 +1898,127 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            max: 5,
-                            grid: { color: 'rgba(255,255,255,0.05)' }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { font: { size: 10 } }
-                        }
+                        y: { beginAtZero: true, max: 5, grid: { color: 'rgba(255,255,255,0.05)' } },
+                        x: { grid: { display: false }, ticks: { font: { size: 10, maxRotation: 45, minRotation: 0 } } }
                     }
                 }
             });
         }
-        
-        // --- Integrasi Analisis Daftar Kehadiran (Tab 10) ---
+
         let pendaftaranChartsInitialized = false;
+        let kehadiranChartInstance = null;
 
         function initPendaftaranAnalysis() {
             if (pendaftaranChartsInitialized) return;
 
-            // Pautan CSV Google Sheets untuk pendaftaran kehadiran
             const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSjVlbVsF83lgCwee5LGG75VH4-y_aRsNVmUsZK-UUODR7RtTOWS_30pYZO1iybslUBQG2ULf_91Wyt/pub?gid=1506969898&single=true&output=csv';
 
-            const mockData = {
-                total: 0,
-                terkini: '-',
-                kategori: {
-                    labels: ['Peserta', 'Guru Pengiring', 'Juri', 'Urusetia', 'VIP/Tetamu'],
-                    data: [0, 0, 0, 0, 0]
-                },
-                senaraiTerkini: []
-            };
+            document.getElementById('stat-daftar-total').innerText = '...';
+            document.getElementById('stat-daftar-terkini').innerText = '...';
+            document.getElementById('stat-daftar-top-cat').innerText = '...';
+            document.getElementById('daftar-tbody').innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6"><i class="fa-solid fa-spinner fa-spin mr-2"></i>Memuat turun data...</td></tr>';
 
             fetch(csvUrl)
                 .then(response => response.text())
                 .then(csvText => {
-                    const rows = csvText.split('\n').filter(row => row.trim().length > 0);
+                    const rows = parseCSV(csvText); 
                     if (rows.length > 1) {
-                        mockData.total = rows.length - 1; // tolak baris header
+                        const dataRows = rows.slice(1).filter(r => r.length > 1 && r[0]);
                         
-                        // Dapatkan 5 rekod terkini dari bawah CSV (mengabaikan pembahagian koma di dalam teks)
-                        const latestRows = rows.slice(-5).reverse();
-                        mockData.senaraiTerkini = latestRows.map(row => {
-                            const cols = row.split(','); 
-                            return {
-                                tarikh: cols[0] ? cols[0].replace(/"/g, '') : '-',
-                                nama: cols[1] ? cols[1].replace(/"/g, '') : 'Tiada Maklumat',
-                                perincian: cols[2] ? cols[2].replace(/"/g, '') : '-'
-                            };
-                        });
-                        
-                        if(mockData.senaraiTerkini.length > 0) {
-                            // Ambil tarikh dari rekod paling terbaru
-                            mockData.terkini = mockData.senaraiTerkini[0].tarikh.split(' ')[0] || 'Hari ini';
+                        const total = dataRows.length;
+                        let kategoriCounts = {};
+                        let senaraiTerkini = [];
+
+                        let nameCol = 1;
+                        let catCol = 2;
+                        if (dataRows[0].length > 3) {
+                            catCol = dataRows[0].length - 1; 
                         }
 
-                        // Set default carta kepada peratusan bagi mengelakkan graf kosong jika susunan lajur kompleks
-                        mockData.kategori.data = [
-                            Math.floor(mockData.total * 0.4), 
-                            Math.floor(mockData.total * 0.25), 
-                            Math.floor(mockData.total * 0.15), 
-                            Math.floor(mockData.total * 0.1), 
-                            Math.floor(mockData.total * 0.1)
-                        ];
+                        dataRows.forEach(row => {
+                            const tarikh = row[0] || '';
+                            const nama = row[nameCol] || 'Tiada Maklumat';
+                            const kategori = row[catCol] || 'Lain-lain';
+
+                            kategoriCounts[kategori] = (kategoriCounts[kategori] || 0) + 1;
+                            
+                            senaraiTerkini.push({
+                                tarikh: tarikh,
+                                nama: nama,
+                                kategori: kategori
+                            });
+                        });
+
+                        let topCat = '-';
+                        let maxCount = 0;
+                        for (const [cat, count] of Object.entries(kategoriCounts)) {
+                            if (count > maxCount) { maxCount = count; topCat = cat; }
+                        }
+
+                        const terkini = senaraiTerkini.length > 0 ? senaraiTerkini[senaraiTerkini.length - 1].tarikh.split(' ')[0] : '-';
+
+                        renderPendaftaranUI({
+                            total: total,
+                            terkini: terkini,
+                            topCat: topCat,
+                            kategori: {
+                                labels: Object.keys(kategoriCounts),
+                                data: Object.values(kategoriCounts)
+                            },
+                            senaraiTerkini: senaraiTerkini.slice(-10).reverse()
+                        });
+                    } else {
+                        renderEmptyPendaftaranUI();
                     }
-                    renderPendaftaranUI(mockData);
                     pendaftaranChartsInitialized = true;
                 })
                 .catch(err => {
-                    console.warn('Gagal memuat turun data CSV Kehadiran. Guna data contoh.', err);
-                    mockData.total = 45;
-                    mockData.terkini = '28/09/2026';
-                    mockData.kategori.data = [20, 10, 8, 5, 2];
-                    mockData.senaraiTerkini = [
-                        {tarikh: '28/09/2026 08:00:00', nama: 'Siti Sarah', perincian: 'Peserta'},
-                        {tarikh: '28/09/2026 07:55:00', nama: 'Ahmad bin Abu', perincian: 'Guru Pengiring'}
-                    ];
-                    renderPendaftaranUI(mockData);
+                    console.warn('Gagal memuat turun data CSV Kehadiran.', err);
+                    renderEmptyPendaftaranUI(true);
                     pendaftaranChartsInitialized = true;
                 });
+        }
+
+        function renderEmptyPendaftaranUI(isError = false) {
+            document.getElementById('stat-daftar-total').innerText = '0';
+            document.getElementById('stat-daftar-terkini').innerText = '-';
+            if(document.getElementById('stat-daftar-top-cat')) document.getElementById('stat-daftar-top-cat').innerText = '-';
+            
+            document.getElementById('daftar-tbody').innerHTML = `<tr><td colspan="3" class="text-center text-gray-400 py-6">${isError ? 'Gagal berhubung ke sumber data.' : 'Tiada rekod pendaftaran setakat ini.'}</td></tr>`;
+            
+            if (kehadiranChartInstance) kehadiranChartInstance.destroy();
         }
 
         function renderPendaftaranUI(data) {
             document.getElementById('stat-daftar-total').innerText = data.total;
             document.getElementById('stat-daftar-terkini').innerText = data.terkini;
+            if(document.getElementById('stat-daftar-top-cat')) document.getElementById('stat-daftar-top-cat').innerText = data.topCat;
 
             const tbody = document.getElementById('daftar-tbody');
-            if(tbody) {
-                tbody.innerHTML = '';
-                if(data.senaraiTerkini.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6">Belum ada rekod pendaftaran</td></tr>';
-                } else {
-                    data.senaraiTerkini.forEach((item, index) => {
-                        tbody.innerHTML += `
-                            <tr class="hover:bg-white/5 transition-colors">
-                                <td class="text-center">${index + 1}</td>
-                                <td><span class="block font-bold text-blue-300 text-sm">${item.nama}</span><span class="text-[10px] text-gray-400"><i class="fa-regular fa-calendar mr-1"></i>${item.tarikh}</span></td>
-                                <td class="text-sm text-gray-200">${item.perincian}</td>
-                            </tr>
-                        `;
-                    });
-                }
+            tbody.innerHTML = '';
+            
+            if (data.senaraiTerkini.length === 0) {
+                 tbody.innerHTML = '<tr><td colspan="3" class="text-center text-gray-400 py-6">Belum ada rekod.</td></tr>';
+            } else {
+                data.senaraiTerkini.forEach((item, index) => {
+                    tbody.innerHTML += `
+                        <tr class="hover:bg-white/5 transition-colors">
+                            <td class="text-center">${index + 1}</td>
+                            <td><span class="block font-bold text-blue-300 text-sm">${item.nama}</span><span class="text-[10px] text-gray-400"><i class="fa-regular fa-calendar mr-1"></i>${item.tarikh}</span></td>
+                            <td class="text-sm text-gray-200">${item.kategori}</td>
+                        </tr>
+                    `;
+                });
             }
 
             Chart.defaults.color = '#94a3b8';
             Chart.defaults.font.family = "'Poppins', sans-serif";
             const ctx = document.getElementById('kehadiranChart');
             if(ctx) {
-                new Chart(ctx.getContext('2d'), {
+                if(kehadiranChartInstance) kehadiranChartInstance.destroy();
+                kehadiranChartInstance = new Chart(ctx.getContext('2d'), {
                     type: 'bar',
                     data: {
                         labels: data.kategori.labels,
