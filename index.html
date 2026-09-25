@@ -11,6 +11,9 @@
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Chart.js untuk Graf Analisis -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 
@@ -168,12 +171,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="https://forms.gle/ABEDo39QWFiKVEaR9" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors">
-                        <i class="fa-solid fa-face-smile w-6 text-center mr-2"></i> 10. Maklum Balas Kepuasan Pelanggan <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
-                    </a>
+                    <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors" onclick="showSection('maklum_balas', this)">
+                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 10. Analisis Maklum Balas
+                    </button>
                 </li>
                 
-                <li>
+                <!-- Tab Baru: Buku Pelawat Digital (Interaktif dalam Dashboard) -->
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-purple-300 hover:bg-purple-400/10 hover:border-l-purple-400 transition-colors" onclick="showSection('buku_pelawat', this)">
                         <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 11. Buku Pelawat Digital
                     </button>
@@ -401,9 +404,9 @@
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('nasyid_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">13 kumpulan <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 
-                                <tr class="bg-yellow-500/20 font-bold text-yellow-300">
-                                    <td colspan="3" class="text-right uppercase">JUMLAH KESELURUHAN PESERTA</td>
-                                    <td class="text-center font-bold text-yellow-400 text-lg cursor-pointer hover:bg-yellow-500/30 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b-2 border-dashed border-yellow-400/70 group-hover:border-yellow-400 group-hover:border-solid">131 + 13 Kump</span> <i class="fa-solid fa-hand-pointer text-sm ml-2 text-yellow-300/70 group-hover:text-yellow-300"></i></td>
+                                <tr class="bg-yellow-500/20">
+                                    <td colspan="3" class="text-right font-bold text-yellow-400 uppercase">JUMLAH KESELURUHAN PESERTA INDIVIDU</td>
+                                    <td class="text-center font-bold text-yellow-400 text-lg cursor-pointer hover:bg-yellow-500/30 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b-2 border-dashed border-yellow-400/70 group-hover:border-yellow-400 group-hover:border-solid">131</span> <i class="fa-solid fa-hand-pointer text-sm ml-2 text-yellow-300/70 group-hover:text-yellow-300"></i></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -514,6 +517,28 @@
             <section id="jk_pelaksana" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Jawatankuasa Pelaksana</h2>
                 
+                <!-- Info Boxes JK Pelaksana -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mb-6">
+                    <div class="glass-panel bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
+                        <div class="text-4xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform flex justify-center items-center">
+                            <i class="fa-solid fa-users-gear text-2xl mr-3 opacity-80"></i> 82
+                        </div>
+                        <p class="text-xs text-gray-300 uppercase tracking-widest font-semibold mt-2">Ahli Jawatankuasa</p>
+                    </div>
+                    <div class="glass-panel bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
+                        <div class="text-4xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform flex justify-center items-center">
+                            <i class="fa-solid fa-handshake-angle text-2xl mr-3 opacity-80"></i> 38
+                        </div>
+                        <p class="text-xs text-gray-300 uppercase tracking-widest font-semibold mt-2">Sukarelawan</p>
+                    </div>
+                    <div class="glass-panel bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
+                        <div class="text-4xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform flex justify-center items-center">
+                            <i class="fa-solid fa-gavel text-2xl mr-3 opacity-80"></i> 50
+                        </div>
+                        <p class="text-xs text-gray-300 uppercase tracking-widest font-semibold mt-2">Juri Penilai</p>
+                    </div>
+                </div>
+
                 <!-- Smart Search Bar -->
                 <div class="mb-4 relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -805,50 +830,50 @@
                             </thead>
                             <tbody>
                                 <tr><td class="text-center">1.</td><td>Tilawah Al-Quran (BP)</td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">7 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_menengah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">11 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">18 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">7 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_menengah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">11 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_total')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">18 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">2.</td><td>Tilawah Al-Quran (BL)</td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">2 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bp_menengah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">3 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">2 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_menengah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">1 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('tilawah_bl_total')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">3 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">3.</td><td>Hafazan Al-Quran (BP)</td>
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('hafazan_bp_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">14 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('hafazan_bp_menengah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">14 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">28 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('hafazan_bp_total')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">28 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">4.</td><td>Bercerita Kisah AL-Quran (BP)</td>
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('bercerita_bp_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">14 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center font-bold text-yellow-300">-</td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">14 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('bercerita_bp_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">14 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">5.</td><td>Bercerita Kisah AL-Quran (BD)</td>
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('bercerita_bd_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">2 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center font-bold text-yellow-300">-</td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">2 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('bercerita_bd_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">2 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">6.</td><td>Azan Subuh</td>
                                     <td colspan="2" class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('azan_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">20 (Terbuka) <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">20 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('azan_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">20 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">7.</td><td>Seni Khat</td>
                                     <td colspan="2" class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('khat_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">18 (Terbuka) <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">18 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('khat_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">18 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">8.</td><td>Deklamasi Sajak</td>
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('sajak_bp_rendah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">12 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                     <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('sajak_bp_menengah')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">16 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">28 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('sajak_bp_total')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">28 <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
                                 </tr>
                                 <tr><td class="text-center">9.</td><td>Nasyid</td>
                                     <td colspan="2" class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('nasyid_terbuka')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">13 Kumpulan <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
-                                    <td class="text-center font-bold text-yellow-300 cursor-pointer hover:bg-yellow-400/20 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b border-dashed border-yellow-300/50 group-hover:border-yellow-300">13 Kump. <i class="fa-solid fa-hand-pointer text-[10px] text-yellow-400/70 ml-1"></i></span></td>
+                                    <td class="text-center font-bold text-yellow-300">13 Kumpulan</td>
                                 </tr>
                                 <tr class="bg-yellow-500/20 font-bold text-yellow-300">
-                                    <td colspan="4" class="text-right uppercase">JUMLAH</td>
-                                    <td class="text-center font-bold text-yellow-400 text-lg cursor-pointer hover:bg-yellow-500/30 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b-2 border-dashed border-yellow-400/70 group-hover:border-yellow-400 group-hover:border-solid">131+13 Kump.</span> <i class="fa-solid fa-hand-pointer text-sm ml-2 text-yellow-300/70 group-hover:text-yellow-300"></i></td>
+                                    <td colspan="4" class="text-right uppercase">JUMLAH KESELURUHAN PESERTA INDIVIDU</td>
+                                    <td class="text-center font-bold text-yellow-400 text-lg cursor-pointer hover:bg-yellow-500/30 transition-colors group" onclick="openPesertaModal('all')"><span class="border-b-2 border-dashed border-yellow-400/70 group-hover:border-yellow-400 group-hover:border-solid">131</span> <i class="fa-solid fa-hand-pointer text-sm ml-2 text-yellow-300/70 group-hover:text-yellow-300"></i></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -1014,6 +1039,115 @@
 
             </section>
 
+            <!-- SEKSYEN MAKLUM BALAS KEPELANGGAN (ANALISIS & GRAF) -->
+            <section id="maklum_balas" class="section-content">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/20 pb-4 gap-4">
+                    <div>
+                        <h2 class="text-3xl font-bold font-amiri text-yellow-400">Analisis Kepuasan Pelanggan</h2>
+                        <p class="text-gray-300 text-sm mt-1">Laporan maklum balas secara langsung dari pautan Google Form.</p>
+                    </div>
+                    <a href="https://forms.gle/ABEDo39QWFiKVEaR9" target="_blank" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 font-bold py-2.5 px-6 rounded-full text-sm transition-colors flex items-center shadow-lg shadow-emerald-500/20 flex-shrink-0">
+                        <i class="fa-solid fa-up-right-from-square mr-2"></i> Isi Borang Maklum Balas
+                    </a>
+                </div>
+
+                <!-- Numerical Analysis (Stat Cards) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Responden</p>
+                                <h3 class="text-3xl font-bold text-white" id="stat-total">142</h3>
+                            </div>
+                            <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400">
+                                <i class="fa-solid fa-users text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-emerald-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Purata Kepuasan</p>
+                                <h3 class="text-3xl font-bold text-white flex items-baseline gap-1">
+                                    <span id="stat-rating">4.8</span><span class="text-lg text-gray-400">/ 5.0</span>
+                                </h3>
+                            </div>
+                            <div class="bg-emerald-500/20 p-3 rounded-lg text-emerald-400">
+                                <i class="fa-solid fa-star text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-yellow-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Kategori Tertinggi</p>
+                                <h3 class="text-xl font-bold text-white mt-1 leading-tight" id="stat-top-cat">Guru Pengiring</h3>
+                            </div>
+                            <div class="bg-yellow-500/20 p-3 rounded-lg text-yellow-400">
+                                <i class="fa-solid fa-medal text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-purple-500">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Status Data</p>
+                                <h3 class="text-lg font-bold text-emerald-400 mt-1 flex items-center">
+                                    <span class="w-2.5 h-2.5 bg-emerald-400 rounded-full mr-2 animate-pulse"></span> Auto-Sync
+                                </h3>
+                                <p class="text-[10px] text-gray-500 mt-1">Dikemas kini dari G-Sheet</p>
+                            </div>
+                            <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400">
+                                <i class="fa-solid fa-rotate text-xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphical Analysis (Charts) -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Pie Chart -->
+                    <div class="glass-panel p-6 rounded-xl col-span-1 flex flex-col">
+                        <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-pie text-emerald-400 mr-2"></i> Demografi Responden</h3>
+                        <div class="flex-1 relative w-full flex items-center justify-center min-h-[250px]">
+                            <canvas id="demografiChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Bar Chart -->
+                    <div class="glass-panel p-6 rounded-xl lg:col-span-2 flex flex-col">
+                        <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-column text-blue-400 mr-2"></i> Analisis Aspek Penilaian (Skala 1-5)</h3>
+                        <div class="flex-1 relative w-full min-h-[250px]">
+                            <canvas id="penilaianChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Feedback Verbatim Table -->
+                <div class="glass-panel rounded-xl overflow-hidden">
+                    <h3 class="bg-black/40 text-emerald-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-comment-dots mr-2"></i> Ulasan & Cadangan Terpilih</h3>
+                    <div class="overflow-x-auto max-h-[300px] overflow-y-auto">
+                        <table class="verbatim-table w-full">
+                            <thead class="sticky top-0 z-10 bg-slate-900 shadow-md">
+                                <tr>
+                                    <th class="w-1/4">Tarikh & Kategori</th>
+                                    <th>Ulasan / Cadangan</th>
+                                    <th class="w-24 text-center">Penarafan</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ulasan-tbody">
+                                <!-- Data will be injected here by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- SEKSYEN BUKU PELAWAT -->
             <section id="buku_pelawat" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Buku Pelawat Digital</h2>
                 
@@ -1110,14 +1244,17 @@
 
     <script>
         function showSection(sectionId, btnElement) {
+            // Hide all sections
             document.querySelectorAll('.section-content').forEach(el => {
                 el.classList.remove('active');
             });
             
+            // Remove active state from all buttons
             document.querySelectorAll('.glass-nav-item').forEach(el => {
                 el.classList.remove('active');
             });
             
+            // Show target section and set active button
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
@@ -1125,16 +1262,24 @@
             if (btnElement) {
                 btnElement.classList.add('active');
             }
+            
+            // Initialize charts if Maklum Balas section is opened
+            if (sectionId === 'maklum_balas') {
+                initFeedbackAnalysis();
+            }
 
+            // Close sidebar on mobile after clicking
             if (window.innerWidth < 768) {
                 const sidebar = document.getElementById('sidebar');
                 if (sidebar) sidebar.classList.add('-translate-x-full');
             }
 
+            // Scroll main content to top
             const mainContent = document.querySelector('main');
             if (mainContent) mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        // Helper function to safely add event listeners without crashing
         function addSafeListener(elementId, eventName, callback) {
             const el = document.getElementById(elementId);
             if (el) {
@@ -1228,7 +1373,7 @@
 
         // --- Data & Logic for Hakim Modal ---
         const hakimData = {
-            'juri': { title: 'Senarai Juri (48 Orang)', names: ['SULIT - Keputusan dan maklumat dirahsiakan sehingga majlis.'] },
+            'juri': { title: 'Senarai Juri (50 Orang)', names: ['SULIT'] },
             'pengerusi': { title: 'Pengerusi Jemaah Hakim', names: ['SULIT'] },
             'timbalan': { title: 'Timbalan Pengerusi', names: ['SULIT'] }
         };
@@ -1276,26 +1421,192 @@
                 setTimeout(() => {
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
-                }, 300);
+                }, 300); 
             }
         }
 
-        // --- Data & Logic for Peserta Modal (Fixed Array Syntax) ---
+        // --- Data & Logic for Peserta Modal ---
         const pesertaData = {
-            'tilawah_bp_rendah': { title: 'Tilawah Al-Quran (BP Terbuka Rendah)', names: ['Wakil PPD Ranau', '* dan 6 peserta kontinjen daerah lain'] },
-            'tilawah_bp_menengah': { title: 'Tilawah Al-Quran (BP Terbuka Menengah)', names: ['Wakil PPD Ranau', '* dan 10 peserta kontinjen daerah lain'] },
-            'tilawah_bl_rendah': { title: 'Tilawah Al-Quran (BL Terbuka Rendah)', names: ['Wakil PPD (Peserta Pertama)', 'Wakil PPD (Peserta Kedua)'] },
-            'tilawah_bl_menengah': { title: 'Tilawah Al-Quran (BL Terbuka Menengah)', names: ['Wakil Kontinjen'] },
-            'hafazan_bp_rendah': { title: 'Hafazan Al-Quran (BP Terbuka Rendah)', names: ['Wakil PPD Ranau', '* dan 13 peserta kontinjen daerah lain'] },
-            'hafazan_bp_menengah': { title: 'Hafazan Al-Quran (BP Terbuka Menengah)', names: ['Wakil PPD Ranau', '* dan 13 peserta kontinjen daerah lain'] },
-            'bercerita_bp_rendah': { title: 'Bercerita Kisah dari Al-Quran (BP Terbuka Rendah)', names: ['Wakil PPD Ranau', '* dan 13 peserta kontinjen daerah lain'] },
-            'bercerita_bd_rendah': { title: 'Bercerita Kisah dari Al-Quran (BD Terbuka Rendah)', names: ['Wakil Kontinjen 1', 'Wakil Kontinjen 2'] },
-            'azan_terbuka': { title: 'Azan Subuh (Terbuka)', names: ['Wakil PPD Ranau', '* dan 19 peserta kontinjen daerah lain'] },
-            'khat_terbuka': { title: 'Seni Khat (Terbuka)', names: ['Wakil PPD Ranau', '* dan 17 peserta kontinjen daerah lain'] },
-            'sajak_bp_rendah': { title: 'Deklamasi Sajak (BP Terbuka Rendah)', names: ['Wakil PPD Ranau', '* dan 11 peserta kontinjen daerah lain'] },
-            'sajak_bp_menengah': { title: 'Deklamasi Sajak (BP Terbuka Menengah)', names: ['Wakil PPD Ranau', '* dan 15 peserta kontinjen daerah lain'] },
-            'nasyid_terbuka': { title: 'Nasyid (Terbuka)', names: ['Kumpulan Nasyid SMK Mat Salleh (Ranau)', '* dan 12 kumpulan dari kontinjen daerah lain'] },
-            'all': { title: 'Jumlah Keseluruhan Peserta', names: ['Seramai 131 Peserta (Individu)', 'Dan 13 Kumpulan Nasyid mewakili PPD Negeri Sabah'] }
+            'tilawah_bp_rendah': { title: 'Tilawah Al-Quran (BP Terbuka Rendah)', names: [
+                'MUHAMMAD ABI HURAIRAH BIN SUHATMAN (KOTA MARUDU)',
+                'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)',
+                'ALYA ASYURA BINTI ABDULLAH (RANAU)',
+                'MOHAMMAD AAKIF RIFHAN BIN AZMEER REZA (KOTA BELUD)',
+                'MOHAMMAD ABDUL RAHMAN BIN SARIPAI (PAPAR)',
+                'MUHAMMAD ADAM NAUFAL BIN MOHD BASIR (KOTA KINABALU)',
+                'MOHAMAD IRWANSHAH BIN MOHD JUMAT NOR (TAWAU)'
+            ] },
+            'tilawah_bp_menengah': { title: 'Tilawah Al-Quran (BP Terbuka Menengah)', names: [
+                'NURAINA KHAIRIAH BINTI MOHAMAD KHAIRUL RAHIM (SANDAKAN)',
+                'SITI SAHIRA BINTI ABDULLAH (KOTA MARUDU)',
+                'NURUL ASYIQIN BINTI ZAINAL (KENINGAU)',
+                'NURUL AISYAH BINTI SENTRIO (RANAU)',
+                'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)',
+                'MUHAMMAD HAFIDHZUDIN MUHAIMIN BIN HARUN (PAPAR)',
+                'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)',
+                'HIDAYATULLAH BIN ANDI HASBULLAH (KOTA KINABALU)',
+                'MUHAMMAD IZZUEL ISLAM BIN JOHARI (LAHAD DATU)',
+                'MOHAMMAD SYUKUR BIN ABDULLAH (PENAMPANG)',
+                'NURHIDAYAH BINTI SHARIL (TAWAU)'
+            ] },
+            'tilawah_bl_rendah': { title: 'Tilawah Al-Quran (BL Terbuka Rendah)', names: [
+                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)',
+                '*kunak'
+            ] },
+            'tilawah_bl_menengah': { title: 'Tilawah Al-Quran (BL Terbuka Menengah)', names: [
+                'MOHAMMAD ILHAM BIN ABDULLAH (TUARAN)'
+            ] },
+            
+            'hafazan_bp_rendah': { title: 'Hafazan Al-Quran (BP Terbuka Rendah)', names: [
+                'NUR AWLIYA KAUTSAR BINTI MUHAMAD KHAIRUL ZAIYEM (KINABATANGAN)',
+                'MUHAMMAD AIDIL AQMAL B. MOHD AZMI (KOTA MARUDU)',
+                'NUR FATIHAH BINTI REFPAHI (KUALA PENYU)',
+                'MUHAMMAD LUQMAN HAKIM BIN MOHD SHAHRUL NIZAM (BEAUFORT)',
+                'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)',
+                'PUTRA ADAM BIN MOHD NORDIN AZMAIN (RANAU)',
+                'MOHAMAD HYAIKAL BIN ABDUL MANAF (KOTA BELUD)',
+                'MUHAMMAD HANAFI BIN RODY (PAPAR)',
+                'KARL QARLEEF RIZKY BIN DENY SETIAWAN (TUARAN)',
+                'MUHAMMAD DARISH ISYRAFF B ISMAIL (KOTA KINABALU)',
+                'NUR ANIS ATIERA BINTI ABU BAKAR (LAHAD DATU)',
+                'MUHAMMAD FAAIZ HADIF BIN MOHD ZULHAIMI (PENAMPANG)',
+                'HAZRIL BIN HAZMAN (TAWAU)',
+                'UWAIS ALQARNI BIN JULKARNAE (SANDAKAN)'
+            ] },
+            'hafazan_bp_menengah': { title: 'Hafazan Al-Quran (BP Terbuka Menengah)', names: [
+                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)',
+                'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)',
+                'ZULFAHMI BIN ANDI RAUF (SIPITANG)',
+                'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)',
+                'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)',
+                'NURUL AISYAH BINTI SENTRIO (RANAU)',
+                'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)',
+                'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)',
+                'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)',
+                'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)',
+                'NABIL QUSYAIRY BIN YUSUF (LAHAD DATU)',
+                'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)',
+                'ZUNNATUL RASUL (BELURAN)',
+                'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)'
+            ] },
+            
+            'bercerita_bp_rendah': { title: 'Bercerita Kisah dari Al-Quran (BP Terbuka Rendah)', names: [
+                'MUHAMMAD RAYYAN SYARIFUDDIN BIN KAHARUDDIN (KINABATANGAN)',
+                'ARIANA AWFIAH BINTI MOHD RIDHUAN (SANDAKAN)',
+                'NUR HANN ISA BINTI ROY (KOTA MARUDU)',
+                'MUHAMMAD NOR HAZIQ BIN MD JASNIA (KUALA PENYU)',
+                'NUFAIL ANAQI BIN ABDULLAH (BEAUFORT)',
+                'MUHAMMAD AMMAR MIFZHAL BIN FAIDI (KENINGAU)',
+                'ANGELEY ROSLEE (RANAU)',
+                'NUR AQILAH UFAIRAH BINTI MOHD ALIM (KOTA BELUD)',
+                'NUR NATASHA FARHANA BINTI SUHAINI (PAPAR)',
+                'NURFADZIELAH BINTI ABDULLAH (TUARAN)',
+                'HATADI HAUZAN BIN HAMLEY (KOTA KINABALU)',
+                'RAFIQ RAYYAN BIN RIDWAN (LAHAD DATU)',
+                'HAZLIANA BINTI ABDULLAH (PENAMPANG)',
+                'MOHAMMAD AQIL AIMAN BIN PALMAN (TAWAU)'
+            ] },
+            'bercerita_bd_rendah': { title: 'Bercerita Kisah dari Al-Quran (BD Terbuka Rendah)', names: [
+                'DARWISY RICHARD NWOSU BIN ABDULLAH (TUARAN)',
+                'KHAYR ADDIN BIN MUHAMMAD AZIZUL FIKRI (PENAMPANG)'
+            ] },
+            
+            'azan_terbuka': { title: 'Azan Subuh (Terbuka)', names: [
+                'MOHAMMAD AIMAN BIN ABDULLAH (TELUPID)',
+                'MUHAMMAD AKMAL RAMADHAN BIN SAMRI (KINABATANGAN)',
+                'AKMAD PUTRA RIZQI BIN ABDULLAH (SANDAKAN)',
+                'MOHAMAD IZWAN BIN AKIRIN (KOTA MARUDU)',
+                'SHARIF RAZZAHID IMAN BIN SHARIF RAZALI (KUDAT)',
+                'MUHAMMAD MIQAIL BIN ABDULLAH (KUALA PENYU)',
+                'KUZAIME BIN JAMIL (TAMBUNAN)',
+                'ZULFAHMI BIN ANDI RAUF (SIPITANG)',
+                'PUTERA EDDYEN BIN ISKHANDARINO (BEAUFORT)',
+                'AISY DANISH BIN AFZAMIZAM (KENINGAU)',
+                'MUHAMAD ZULKARNAIN BIN MOHD. FIRDAUS (RANAU)',
+                'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)',
+                'ADAM RAYQALL BIN ABDULLAH (PAPAR)',
+                'MOHAMMAD QAYYUM ALIP (TUARAN)',
+                'MUHLIS HUSREV OZKAN (KOTA KINABALU)',
+                'MUHAMAD LUTHFI BIN RAJENDRA (LAHAD DATU)',
+                'MUHAMMAD SYAKIR BIN FAISAL (LAHAD DATU)',
+                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)',
+                'ZUNNATUL RASUL (BELURAN)',
+                'KHAIRUL IKHWAN BIN MOHD KAMIL (TAWAU)'
+            ] },
+            
+            'khat_terbuka': { title: 'Seni Khat (Terbuka)', names: [
+                'MIRCY STACY SELLCY (TELUPID)',
+                'MUHAMMAD AZHAD BIN RONNY (KINABATANGAN)',
+                'NUR AIZYA BINTI NORDIN (SANDAKAN)',
+                'HAFNER FREDERIC TALIS (KOTA MARUDU)',
+                'ALIF ALFFIAN BIN AMRAN (KUDAT)',
+                'NURFATIHAH NABILAH BINTI KAMARULZAMAN (KUALA PENYU)',
+                'ADIKA SHAHRIZZAT AFLYN BIN BAHARIN (SIPITANG)',
+                'NOUR EL SHAM BIN JUDIN (BEAUFORT)',
+                'NURHADIAHTUL BINTI AHMAD (KENINGAU)',
+                'MUHAMMAD HAFIZUDDIN IZZAT BIN HAMDAN (RANAU)',
+                'MAS UMMU AIMAN WASILAH BINTI JEFLIN (KOTA BELUD)',
+                'NURIZZ ZAYANI BINTI NURQHAIRANIZAM (PAPAR)',
+                'INTAN MAYSARAH BINTI ABDUL HANI (TUARAN)',
+                'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)',
+                'MOHAMAD FARA AIDITH BIN MOHD MASAMBA (LAHAD DATU)',
+                'DAYANG SHAHEERA SYAZADAMIA BINTI ABDULLAH (PENAMPANG)',
+                'NAJWA AZZIEATTUL DANIAH BINTI KASLAN (BELURAN)',
+                'NUR ALYA SYUHADA BINTI AKHBAR (TAWAU)'
+            ] },
+            
+            'sajak_bp_rendah': { title: 'Deklamasi Sajak (BP Terbuka Rendah)', names: [
+                'MIDDELTON WONG KET HAU (SANDAKAN)',
+                'NICKY NOEL BIN NIKOLAUS OWIN (KOTA MARUDU)',
+                'ARELIYEMUEL BIN LAIPIN (KUDAT)',
+                'SANDY STEPHEN BARD RAYSOND (KUALA PENYU)',
+                'REDDONEY AQUERO EVRA RAIMIS (KENINGAU)',
+                'DANIEL ELVFIEAN DOMI DURAN (RANAU)',
+                'NEREDIS NEREUS (KOTA BELUD)',
+                'THEODAREN JUNIOR (PAPAR)',
+                'KEITH SULLIVAN FERNANDEZ (TUARAN)',
+                'EMMANUEL RAJA YACOOB BIN TAPUI (KOTA KINABALU)',
+                'JOSHUA PINSO TAN (PENAMPANG)',
+                'SHANE NEITHAN ZYON MATA (TAWAU)'
+            ] },
+            'sajak_bp_menengah': { title: 'Deklamasi Sajak (BP Terbuka Menengah)', names: [
+                'CHARLES CROSE CARLOS (TELUPID)',
+                'MAEGAN VALERIE LOUIS (KOTA MARUDU)',
+                'JORDAN BIN JASWIN (KUDAT)',
+                'CHARLYNA HELLY KATHRYN KIRIN (KUALA PENYU)',
+                'CHELSEA LUCY MATHEW (TAMBUNAN)',
+                'MELANIE GRACE BINTI SALIMAN (SIPITANG)',
+                'BELINDA BIBIANA BINTI BIMBO (BEAUFORT)',
+                'LESNER OVIE EMIH (KENINGAU)',
+                'FILJAMICA MOGINON (RANAU)',
+                'JOL LAJIM (KOTA BELUD)',
+                'CLESDEFBERRA BINTI YANAM @ REZUISE (PAPAR)',
+                'ERNEY CYRISTAL EDWARD (TUARAN)',
+                'NICHELSON NASON (KOTA KINABALU)',
+                'MERRICK FREDDERICK MARINUS (LAHAD DATU)',
+                'STANLEY JORDAN JERALD (PENAMPANG)',
+                'FILYMON WORA ANAK JOS (TAWAU)',
+                '*kunak',
+                '*beluran'
+            ] },
+            
+            'nasyid_terbuka': { title: 'Nasyid (Terbuka)', names: [
+                'SANDAKAN',
+                'KUDAT',
+                'KUALA PENYU',
+                'BEAUFORT',
+                'KENINGAU',
+                'RANAU',
+                'KOTA BELUD',
+                'PAPAR',
+                'TUARAN',
+                'KOTA KINABALU',
+                'LAHAD DATU',
+                'PENAMPANG',
+                'TAWAU'
+            ] },
+            
+            'all': { title: 'Jumlah Keseluruhan Peserta', names: ['* Sila klik pada nombor bagi setiap kategori untuk melihat senarai penuh peserta.'] }
         };
 
         function openPesertaModal(categoryId) {
@@ -1304,19 +1615,49 @@
             const listContainer = document.getElementById('peserta-modal-list');
             const titleElement = document.getElementById('peserta-modal-title');
             
-            listContainer.innerHTML = '';
+            listContainer.innerHTML = ''; 
 
             if (categoryId === 'all') {
                 titleElement.innerHTML = '<i class="fa-solid fa-users mr-2"></i> Senarai Penuh Peserta';
                 for (const key in pesertaData) {
-                    if (key === 'all') continue;
-                    const cat = pesertaData[key];
-                    let html = `<div class="mb-5"><h4 class="text-yellow-400 font-bold border-b border-white/10 pb-1 mb-2 text-sm">${cat.title}</h4><ul class="space-y-2 text-sm text-gray-200 pl-2">`;
-                    cat.names.forEach(name => {
-                        html += `<li class="flex items-center"><i class="fa-solid fa-check text-green-400 w-5 text-xs mr-1"></i> ${name}</li>`;
-                    });
-                    html += `</ul></div>`;
-                    listContainer.innerHTML += html;
+                    if(key === 'all') continue;
+                    // Only process specific keys if they are clicked in the total rows
+                    if (key.startsWith('tilawah_bp_rendah') || key.startsWith('tilawah_bp_menengah') || key.startsWith('tilawah_bl_rendah') || key.startsWith('tilawah_bl_menengah') || key.startsWith('hafazan_bp_rendah') || key.startsWith('hafazan_bp_menengah') || key.startsWith('bercerita_bp_rendah') || key.startsWith('bercerita_bd_rendah') || key.startsWith('azan_terbuka') || key.startsWith('khat_terbuka') || key.startsWith('sajak_bp_rendah') || key.startsWith('sajak_bp_menengah') || key.startsWith('nasyid_terbuka')) {
+                        const cat = pesertaData[key];
+                        let html = `<div class="mb-5"><h4 class="text-yellow-400 font-bold border-b border-white/10 pb-1 mb-2 text-sm">${cat.title}</h4><ul class="space-y-2 text-sm text-gray-200 pl-2">`;
+                        cat.names.forEach(name => {
+                            html += `<li class="flex items-center"><i class="fa-solid fa-check text-green-400 w-5 text-xs mr-1"></i> ${name}</li>`;
+                        });
+                        html += `</ul></div>`;
+                        listContainer.innerHTML += html;
+                    }
+                }
+            } else if (categoryId.endsWith('_total')) {
+                // Determine base category from the clicked total ID
+                const baseCategory = categoryId.replace('_total', '');
+                const titleMap = {
+                    'tilawah_bp': 'Tilawah Al-Quran (BP)',
+                    'tilawah_bl': 'Tilawah Al-Quran (BL)',
+                    'hafazan_bp': 'Hafazan Al-Quran (BP)',
+                    'bercerita_bp': 'Bercerita Kisah Al-Quran (BP)',
+                    'bercerita_bd': 'Bercerita Kisah Al-Quran (BD)',
+                    'sajak_bp': 'Deklamasi Sajak (BP)'
+                };
+                
+                const displayTitle = titleMap[baseCategory] || baseCategory.replace(/_/g, ' ').toUpperCase();
+                titleElement.innerHTML = `<i class="fa-solid fa-users mr-2"></i> Senarai Peserta: ${displayTitle}`;
+                
+                // Iterate only through data matching the base category
+                for (const key in pesertaData) {
+                    if (key.startsWith(baseCategory) && key !== categoryId && key !== 'all') {
+                        const cat = pesertaData[key];
+                        let html = `<div class="mb-5"><h4 class="text-yellow-400 font-bold border-b border-white/10 pb-1 mb-2 text-sm">${cat.title}</h4><ul class="space-y-2 text-sm text-gray-200 pl-2">`;
+                        cat.names.forEach(name => {
+                            html += `<li class="flex items-center"><i class="fa-solid fa-check text-green-400 w-5 text-xs mr-1"></i> ${name}</li>`;
+                        });
+                        html += `</ul></div>`;
+                        listContainer.innerHTML += html;
+                    }
                 }
             } else {
                 const cat = pesertaData[categoryId];
@@ -1328,9 +1669,6 @@
                     });
                     html += `</ul>`;
                     listContainer.innerHTML = html;
-                } else {
-                    titleElement.innerHTML = `<i class="fa-solid fa-users mr-2"></i> Maklumat Peserta`;
-                    listContainer.innerHTML = `<p class="text-gray-300 text-center mt-4">Senarai peserta sedang dikemaskini.</p>`;
                 }
             }
 
@@ -1414,24 +1752,146 @@
                 btn.classList.add('bg-purple-600', 'hover:bg-purple-500');
             }, 3000);
         });
-
-        // --- Smart Search Jawatankuasa Pelaksana ---
-        addSafeListener('search-jk', 'input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            // Get all rows in the JK Pelaksana table body
-            const rows = document.querySelectorAll('#jk_pelaksana tbody tr');
+        
+        // --- Integrasi Analisis Maklum Balas (Google Sheets & Chart.js) ---
+        let chartsInitialized = false;
+        
+        function initFeedbackAnalysis() {
+            if (chartsInitialized) return;
             
-            rows.forEach(row => {
-                // Get all text content within the row
-                const text = row.innerText.toLowerCase();
-                // Toggle row visibility based on search match
-                if (text.includes(searchTerm)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
+            /* 
+             * CARA MENGHUBUNGKAN GOOGLE SHEETS SEBENAR ANDA:
+             * 1. Pergi ke Google Sheet maklum balas anda > File > Share > Publish to Web.
+             * 2. Pilih 'Comma-separated values (.csv)' dan tekan Publish.
+             * 3. Salin (copy) pautan (URL) tersebut.
+             * 4. Gunakan fungsi fetch() untuk mengambil data. Contoh:
+             * 
+             * fetch('LETAK_URL_CSV_DI_SINI')
+             *   .then(response => response.text())
+             *   .then(csvText => {
+             *      // Parse CSV di sini dan proses datanya...
+             *      // updateCharts(processedData);
+             *   });
+             */
+             
+            // Untuk memastikan dashboard sentiasa nampak profesional, ini adalah data MOCK-UP 
+            // yang meniru format yang diproses dari Google Sheets
+            const mockData = {
+                totalResponden: 142,
+                purataKeseluruhan: 4.8,
+                topKategori: 'Guru Pengiring',
+                demografi: {
+                    labels: ['Guru Pengiring', 'Peserta', 'Ibu Bapa/Penjaga', 'Juri', 'Urusetia'],
+                    data: [54, 42, 21, 15, 10]
+                },
+                aspekPenilaian: {
+                    labels: ['Pendaftaran', 'Kemudahan Lokasi', 'Makanan', 'Aturcara Majlis', 'Layanan Urusetia'],
+                    data: [4.8, 4.5, 4.6, 4.9, 4.9] // Purata skala 1-5
+                },
+                ulasan: [
+                    { tarikh: '29/09/2026', kategori: 'Guru Pengiring', teks: 'Pengurusan karnival yang sangat sistematik. Pendaftaran lancar.', rating: 5 },
+                    { tarikh: '30/09/2026', kategori: 'Ibu Bapa/Penjaga', teks: 'Tempat duduk penonton agak terhad, harap dapat diperbaiki tahun hadapan. Selain itu semua terbaik.', rating: 4 },
+                    { tarikh: '30/09/2026', kategori: 'Peserta', teks: 'Sangat gembira dapat menyertai nasyid. Kawan-kawan semua seronok.', rating: 5 },
+                    { tarikh: '01/10/2026', kategori: 'Juri', teks: 'Sistem pengumpulan markah urusetia sangat efisien dan teratur.', rating: 5 }
+                ]
+            };
+
+            renderFeedbackUI(mockData);
+            chartsInitialized = true;
+        }
+        
+        function renderFeedbackUI(data) {
+            // Update Number Cards
+            document.getElementById('stat-total').innerText = data.totalResponden;
+            document.getElementById('stat-rating').innerText = data.purataKeseluruhan;
+            document.getElementById('stat-top-cat').innerText = data.topKategori;
+            
+            // Populate Ulasan Table
+            const ulasanTbody = document.getElementById('ulasan-tbody');
+            ulasanTbody.innerHTML = '';
+            data.ulasan.forEach(item => {
+                let stars = '';
+                for(let i=0; i<5; i++) {
+                    stars += i < item.rating ? '<i class="fa-solid fa-star text-yellow-400 text-[10px]"></i>' : '<i class="fa-regular fa-star text-gray-500 text-[10px]"></i>';
+                }
+                
+                ulasanTbody.innerHTML += `
+                    <tr>
+                        <td><span class="block font-bold text-emerald-300 text-xs">${item.kategori}</span><span class="text-[10px] text-gray-400">${item.tarikh}</span></td>
+                        <td class="text-sm text-gray-200">"${item.teks}"</td>
+                        <td class="text-center">${stars}</td>
+                    </tr>
+                `;
+            });
+            
+            // Initialize Chart.js Defaults for Dark Mode
+            Chart.defaults.color = '#94a3b8';
+            Chart.defaults.font.family = "'Poppins', sans-serif";
+            
+            // 1. Demografi Pie/Doughnut Chart
+            const ctxDemo = document.getElementById('demografiChart').getContext('2d');
+            new Chart(ctxDemo, {
+                type: 'doughnut',
+                data: {
+                    labels: data.demografi.labels,
+                    datasets: [{
+                        data: data.demografi.data,
+                        backgroundColor: [
+                            'rgba(59, 130, 246, 0.8)', // Blue
+                            'rgba(16, 185, 129, 0.8)', // Emerald
+                            'rgba(245, 158, 11, 0.8)', // Yellow
+                            'rgba(168, 85, 247, 0.8)', // Purple
+                            'rgba(236, 72, 153, 0.8)'  // Pink
+                        ],
+                        borderColor: '#0f172a',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'right', labels: { boxWidth: 12, font: { size: 11 } } }
+                    },
+                    cutout: '65%'
                 }
             });
-        });
+            
+            // 2. Aspek Penilaian Bar Chart
+            const ctxPenilaian = document.getElementById('penilaianChart').getContext('2d');
+            new Chart(ctxPenilaian, {
+                type: 'bar',
+                data: {
+                    labels: data.aspekPenilaian.labels,
+                    datasets: [{
+                        label: 'Purata Skala (1-5)',
+                        data: data.aspekPenilaian.data,
+                        backgroundColor: 'rgba(56, 189, 248, 0.7)',
+                        borderColor: 'rgba(56, 189, 248, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5,
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        }
     </script>
 </body>
 </html>
