@@ -162,28 +162,32 @@
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('jk_induk_pengelola', this)"><i class="fa-solid fa-sitemap w-6 text-center mr-2"></i> 4. JK Induk & Pengelola</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('jk_pelaksana', this)"><i class="fa-solid fa-users-gear w-6 text-center mr-2"></i> 5. JK Pelaksana</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('lokasi', this)"><i class="fa-solid fa-map-location-dot w-6 text-center mr-2"></i> 6. Lokasi & Bilik Pertandingan</button></li>
-                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 7. Hakim & Kehadiran</button></li>
-                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 8. Aturcara & Penutup</button></li>
+                
+                <!-- NEW MAP TAB HERE -->
+                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('peta_lokasi', this)"><i class="fa-solid fa-map w-6 text-center mr-2"></i> 7. Peta Lokasi</button></li>
+                
+                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 8. Hakim & Kehadiran</button></li>
+                <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 9. Aturcara & Penutup</button></li>
                 
                 <li>
                     <a href="https://photos.app.goo.gl/MSjHcstEmf5A2KVc8" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-pink-300 hover:bg-pink-400/10 hover:border-l-pink-400 transition-colors">
-                        <i class="fa-solid fa-images w-6 text-center mr-2"></i> 9. Galeri & Aktiviti <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
+                        <i class="fa-solid fa-images w-6 text-center mr-2"></i> 10. Galeri & Aktiviti <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
                     </a>
                 </li>
 
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors" onclick="showSection('daftar_kehadiran', this)">
-                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 10. Daftar Kehadiran
+                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 11. Daftar Kehadiran
                     </button>
                 </li>
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors" onclick="showSection('maklum_balas', this)">
-                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 11. Analisis Kepuasan Pelanggan
+                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 12. Analisis Kepuasan Pelanggan
                     </button>
                 </li>
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-purple-300 hover:bg-purple-400/10 hover:border-l-purple-400 transition-colors" onclick="showSection('buku_pelawat', this)">
-                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 12. Buku Pelawat Digital
+                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 13. Buku Pelawat Digital
                     </button>
                 </li>
                 
@@ -781,6 +785,34 @@
                 </div>
             </section>
 
+            <!-- NEW SECTION: Peta Lokasi -->
+            <section id="peta_lokasi" class="section-content">
+                <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Peta Lokasi Pertandingan</h2>
+                
+                <div class="glass-panel p-6 rounded-xl mb-6">
+                    <div class="flex items-center mb-4">
+                        <i class="fa-solid fa-map text-3xl text-yellow-400 mr-4"></i>
+                        <div>
+                            <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Pelan Lantai & Kedudukan Bilik</p>
+                            <p class="text-xl font-bold text-white">SMK (A) Mohd Ali Ranau</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-black/30 p-3 rounded-xl border border-white/10 relative group">
+                        <p class="text-xs text-center text-gray-400 mb-3 italic"><i class="fa-solid fa-circle-info mr-1"></i> Klik pada gambar di bawah untuk besarkan paparan peta.</p>
+                        
+                        <div class="overflow-hidden rounded-lg relative flex justify-center cursor-pointer" onclick="openMapModal()">
+                            <img src="https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg" alt="Pelan Lokasi Pertandingan" class="w-full max-w-4xl h-auto object-contain rounded-lg shadow-2xl hover:opacity-80 transition-opacity duration-300 border border-white/5">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                <div class="bg-slate-900/80 text-white px-4 py-2 rounded-full backdrop-blur-md flex items-center border border-white/20 shadow-xl">
+                                    <i class="fa-solid fa-expand mr-2"></i> Besarkan
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section id="kehadiran" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Jemaah Hakim & Anggaran Kehadiran</h2>
                 
@@ -1303,6 +1335,16 @@
             </div>
         </div>
 
+        <!-- Map Modal Pop-up -->
+        <div id="map-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/95 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+            <button onclick="closeMapModal()" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-white transition-colors bg-black/50 hover:bg-black/80 rounded-full p-2 z-50">
+                <i class="fa-solid fa-times text-2xl w-8 h-8 flex items-center justify-center"></i>
+            </button>
+            <div class="w-full h-full p-4 md:p-10 flex items-center justify-center transform scale-95 transition-transform duration-300" id="map-modal-content" onclick="closeMapModal()">
+                <img src="https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg" alt="Pelan Lokasi Besarkan" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+            </div>
+        </div>
+
     </main>
 
     <script>
@@ -1496,7 +1538,7 @@
                 'NURAINA KHAIRIAH BINTI MOHAMAD KHAIRUL RAHIM (SANDAKAN)', 'SITI SAHIRA BINTI ABDULLAH (KOTA MARUDU)', 'NURUL ASYIQIN BINTI ZAINAL (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'MUHAMMAD HAFIDHZUDIN MUHAIMIN BIN HARUN (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'HIDAYATULLAH BIN ANDI HASBULLAH (KOTA KINABALU)', 'MUHAMMAD IZZUEL ISLAM BIN JOHARI (KUNAK)', 'MOHAMMAD SYUKUR BIN ABDULLAH (PENAMPANG)', 'NURHIDAYAH BINTI SHARIL (TAWAU)'
             ] },
             'tilawah_bl_rendah': { title: 'Tilawah Al-Quran (BL Terbuka Rendah)', names: [
-                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', '*kunak'
+                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', '*'
             ] },
             'tilawah_bl_menengah': { title: 'Tilawah Al-Quran (BL Terbuka Menengah)', names: [
                 'MOHAMMAD ILHAM BIN ABDULLAH (TUARAN)'
@@ -1616,6 +1658,36 @@
             }
         }
         
+        // --- Map Modal Logic ---
+        function openMapModal() {
+            const modal = document.getElementById('map-modal');
+            const content = document.getElementById('map-modal-content');
+            if(modal && content) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    content.classList.remove('scale-95');
+                    content.classList.add('scale-100');
+                }, 10);
+            }
+        }
+
+        function closeMapModal() {
+            const modal = document.getElementById('map-modal');
+            const content = document.getElementById('map-modal-content');
+            if(modal && content) {
+                modal.classList.add('opacity-0');
+                content.classList.remove('scale-100');
+                content.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                }, 300);
+            }
+        }
+        
+        // --- Buku Pelawat Logic ---
         addSafeListener('guestbook-form', 'submit', function(e) {
             e.preventDefault();
             
