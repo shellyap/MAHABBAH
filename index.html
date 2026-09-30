@@ -1492,19 +1492,24 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
 
         // Constants provided by environment
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'infoboard-mahabbah-2026';
-        let firebaseConfig = {};
+        const appId = 'infoboard-mahabbah-2026';
         
-        try {
-            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
-                // Dummy config for local testing
-                apiKey: "dummy", authDomain: "dummy", projectId: "dummy"
-            };
-        } catch(e) { console.error("Firebase config parsing error", e); }
+        // Konfigurasi Firebase Rasmi Anda
+        const firebaseConfig = {
+            apiKey: "AIzaSyBYqhcV2903lEMKVTzNF5T2Hb1lRorMp3o",
+            authDomain: "read-c18f6.firebaseapp.com",
+            projectId: "read-c18f6",
+            storageBucket: "read-c18f6.firebasestorage.app",
+            messagingSenderId: "755609414492",
+            appId: "1:755609414492:web:4728c5725bc291246a6f99",
+            measurementId: "G-W6WME9XX5K"
+        };
 
         const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
         const db = getFirestore(app);
         const auth = getAuth(app);
         
@@ -1525,24 +1530,35 @@
                     await signInAnonymously(auth);
                 }
             } catch (error) {
-                console.error("Firebase Auth Error:", error);
+                console.warn("Firebase Auth Error (biasa berlaku jika tiada konfigurasi sebenar):", error);
             }
 
             // Listen to auth changes
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     currentUser = user;
-                    // Check if already authenticated as admin in this session
-                    if(sessionStorage.getItem('is_mahabbah_admin') === 'true') {
-                        setAdminState(true);
-                    }
                     // Start listening to PDF updates from Firestore
                     listenToPdfUpdates();
                 } else {
                     currentUser = null;
-                    setAdminState(false);
                 }
             });
+            
+            // Restore Admin state from session if page is refreshed
+            if(sessionStorage.getItem('is_mahabbah_admin') === 'true') {
+                setAdminState(true);
+            }
+
+            // Load local storage PDFs as fallback immediately (if Firestore is slow/dummy)
+            setTimeout(() => {
+                if (!currentUser || firebaseConfig.apiKey === "dummy") {
+                    const localResult = localStorage.getItem('mahabbah_resultPdf');
+                    if(localResult) renderPdfDisplay('result', localResult);
+                    
+                    const localUlasan = localStorage.getItem('mahabbah_ulasanPdf');
+                    if(localUlasan) renderPdfDisplay('ulasan', localUlasan);
+                }
+            }, 800);
             
             // 2. Admin Login Logic
             const loginTrigger = document.getElementById('admin-login-trigger');
@@ -1682,12 +1698,9 @@
                     
                     if(data.ulasanPdf) renderPdfDisplay('ulasan', data.ulasanPdf);
                     else removePdfDisplay('ulasan');
-                } else {
-                    removePdfDisplay('result');
-                    removePdfDisplay('ulasan');
                 }
             }, (error) => {
-                console.error("Error listening to PDFs:", error);
+                console.warn("Error listening to PDFs (biasa berlaku jika tiada konfigurasi sebenar):", error);
             });
         }
 
@@ -1717,9 +1730,10 @@
             }
         }
 
-        // --- File Upload Handling (Base64 approach for Firestore) ---
+        // --- File Upload Handling (Base64 approach for Firestore & LocalStorage) ---
         window.handleFirebasePdfUpload = async function(event, type) {
-            if (!isAdmin || !currentUser) {
+            // FIX: Hanya perlu periksa jika isAdmin.
+            if (!isAdmin) {
                 showCustomAlert("Ralat", "Hanya Admin dibenarkan memuat naik dokumen.", "error");
                 return;
             }
@@ -1734,7 +1748,7 @@
                 return;
             }
 
-            // Check size (Cap at ~700KB for Firestore limits)
+            // Check size (Cap at ~700KB for Firestore limits/LocalStorage)
             if(file.size > 700 * 1024) {
                 showCustomAlert("Fail Terlalu Besar", "Saiz maksimum PDF dibenarkan adalah 700KB. Sila kecilkan (compress) fail anda sebelum muat naik.", "error");
                 return;
@@ -1749,7 +1763,18 @@
                 const base64String = await fileToBase64(file);
                 const rawBase64 = base64String.split(',')[1];
                 
-                // Save to Firestore
+                // Fallback for Demo/GitHub Pages environment (Dummy Config)
+                if (firebaseConfig.apiKey === "dummy" || !currentUser) {
+                    localStorage.setItem(`mahabbah_${type}Pdf`, rawBase64);
+                    renderPdfDisplay(type, rawBase64);
+                    
+                    loadingEl.classList.add('hidden');
+                    loadingEl.classList.remove('flex');
+                    showCustomAlert("Berjaya (Mod Tempatan)", "Dokumen disimpan dalam storan pelayar anda. (Pangkalan data sebenar tidak disambungkan).", "success");
+                    return;
+                }
+
+                // Save to Firestore (If Real Config)
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'documents', 'official_pdfs');
                 const docSnap = await getDoc(docRef);
                 
@@ -1773,12 +1798,12 @@
                 console.error("Upload error:", error);
                 loadingEl.classList.add('hidden');
                 loadingEl.classList.remove('flex');
-                showCustomAlert("Ralat", "Gagal memuat naik dokumen. Sila cuba lagi.", "error");
+                showCustomAlert("Ralat", "Gagal memuat naik dokumen. Jika berterusan, muat semula halaman.", "error");
             }
         };
 
         window.deletePdf = function(type) {
-             if (!isAdmin || !currentUser) return;
+             if (!isAdmin) return; // FIX: Only check isAdmin
              
              document.getElementById('custom-alert-icon').className = "fa-solid fa-trash-can text-5xl text-red-500 mb-4";
              document.getElementById('custom-alert-title').innerText = "Padam Dokumen";
@@ -1792,13 +1817,25 @@
             
             document.getElementById('confirm-delete-btn').onclick = async () => {
                 closeCustomAlert();
+                
+                // Fallback for Demo/GitHub Pages environment
+                if (firebaseConfig.apiKey === "dummy" || !currentUser) {
+                    localStorage.removeItem(`mahabbah_${type}Pdf`);
+                    removePdfDisplay(type);
+                    setTimeout(() => showCustomAlert("Berjaya", "Dokumen dipadam dari storan tempatan.", "success"), 300);
+                    return;
+                }
+
                 try {
                     const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'documents', 'official_pdfs');
                     const updateData = {};
                     updateData[`${type}Pdf`] = null; 
                     await setDoc(docRef, updateData, { merge: true });
+                    removePdfDisplay(type);
+                    setTimeout(() => showCustomAlert("Berjaya", "Dokumen berjaya dipadam.", "success"), 300);
                 } catch(e) {
                     console.error("Delete error", e);
+                    showCustomAlert("Ralat", "Gagal memadam dokumen.", "error");
                 }
             };
         }
