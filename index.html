@@ -59,21 +59,21 @@
         .verbatim-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.65rem; /* Smaller font for mobile to fit all columns */
-            table-layout: fixed; /* Forces the table to fit within screen width */
+            font-size: 0.65rem;
+            table-layout: fixed; 
         }
         @media (min-width: 768px) {
             .verbatim-table {
-                font-size: 0.875rem; /* Normal font size for tablets and desktop */
-                table-layout: auto; /* Reverts to flexible layout on larger screens */
+                font-size: 0.875rem; 
+                table-layout: auto; 
             }
         }
         .verbatim-table th, .verbatim-table td {
             border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 0.4rem 0.25rem; /* Tighter padding for mobile */
+            padding: 0.4rem 0.25rem;
             text-align: left;
             vertical-align: middle;
-            word-wrap: break-word; /* Forces long words to wrap instead of stretching the table */
+            word-wrap: break-word;
             overflow-wrap: break-word;
             hyphens: auto;
         }
@@ -120,11 +120,22 @@
         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
         ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(250,204,21,0.5); }
+
+        /* Admin specific styles */
+        .admin-only { display: none; }
+        body.is-admin .admin-only { display: inline-flex; }
+        body.is-admin .admin-only-block { display: block; }
+        body.is-admin .admin-only-flex { display: flex; }
     </style>
 </head>
 <body class="h-screen overflow-hidden flex">
 
     <div id="welcome-screen" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-slate-900 bg-opacity-95 backdrop-blur-xl transition-opacity duration-700">
+        <!-- Admin Login Trigger (Discreet corner button) -->
+        <button id="admin-login-trigger" class="absolute top-4 right-4 text-white/20 hover:text-white/60 transition-colors" title="Admin Login">
+            <i class="fa-solid fa-lock"></i>
+        </button>
+
         <div class="text-center p-8 glass-panel rounded-3xl max-w-2xl mx-4 flex flex-col items-center">
             <img src="https://i.postimg.cc/xThB5s0L/logo.png" alt="Logo Karnival Mahabbah" class="w-[80%] max-w-[400px] mx-auto mb-6 drop-shadow-2xl object-contain block">
             
@@ -206,6 +217,12 @@
             <i class="fa-solid fa-volume-up text-yellow-400 md:mr-2 text-lg md:text-sm"></i>
             <span class="hidden md:inline text-sm font-medium">Audio Dimainkan</span>
         </button>
+        
+        <!-- Admin Status Indicator -->
+        <div id="admin-status" class="fixed bottom-4 left-4 z-[60] bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg hidden items-center gap-2">
+            <i class="fa-solid fa-user-shield"></i> Mod Admin Aktif
+            <button id="admin-logout-btn" class="ml-2 hover:text-slate-900"><i class="fa-solid fa-sign-out-alt"></i></button>
+        </div>
 
         <!-- Mobile Header -->
         <header class="md:hidden bg-slate-900/80 backdrop-blur-md border-b border-white/10 p-3.5 sticky top-0 z-40 flex items-center justify-between">
@@ -788,7 +805,7 @@
                     </div>
                 </div>
             </section>
-            
+
             <section id="peta_lokasi" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Peta Lokasi Pertandingan</h2>
                 
@@ -804,6 +821,7 @@
                     <div class="bg-black/30 p-3 rounded-xl border border-white/10 relative group">
                         <p class="text-xs text-center text-gray-400 mb-3 italic"><i class="fa-solid fa-search-plus mr-1"></i> Klik pada gambar di bawah untuk besarkan paparan peta.</p>
                         
+                        <!-- Click to open map modal -->
                         <div class="overflow-hidden rounded-lg relative flex justify-center cursor-pointer" onclick="openImageModal('https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg')">
                             <img src="https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg" alt="Pelan Lokasi Pertandingan" class="w-full max-w-4xl h-auto object-contain rounded-lg shadow-2xl hover:opacity-80 transition-opacity duration-300 border border-white/5">
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
@@ -1072,26 +1090,39 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Keputusan Rasmi (PDF) -->
-                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[600px]">
-                        <div class="flex items-center mb-4 flex-shrink-0">
-                            <i class="fa-solid fa-trophy text-3xl text-yellow-400 mr-4"></i>
-                            <div>
-                                <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Dokumen PDF</p>
-                                <p class="text-xl font-bold text-white">Keputusan Rasmi</p>
+                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[700px]">
+                        <div class="flex items-center justify-between mb-4 flex-shrink-0">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-trophy text-3xl text-yellow-400 mr-4"></i>
+                                <div>
+                                    <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Dokumen PDF</p>
+                                    <p class="text-xl font-bold text-white">Keputusan Rasmi</p>
+                                </div>
                             </div>
+                            <!-- Delete Button (Admin Only) -->
+                            <button onclick="deletePdf('result')" class="admin-only text-red-400 hover:text-red-300 transition-colors p-2" title="Padam Dokumen">
+                                <i class="fa-solid fa-trash-can text-xl"></i>
+                            </button>
                         </div>
                         
                         <div class="bg-black/30 p-4 rounded-xl border border-white/10 relative text-center flex-1 flex flex-col">
-                            <div class="mb-4 flex-shrink-0">
+                            <!-- Loading Indicator -->
+                            <div id="result-loading" class="hidden absolute inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex-col items-center justify-center rounded-xl">
+                                <i class="fa-solid fa-circle-notch fa-spin text-4xl text-yellow-400 mb-2"></i>
+                                <p class="text-white text-sm" id="result-loading-text">Memuat naik...</p>
+                            </div>
+
+                            <div class="mb-4 flex-shrink-0 admin-only-block" style="display:none;" id="result-upload-wrapper">
                                 <label for="upload-result-pdf" class="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors inline-flex items-center shadow-lg">
-                                    <i class="fa-solid fa-file-pdf mr-2"></i> Muat Naik Keputusan (PDF)
+                                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Muat Naik Keputusan (PDF)
                                 </label>
-                                <input type="file" id="upload-result-pdf" accept="application/pdf" class="hidden" onchange="handlePdfUpload(event, 'result-pdf-container', 'result-pdf-placeholder')">
+                                <input type="file" id="upload-result-pdf" accept="application/pdf" class="hidden" onchange="handleFirebasePdfUpload(event, 'result')">
                             </div>
 
                             <div id="result-pdf-placeholder" class="flex-1 border-2 border-dashed border-white/20 rounded-lg bg-white/5 flex flex-col items-center justify-center">
                                 <i class="fa-regular fa-file-pdf text-5xl text-gray-500 mb-3"></i>
-                                <p class="text-gray-400 text-sm">Belum ada dokumen PDF dimuat naik.</p>
+                                <p class="text-gray-400 text-sm">Belum ada dokumen keputusan rasmi dimuat naik.</p>
+                                <p class="text-gray-500 text-xs mt-2 admin-only" style="display:none;">Sila klik butang biru di atas untuk muat naik.</p>
                             </div>
                             
                             <div id="result-pdf-container" class="hidden flex-1 w-full h-full rounded-lg overflow-hidden border border-white/10 bg-white">
@@ -1101,26 +1132,39 @@
                     </div>
 
                     <!-- Ulasan Hakim (PDF) -->
-                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[600px]">
-                        <div class="flex items-center mb-4 flex-shrink-0">
-                            <i class="fa-solid fa-comment-dots text-3xl text-emerald-400 mr-4"></i>
-                            <div>
-                                <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Dokumen PDF</p>
-                                <p class="text-xl font-bold text-white">Ulasan Hakim</p>
+                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[700px]">
+                        <div class="flex items-center justify-between mb-4 flex-shrink-0">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-comment-dots text-3xl text-emerald-400 mr-4"></i>
+                                <div>
+                                    <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Dokumen PDF</p>
+                                    <p class="text-xl font-bold text-white">Ulasan Hakim</p>
+                                </div>
                             </div>
+                             <!-- Delete Button (Admin Only) -->
+                             <button onclick="deletePdf('ulasan')" class="admin-only text-red-400 hover:text-red-300 transition-colors p-2" title="Padam Dokumen">
+                                <i class="fa-solid fa-trash-can text-xl"></i>
+                            </button>
                         </div>
                         
                         <div class="bg-black/30 p-4 rounded-xl border border-white/10 relative text-center flex-1 flex flex-col">
-                            <div class="mb-4 flex-shrink-0">
+                            <!-- Loading Indicator -->
+                            <div id="ulasan-loading" class="hidden absolute inset-0 bg-slate-900/80 backdrop-blur-sm z-50 flex-col items-center justify-center rounded-xl">
+                                <i class="fa-solid fa-circle-notch fa-spin text-4xl text-emerald-400 mb-2"></i>
+                                <p class="text-white text-sm" id="ulasan-loading-text">Memuat naik...</p>
+                            </div>
+
+                            <div class="mb-4 flex-shrink-0 admin-only-block" style="display:none;" id="ulasan-upload-wrapper">
                                 <label for="upload-ulasan-pdf" class="cursor-pointer bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors inline-flex items-center shadow-lg">
-                                    <i class="fa-solid fa-file-pdf mr-2"></i> Muat Naik Ulasan (PDF)
+                                    <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Muat Naik Ulasan (PDF)
                                 </label>
-                                <input type="file" id="upload-ulasan-pdf" accept="application/pdf" class="hidden" onchange="handlePdfUpload(event, 'ulasan-pdf-container', 'ulasan-pdf-placeholder')">
+                                <input type="file" id="upload-ulasan-pdf" accept="application/pdf" class="hidden" onchange="handleFirebasePdfUpload(event, 'ulasan')">
                             </div>
                             
                             <div id="ulasan-pdf-placeholder" class="flex-1 border-2 border-dashed border-white/20 rounded-lg bg-white/5 flex flex-col items-center justify-center">
                                 <i class="fa-regular fa-file-pdf text-5xl text-gray-500 mb-3"></i>
-                                <p class="text-gray-400 text-sm">Belum ada dokumen PDF dimuat naik.</p>
+                                <p class="text-gray-400 text-sm">Belum ada dokumen ulasan hakim dimuat naik.</p>
+                                <p class="text-gray-500 text-xs mt-2 admin-only" style="display:none;">Sila klik butang hijau di atas untuk muat naik.</p>
                             </div>
 
                             <div id="ulasan-pdf-container" class="hidden flex-1 w-full h-full rounded-lg overflow-hidden border border-white/10 bg-white">
@@ -1142,12 +1186,12 @@
                     </a>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Pendaftaran</p>
-                                <h3 class="text-3xl font-bold text-white" id="stat-daftar-total">-</h3>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Hadir</p>
+                                <h3 class="text-3xl font-bold text-white" id="stat-daftar-total">0</h3>
                             </div>
                             <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400">
                                 <i class="fa-solid fa-users text-xl"></i>
@@ -1159,21 +1203,21 @@
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Kategori Tertinggi</p>
-                                <h3 class="text-xl font-bold text-white mt-1" id="stat-daftar-top-cat">-</h3>
+                                <h3 class="text-xl font-bold text-white mt-1 leading-tight" id="stat-daftar-top-cat">-</h3>
                             </div>
                             <div class="bg-emerald-500/20 p-3 rounded-lg text-emerald-400">
-                                <i class="fa-solid fa-chart-simple text-xl"></i>
+                                <i class="fa-solid fa-medal text-xl"></i>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-purple-500">
-                        <div class="flex justify-between items-start">
+
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-yellow-500 lg:col-span-2">
+                        <div class="flex justify-between items-start h-full">
                             <div>
-                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Rekod Terkini</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Pendaftaran Terkini</p>
                                 <h3 class="text-xl font-bold text-white mt-1" id="stat-daftar-terkini">-</h3>
                             </div>
-                            <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400">
+                            <div class="bg-yellow-500/20 p-3 rounded-lg text-yellow-400">
                                 <i class="fa-solid fa-clock-rotate-left text-xl"></i>
                             </div>
                         </div>
@@ -1181,26 +1225,26 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                    <div class="glass-panel p-6 rounded-xl lg:col-span-1 flex flex-col h-[350px]">
+                    <div class="glass-panel p-6 rounded-xl col-span-1 flex flex-col">
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-column text-blue-400 mr-2"></i> Pecahan Kategori</h3>
-                        <div class="flex-1 relative w-full">
+                        <div class="flex-1 relative w-full flex items-center justify-center min-h-[250px]">
                             <canvas id="kehadiranChart"></canvas>
                         </div>
                     </div>
 
-                    <div class="glass-panel rounded-xl overflow-hidden lg:col-span-2">
+                    <div class="glass-panel rounded-xl lg:col-span-2 flex flex-col overflow-hidden">
                         <h3 class="bg-black/40 text-blue-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-list mr-2"></i> 10 Pendaftaran Terkini</h3>
-                        <div class="overflow-x-auto h-[290px] overflow-y-auto">
+                        <div class="overflow-x-auto max-h-[270px] overflow-y-auto">
                             <table class="verbatim-table w-full relative">
                                 <thead class="sticky top-0 z-10 bg-slate-900 shadow-md">
                                     <tr>
                                         <th class="w-12 text-center">BIL</th>
-                                        <th>Nama & Tarikh</th>
-                                        <th class="w-1/3">Kategori</th>
+                                        <th>Nama & Tarikh/Masa</th>
+                                        <th>Kategori / Perincian</th>
                                     </tr>
                                 </thead>
                                 <tbody id="daftar-tbody">
-                                    <!-- Data akan dimasukkan di sini oleh JavaScript -->
+                                    <!-- Data injected by JS -->
                                 </tbody>
                             </table>
                         </div>
@@ -1219,12 +1263,13 @@
                     </a>
                 </div>
 
+                <!-- Numerical Analysis (Stat Cards) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500">
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Responden</p>
-                                <h3 class="text-3xl font-bold text-white" id="stat-total">-</h3>
+                                <h3 class="text-3xl font-bold text-white" id="stat-total">0</h3>
                             </div>
                             <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400">
                                 <i class="fa-solid fa-users text-xl"></i>
@@ -1274,7 +1319,9 @@
                     </div>
                 </div>
 
+                <!-- Graphical Analysis (Charts) -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+                    <!-- Pie Chart -->
                     <div class="glass-panel p-6 rounded-xl col-span-1 flex flex-col">
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-pie text-emerald-400 mr-2"></i> Demografi Responden</h3>
                         <div class="flex-1 relative w-full flex items-center justify-center min-h-[250px]">
@@ -1282,6 +1329,7 @@
                         </div>
                     </div>
 
+                    <!-- Bar Chart -->
                     <div class="glass-panel p-6 rounded-xl lg:col-span-2 flex flex-col">
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-column text-blue-400 mr-2"></i> Analisis Aspek Penilaian (Skala 1-5)</h3>
                         <div class="flex-1 relative w-full min-h-[250px]">
@@ -1290,9 +1338,10 @@
                     </div>
                 </div>
                 
+                <!-- Feedback Verbatim Table -->
                 <div class="glass-panel rounded-xl overflow-hidden">
                     <h3 class="bg-black/40 text-emerald-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-comment-dots mr-2"></i> Ulasan & Cadangan Terpilih</h3>
-                    <div class="overflow-x-auto h-[300px] overflow-y-auto">
+                    <div class="overflow-x-auto max-h-[300px] overflow-y-auto">
                         <table class="verbatim-table w-full relative">
                             <thead class="sticky top-0 z-10 bg-slate-900 shadow-md">
                                 <tr>
@@ -1307,6 +1356,7 @@
                         </table>
                     </div>
                 </div>
+
             </section>
 
             <section id="buku_pelawat" class="section-content">
@@ -1314,6 +1364,7 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
+                    <!-- Borang Buku Pelawat -->
                     <div class="glass-panel p-6 rounded-xl h-fit border-t-4 border-t-purple-500">
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-pen-nib text-purple-400 mr-3"></i> Tinggalkan Jejak Anda</h3>
                         
@@ -1337,6 +1388,7 @@
                         </form>
                     </div>
 
+                    <!-- Paparan Senarai Pelawat -->
                     <div class="glass-panel p-6 rounded-xl flex flex-col h-[500px]">
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center border-b border-white/10 pb-3"><i class="fa-solid fa-comments text-purple-400 mr-3"></i> Senarai Jejak Pelawat</h3>
                         
@@ -1365,6 +1417,21 @@
                 </div>
             </section>
 
+        </div>
+
+        
+        <!-- Custom Alert Modal -->
+        <div id="custom-alert-modal" class="fixed inset-0 z-[200] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+            <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-sm overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="custom-alert-content">
+                <div class="p-6 text-center">
+                    <i id="custom-alert-icon" class="fa-solid fa-circle-exclamation text-5xl text-yellow-400 mb-4"></i>
+                    <h3 class="font-bold text-white text-xl mb-2" id="custom-alert-title">Perhatian</h3>
+                    <p class="text-gray-300 text-sm" id="custom-alert-message">Mesej di sini</p>
+                </div>
+                <div class="p-4 bg-slate-800/50 flex justify-center gap-3" id="custom-alert-buttons">
+                    <button onclick="closeCustomAlert()" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded-lg text-sm font-medium transition-colors">OK</button>
+                </div>
+            </div>
         </div>
 
         <!-- Hakim Modal Pop-up -->
@@ -1398,51 +1465,365 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Image Zoom Modal Pop-up -->
-        <div id="image-zoom-modal" class="fixed inset-0 z-[200] hidden flex-col bg-slate-900/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
-            <!-- Toolbar -->
-            <div class="bg-slate-800 border-b border-white/10 p-3 md:p-4 flex justify-between items-center z-10 shadow-xl">
-                <div class="flex items-center space-x-2 md:space-x-4">
-                    <button onclick="zoomImage(0.2)" class="bg-white/10 hover:bg-white/20 text-white p-2 md:px-4 md:py-2 rounded-lg transition-colors flex items-center" title="Zoom In">
-                        <i class="fa-solid fa-magnifying-glass-plus"></i> <span class="hidden md:inline ml-2 text-sm font-medium">Besarkan</span>
-                    </button>
-                    <button onclick="zoomImage(-0.2)" class="bg-white/10 hover:bg-white/20 text-white p-2 md:px-4 md:py-2 rounded-lg transition-colors flex items-center" title="Zoom Out">
-                        <i class="fa-solid fa-magnifying-glass-minus"></i> <span class="hidden md:inline ml-2 text-sm font-medium">Kecilkan</span>
-                    </button>
-                    <button onclick="resetImageZoom()" class="bg-white/10 hover:bg-white/20 text-white p-2 md:px-4 md:py-2 rounded-lg transition-colors flex items-center" title="Reset">
-                        <i class="fa-solid fa-compress"></i> <span class="hidden md:inline ml-2 text-sm font-medium">Reset</span>
-                    </button>
-                    <span id="img-zoom-level" class="text-yellow-400 font-mono text-sm ml-2 md:ml-4 font-bold bg-black/30 px-3 py-1 rounded">100%</span>
-                </div>
-                <button onclick="closeImageModal()" class="bg-red-500 hover:bg-red-600 text-white p-2 md:px-6 md:py-2 rounded-lg transition-colors flex items-center shadow-lg">
-                    <i class="fa-solid fa-times text-lg"></i> <span class="hidden md:inline ml-2 font-bold">Tutup</span>
-                </button>
+
+        <!-- Image Zoom Modal (Map Zoom) -->
+        <div id="image-zoom-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+            <button onclick="closeImageModal()" class="absolute top-4 right-4 md:top-8 md:right-8 text-white/50 hover:text-white bg-black/50 hover:bg-black/80 rounded-full w-12 h-12 flex items-center justify-center transition-all z-50">
+                <i class="fa-solid fa-times text-2xl"></i>
+            </button>
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-4 bg-slate-900/80 backdrop-blur-md px-6 py-3 rounded-full border border-white/10 z-50">
+                <button onclick="zoomImage(-0.25)" class="text-white hover:text-yellow-400 transition-colors"><i class="fa-solid fa-magnifying-glass-minus text-xl"></i></button>
+                <span id="img-zoom-level" class="text-white font-mono font-bold w-12 text-center text-sm">100%</span>
+                <button onclick="zoomImage(0.25)" class="text-white hover:text-yellow-400 transition-colors"><i class="fa-solid fa-magnifying-glass-plus text-xl"></i></button>
+                <div class="w-px h-6 bg-white/20 mx-2"></div>
+                <button onclick="resetImageZoom()" class="text-gray-400 hover:text-white text-xs uppercase tracking-wider font-bold"><i class="fa-solid fa-rotate-right mr-1"></i>Reset</button>
             </div>
-            
-            <!-- Viewer Area -->
-            <div class="flex-1 overflow-auto p-4 md:p-10 flex justify-center items-center cursor-move" id="img-scroll-area" onmousedown="startDrag(event)" onmousemove="doDrag(event)" onmouseup="stopDrag()" onmouseleave="stopDrag()">
-                <div class="transition-transform duration-200 origin-center" id="img-zoom-wrapper" style="transform: scale(1);">
-                    <img id="modal-zoomed-image" src="" alt="Zoomed Image" class="max-w-none max-h-none shadow-2xl rounded-lg" draggable="false">
+            <div id="img-scroll-area" class="w-full h-full overflow-auto flex items-center justify-center cursor-grab" onmousedown="startDrag(event)" onmousemove="doDrag(event)" onmouseup="stopDrag()" onmouseleave="stopDrag()">
+                <div id="img-zoom-wrapper" class="transition-transform duration-200 ease-out origin-center">
+                    <img id="modal-zoomed-image" src="" alt="Zoomed Map" class="max-w-[90vw] max-h-[90vh] object-contain shadow-2xl rounded-lg pointer-events-none">
                 </div>
             </div>
         </div>
 
     </main>
 
+    <!-- Firebase SDK Imports -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Constants provided by environment
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'infoboard-mahabbah-2026';
+        let firebaseConfig = {};
+        
+        try {
+            firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {
+                // Dummy config for local testing
+                apiKey: "dummy", authDomain: "dummy", projectId: "dummy"
+            };
+        } catch(e) { console.error("Firebase config parsing error", e); }
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+        
+        let currentUser = null;
+        let isAdmin = false;
+        
+        // ADMIN PASSWORD
+        const ADMIN_SECRET = "mahabbah2026admin";
+
+        // Wait for DOM
+        document.addEventListener('DOMContentLoaded', async () => {
+            
+            // 1. Initialize Authentication
+            try {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            } catch (error) {
+                console.error("Firebase Auth Error:", error);
+            }
+
+            // Listen to auth changes
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    currentUser = user;
+                    // Check if already authenticated as admin in this session
+                    if(sessionStorage.getItem('is_mahabbah_admin') === 'true') {
+                        setAdminState(true);
+                    }
+                    // Start listening to PDF updates from Firestore
+                    listenToPdfUpdates();
+                } else {
+                    currentUser = null;
+                    setAdminState(false);
+                }
+            });
+            
+            // 2. Admin Login Logic
+            const loginTrigger = document.getElementById('admin-login-trigger');
+            if(loginTrigger) {
+                loginTrigger.addEventListener('click', () => {
+                    promptAdminLogin();
+                });
+            }
+            
+            const logoutBtn = document.getElementById('admin-logout-btn');
+            if(logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    setAdminState(false);
+                    sessionStorage.removeItem('is_mahabbah_admin');
+                    showCustomAlert("Log Keluar", "Anda telah keluar dari Mod Admin.", "success");
+                });
+            }
+
+        }); // End DOMContentLoaded
+
+        // --- Authentication Functions ---
+        function promptAdminLogin() {
+            if(isAdmin) {
+                showCustomAlert("Info", "Anda sudah berada dalam mod Admin.", "info");
+                return;
+            }
+            
+            document.getElementById('custom-alert-icon').className = "fa-solid fa-lock text-5xl text-blue-400 mb-4";
+            document.getElementById('custom-alert-title').innerText = "Log Masuk Admin";
+            document.getElementById('custom-alert-message').innerHTML = `
+                <p class="mb-3">Sila masukkan kata laluan untuk mengurus dokumen rasmi.</p>
+                <input type="password" id="admin-password-input" class="w-full bg-black/40 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-blue-400 transition-colors" placeholder="Kata laluan">
+            `;
+            
+            document.getElementById('custom-alert-buttons').innerHTML = `
+                <button id="cancel-login-btn" class="bg-gray-600 hover:bg-gray-500 text-white py-2 px-6 rounded-lg text-sm font-medium transition-colors">Batal</button>
+                <button id="confirm-login-btn" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded-lg text-sm font-medium transition-colors">Log Masuk</button>
+            `;
+            
+            openCustomAlertModal();
+            
+            // Focus input
+            setTimeout(() => { document.getElementById('admin-password-input').focus(); }, 100);
+
+            // Handle actions
+            document.getElementById('cancel-login-btn').onclick = closeCustomAlert;
+            document.getElementById('confirm-login-btn').onclick = () => {
+                const pwd = document.getElementById('admin-password-input').value;
+                if(pwd === ADMIN_SECRET) {
+                    setAdminState(true);
+                    sessionStorage.setItem('is_mahabbah_admin', 'true');
+                    closeCustomAlert();
+                    setTimeout(() => { showCustomAlert("Berjaya", "Mod Admin diaktifkan. Anda kini boleh memuat naik/padam dokumen.", "success"); }, 400);
+                } else {
+                    document.getElementById('admin-password-input').classList.add('border-red-500');
+                    const content = document.getElementById('custom-alert-content');
+                    content.classList.add('animate-pulse');
+                    setTimeout(() => content.classList.remove('animate-pulse'), 500);
+                }
+            };
+        }
+
+        function setAdminState(state) {
+            isAdmin = state;
+            if(state) {
+                document.body.classList.add('is-admin');
+                document.getElementById('admin-status').style.display = 'flex';
+                document.getElementById('result-upload-wrapper').style.display = 'block';
+                document.getElementById('ulasan-upload-wrapper').style.display = 'block';
+            } else {
+                document.body.classList.remove('is-admin');
+                document.getElementById('admin-status').style.display = 'none';
+                document.getElementById('result-upload-wrapper').style.display = 'none';
+                document.getElementById('ulasan-upload-wrapper').style.display = 'none';
+            }
+        }
+
+        // --- Custom Alert System ---
+        function showCustomAlert(title, message, type = "warning") {
+            document.getElementById('custom-alert-title').innerText = title;
+            document.getElementById('custom-alert-message').innerHTML = message;
+            
+            const icon = document.getElementById('custom-alert-icon');
+            if(type === "success") {
+                icon.className = "fa-solid fa-circle-check text-5xl text-emerald-400 mb-4";
+            } else if(type === "error") {
+                icon.className = "fa-solid fa-circle-xmark text-5xl text-red-400 mb-4";
+            } else if (type === "info") {
+                icon.className = "fa-solid fa-circle-info text-5xl text-blue-400 mb-4";
+            } else {
+                icon.className = "fa-solid fa-circle-exclamation text-5xl text-yellow-400 mb-4";
+            }
+
+            document.getElementById('custom-alert-buttons').innerHTML = `
+                <button onclick="closeCustomAlert()" class="bg-blue-600 hover:bg-blue-500 text-white py-2 px-6 rounded-lg text-sm font-medium transition-colors">Tutup</button>
+            `;
+            openCustomAlertModal();
+        }
+
+        function openCustomAlertModal() {
+            const modal = document.getElementById('custom-alert-modal');
+            const content = document.getElementById('custom-alert-content');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        window.closeCustomAlert = function() {
+            const modal = document.getElementById('custom-alert-modal');
+            const content = document.getElementById('custom-alert-content');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        };
+
+
+        // --- Firestore Realtime Listening ---
+        function listenToPdfUpdates() {
+            if(!currentUser) return;
+            
+            // Path: /artifacts/{appId}/public/data/documents
+            const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'documents', 'official_pdfs');
+            
+            onSnapshot(docRef, (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.data();
+                    if(data.resultPdf) renderPdfDisplay('result', data.resultPdf);
+                    else removePdfDisplay('result');
+                    
+                    if(data.ulasanPdf) renderPdfDisplay('ulasan', data.ulasanPdf);
+                    else removePdfDisplay('ulasan');
+                } else {
+                    removePdfDisplay('result');
+                    removePdfDisplay('ulasan');
+                }
+            }, (error) => {
+                console.error("Error listening to PDFs:", error);
+            });
+        }
+
+        // --- PDF Rendering ---
+        function renderPdfDisplay(type, base64Data) {
+            const container = document.getElementById(`${type}-pdf-container`);
+            const placeholder = document.getElementById(`${type}-pdf-placeholder`);
+            
+            if(container && placeholder && base64Data) {
+                // Ensure the base64 string has the correct data URI prefix
+                const src = base64Data.startsWith('data:application/pdf;base64,') ? base64Data : `data:application/pdf;base64,${base64Data}`;
+                
+                container.innerHTML = `<iframe src="${src}" width="100%" height="100%" style="border: none;"></iframe>`;
+                container.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            }
+        }
+        
+        function removePdfDisplay(type) {
+            const container = document.getElementById(`${type}-pdf-container`);
+            const placeholder = document.getElementById(`${type}-pdf-placeholder`);
+            
+            if(container && placeholder) {
+                container.innerHTML = '';
+                container.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+            }
+        }
+
+        // --- File Upload Handling (Base64 approach for Firestore) ---
+        window.handleFirebasePdfUpload = async function(event, type) {
+            if (!isAdmin || !currentUser) {
+                showCustomAlert("Ralat", "Hanya Admin dibenarkan memuat naik dokumen.", "error");
+                return;
+            }
+
+            const file = event.target.files[0];
+            event.target.value = ''; // Reset input
+            
+            if (!file) return;
+            
+            if (file.type !== "application/pdf") {
+                showCustomAlert("Format Salah", "Sila muat naik fail dalam format PDF sahaja.", "error");
+                return;
+            }
+
+            // Check size (Cap at ~700KB for Firestore limits)
+            if(file.size > 700 * 1024) {
+                showCustomAlert("Fail Terlalu Besar", "Saiz maksimum PDF dibenarkan adalah 700KB. Sila kecilkan (compress) fail anda sebelum muat naik.", "error");
+                return;
+            }
+
+            // Show loading
+            const loadingEl = document.getElementById(`${type}-loading`);
+            loadingEl.classList.remove('hidden');
+            loadingEl.classList.add('flex');
+
+            try {
+                const base64String = await fileToBase64(file);
+                const rawBase64 = base64String.split(',')[1];
+                
+                // Save to Firestore
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'documents', 'official_pdfs');
+                const docSnap = await getDoc(docRef);
+                
+                const updateData = {};
+                updateData[`${type}Pdf`] = rawBase64;
+                updateData['updatedAt'] = new Date().toISOString();
+                updateData['updatedBy'] = currentUser.uid;
+
+                if (docSnap.exists()) {
+                    await setDoc(docRef, updateData, { merge: true });
+                } else {
+                    await setDoc(docRef, updateData);
+                }
+                
+                loadingEl.classList.add('hidden');
+                loadingEl.classList.remove('flex');
+                
+                showCustomAlert("Berjaya", "Dokumen telah dimuat naik dan dipaparkan kepada semua pengguna.", "success");
+
+            } catch (error) {
+                console.error("Upload error:", error);
+                loadingEl.classList.add('hidden');
+                loadingEl.classList.remove('flex');
+                showCustomAlert("Ralat", "Gagal memuat naik dokumen. Sila cuba lagi.", "error");
+            }
+        };
+
+        window.deletePdf = function(type) {
+             if (!isAdmin || !currentUser) return;
+             
+             document.getElementById('custom-alert-icon').className = "fa-solid fa-trash-can text-5xl text-red-500 mb-4";
+             document.getElementById('custom-alert-title').innerText = "Padam Dokumen";
+             document.getElementById('custom-alert-message').innerText = "Adakah anda pasti mahu memadam dokumen ini? Tindakan ini tidak boleh diubah.";
+             
+             document.getElementById('custom-alert-buttons').innerHTML = `
+                <button onclick="closeCustomAlert()" class="bg-gray-600 hover:bg-gray-500 text-white py-2 px-6 rounded-lg text-sm font-medium transition-colors">Batal</button>
+                <button id="confirm-delete-btn" class="bg-red-600 hover:bg-red-500 text-white py-2 px-6 rounded-lg text-sm font-medium transition-colors">Ya, Padam</button>
+            `;
+            openCustomAlertModal();
+            
+            document.getElementById('confirm-delete-btn').onclick = async () => {
+                closeCustomAlert();
+                try {
+                    const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'documents', 'official_pdfs');
+                    const updateData = {};
+                    updateData[`${type}Pdf`] = null; 
+                    await setDoc(docRef, updateData, { merge: true });
+                } catch(e) {
+                    console.error("Delete error", e);
+                }
+            };
+        }
+
+        // Helper to convert file to base64
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+    </script>
+    
     <script>
         function showSection(sectionId, btnElement) {
-            // Hide all sections
             document.querySelectorAll('.section-content').forEach(el => {
                 el.classList.remove('active');
             });
             
-            // Remove active state from all buttons
             document.querySelectorAll('.glass-nav-item').forEach(el => {
                 el.classList.remove('active');
             });
             
-            // Show target section and set active button
             const targetSection = document.getElementById(sectionId);
             if (targetSection) {
                 targetSection.classList.add('active');
@@ -1451,20 +1832,18 @@
                 btnElement.classList.add('active');
             }
             
-            // Initialize dynamic charts if relevant sections are opened
+            // Initialize charts if data sections are opened
             if (sectionId === 'maklum_balas') {
                 initFeedbackAnalysis();
             } else if (sectionId === 'daftar_kehadiran') {
                 initPendaftaranAnalysis();
             }
 
-            // Close sidebar on mobile after clicking
             if (window.innerWidth < 768) {
                 const sidebar = document.getElementById('sidebar');
                 if (sidebar) sidebar.classList.add('-translate-x-full');
             }
 
-            // Scroll main content to top
             const mainContent = document.querySelector('main');
             if (mainContent) mainContent.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -1620,28 +1999,28 @@
                 'MUHAMMAD ABI HURAIRAH BIN SUHATMAN (KOTA MARUDU)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'ALYA ASYURA BINTI ABDULLAH (RANAU)', 'MOHAMMAD AAKIF RIFHAN BIN AZMEER REZA (KOTA BELUD)', 'MOHAMMAD ABDUL RAHMAN BIN SARIPAI (PAPAR)', 'MUHAMMAD ADAM NAUFAL BIN MOHD BASIR (KOTA KINABALU)', 'MOHAMAD IRWANSHAH BIN MOHD JUMAT NOR (TAWAU)'
             ] },
             'tilawah_bp_menengah': { title: 'Tilawah Al-Quran (BP Terbuka Menengah)', names: [
-                'NURAINA KHAIRIAH BINTI MOHAMAD KHAIRUL RAHIM (SANDAKAN)', 'SITI SAHIRA BINTI ABDULLAH (KOTA MARUDU)', 'NURUL ASYIQIN BINTI ZAINAL (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'MUHAMMAD HAFIDHZUDIN MUHAIMIN BIN HARUN (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'HIDAYATULLAH BIN ANDI HASBULLAH (KOTA KINABALU)', 'MUHAMMAD IZZUEL ISLAM BIN JOHARI (KUNAK)', 'MOHAMMAD SYUKUR BIN ABDULLAH (PENAMPANG)', 'NURHIDAYAH BINTI SHARIL (TAWAU)'
+                'NURAINA KHAIRIAH BINTI MOHAMAD KHAIRUL RAHIM (SANDAKAN)', 'SITI SAHIRA BINTI ABDULLAH (KOTA MARUDU)', 'NURUL ASYIQIN BINTI ZAINAL (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'MUHAMMAD HAFIDHZUDIN MUHAIMIN BIN HARUN (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'HIDAYATULLAH BIN ANDI HASBULLAH (KOTA KINABALU)', 'MUHAMMAD IZZUEL ISLAM BIN JOHARI (LAHAD DATU)', 'MOHAMMAD SYUKUR BIN ABDULLAH (PENAMPANG)', 'NURHIDAYAH BINTI SHARIL (TAWAU)'
             ] },
             'tilawah_bl_rendah': { title: 'Tilawah Al-Quran (BL Terbuka Rendah)', names: [
-                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', '*'
+                'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', '*kunak'
             ] },
             'tilawah_bl_menengah': { title: 'Tilawah Al-Quran (BL Terbuka Menengah)', names: [
                 'MOHAMMAD ILHAM BIN ABDULLAH (TUARAN)'
             ] },
             'hafazan_bp_rendah': { title: 'Hafazan Al-Quran (BP Terbuka Rendah)', names: [
-                'NUR AWLIYA KAUTSAR BINTI MUHAMAD KHAIRUL ZAIYEM (KINABATANGAN)', 'MUHAMMAD AIDIL AQMAL B. MOHD AZMI (KOTA MARUDU)', 'NUR FATIHAH BINTI REFPAHI (KUALA PENYU)', 'MUHAMMAD LUQMAN HAKIM BIN MOHD SHAHRUL NIZAM (BEAUFORT)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'PUTRA ADAM BIN MOHD NORDIN AZMAIN (RANAU)', 'MOHAMAD HYAIKAL BIN ABDUL MANAF (KOTA BELUD)', 'MUHAMMAD HANAFI BIN RODY (PAPAR)', 'KARL QARLEEF RIZKY BIN DENY SETIAWAN (TUARAN)', 'MUHAMMAD DARISH ISYRAFF B ISMAIL (KOTA KINABALU)', 'NUR ANIS ATIERA BINTI ABU BAKAR (KUNAK)', 'MUHAMMAD FAAIZ HADIF BIN MOHD ZULHAIMI (PENAMPANG)', 'HAZRIL BIN HAZMAN (TAWAU)', 'UWAIS ALQARNI BIN JULKARNAE (SANDAKAN)'
+                'NUR AWLIYA KAUTSAR BINTI MUHAMAD KHAIRUL ZAIYEM (KINABATANGAN)', 'MUHAMMAD AIDIL AQMAL B. MOHD AZMI (KOTA MARUDU)', 'NUR FATIHAH BINTI REFPAHI (KUALA PENYU)', 'MUHAMMAD LUQMAN HAKIM BIN MOHD SHAHRUL NIZAM (BEAUFORT)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'PUTRA ADAM BIN MOHD NORDIN AZMAIN (RANAU)', 'MOHAMAD HYAIKAL BIN ABDUL MANAF (KOTA BELUD)', 'MUHAMMAD HANAFI BIN RODY (PAPAR)', 'KARL QARLEEF RIZKY BIN DENY SETIAWAN (TUARAN)', 'MUHAMMAD DARISH ISYRAFF B ISMAIL (KOTA KINABALU)', 'NUR ANIS ATIERA BINTI ABU BAKAR (LAHAD DATU)', 'MUHAMMAD FAAIZ HADIF BIN MOHD ZULHAIMI (PENAMPANG)', 'HAZRIL BIN HAZMAN (TAWAU)', 'UWAIS ALQARNI BIN JULKARNAE (SANDAKAN)'
             ] },
             'hafazan_bp_menengah': { title: 'Hafazan Al-Quran (BP Terbuka Menengah)', names: [
-                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)', 'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)', 'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)', 'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'NABIL QUSYAIRY BIN YUSUF (KUNAK)', 'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)'
+                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)', 'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)', 'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)', 'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'NABIL QUSYAIRY BIN YUSUF (LAHAD DATU)', 'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)'
             ] },
             'bercerita_bp_rendah': { title: 'Bercerita Kisah dari Al-Quran (BP Terbuka Rendah)', names: [
-                'MUHAMMAD RAYYAN SYARIFUDDIN BIN KAHARUDDIN (KINABATANGAN)', 'ARIANA AWFIAH BINTI MOHD RIDHUAN (SANDAKAN)', 'NUR HANN ISA BINTI ROY (KOTA MARUDU)', 'MUHAMMAD NOR HAZIQ BIN MD JASNIA (KUALA PENYU)', 'NUFAIL ANAQI BIN ABDULLAH (BEAUFORT)', 'MUHAMMAD AMMAR MIFZHAL BIN FAIDI (KENINGAU)', 'ANGELEY ROSLEE (RANAU)', 'NUR AQILAH UFAIRAH BINTI MOHD ALIM (KOTA BELUD)', 'NUR NATASHA FARHANA BINTI SUHAINI (PAPAR)', 'NURFADZIELAH BINTI ABDULLAH (TUARAN)', 'HATADI HAUZAN BIN HAMLEY (KOTA KINABALU)', 'RAFIQ RAYYAN BIN RIDWAN (KUNAK)', 'HAZLIANA BINTI ABDULLAH (PENAMPANG)', 'MOHAMMAD AQIL AIMAN BIN PALMAN (TAWAU)'
+                'MUHAMMAD RAYYAN SYARIFUDDIN BIN KAHARUDDIN (KINABATANGAN)', 'ARIANA AWFIAH BINTI MOHD RIDHUAN (SANDAKAN)', 'NUR HANN ISA BINTI ROY (KOTA MARUDU)', 'MUHAMMAD NOR HAZIQ BIN MD JASNIA (KUALA PENYU)', 'NUFAIL ANAQI BIN ABDULLAH (BEAUFORT)', 'MUHAMMAD AMMAR MIFZHAL BIN FAIDI (KENINGAU)', 'ANGELEY ROSLEE (RANAU)', 'NUR AQILAH UFAIRAH BINTI MOHD ALIM (KOTA BELUD)', 'NUR NATASHA FARHANA BINTI SUHAINI (PAPAR)', 'NURFADZIELAH BINTI ABDULLAH (TUARAN)', 'HATADI HAUZAN BIN HAMLEY (KOTA KINABALU)', 'RAFIQ RAYYAN BIN RIDWAN (LAHAD DATU)', 'HAZLIANA BINTI ABDULLAH (PENAMPANG)', 'MOHAMMAD AQIL AIMAN BIN PALMAN (TAWAU)'
             ] },
             'bercerita_bd_rendah': { title: 'Bercerita Kisah dari Al-Quran (BD Terbuka Rendah)', names: [
                 'DARWISY RICHARD NWOSU BIN ABDULLAH (TUARAN)', 'KHAYR ADDIN BIN MUHAMMAD AZIZUL FIKRI (PENAMPANG)'
             ] },
             'azan_terbuka': { title: 'Azan Subuh (Terbuka)', names: [
-                'MOHAMMAD AIMAN BIN ABDULLAH (TELUPID)', 'MUHAMMAD AKMAL RAMADHAN BIN SAMRI (KINABATANGAN)', 'AKMAD PUTRA RIZQI BIN ABDULLAH (SANDAKAN)', 'MOHAMAD IZWAN BIN AKIRIN (KOTA MARUDU)', 'SHARIF RAZZAHID IMAN BIN SHARIF RAZALI (KUDAT)', 'MUHAMMAD MIQAIL BIN ABDULLAH (KUALA PENYU)', 'KUZAIME BIN JAMIL (TAMBUNAN)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'PUTERA EDDYEN BIN ISKHANDARINO (BEAUFORT)', 'AISY DANISH BIN AFZAMIZAM (KENINGAU)', 'MUHAMAD ZULKARNAIN BIN MOHD. FIRDAUS (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'ADAM RAYQALL BIN ABDULLAH (PAPAR)', 'MOHAMMAD QAYYUM ALIP (TUARAN)', 'MUHLIS HUSREV OZKAN (KOTA KINABALU)', 'MUHAMAD LUTHFI BIN RAJENDRA (LAHAD DATU)', 'MUHAMMAD SYAKIR BIN FAISAL (KUNAK)', 'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'KHAIRUL IKHWAN BIN MOHD KAMIL (TAWAU)'
+                'MOHAMMAD AIMAN BIN ABDULLAH (TELUPID)', 'MUHAMMAD AKMAL RAMADHAN BIN SAMRI (KINABATANGAN)', 'AKMAD PUTRA RIZQI BIN ABDULLAH (SANDAKAN)', 'MOHAMAD IZWAN BIN AKIRIN (KOTA MARUDU)', 'SHARIF RAZZAHID IMAN BIN SHARIF RAZALI (KUDAT)', 'MUHAMMAD MIQAIL BIN ABDULLAH (KUALA PENYU)', 'KUZAIME BIN JAMIL (TAMBUNAN)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'PUTERA EDDYEN BIN ISKHANDARINO (BEAUFORT)', 'AISY DANISH BIN AFZAMIZAM (KENINGAU)', 'MUHAMAD ZULKARNAIN BIN MOHD. FIRDAUS (RANAU)', 'NORAIMAN BIN ABDUL AZIS (KOTA BELUD)', 'ADAM RAYQALL BIN ABDULLAH (PAPAR)', 'MOHAMMAD QAYYUM ALIP (TUARAN)', 'MUHLIS HUSREV OZKAN (KOTA KINABALU)', 'MUHAMAD LUTHFI BIN RAJENDRA (LAHAD DATU)', 'MUHAMMAD SYAKIR BIN FAISAL (LAHAD DATU)', 'MUHAMMAD MUSTAKIM BIN ABDULLAH (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'KHAIRUL IKHWAN BIN MOHD KAMIL (TAWAU)'
             ] },
             'khat_terbuka': { title: 'Seni Khat (Terbuka)', names: [
                 'MIRCY STACY SELLCY (TELUPID)', 'MUHAMMAD AZHAD BIN RONNY (KINABATANGAN)', 'NUR AIZYA BINTI NORDIN (SANDAKAN)', 'HAFNER FREDERIC TALIS (KOTA MARUDU)', 'ALIF ALFFIAN BIN AMRAN (KUDAT)', 'NURFATIHAH NABILAH BINTI KAMARULZAMAN (KUALA PENYU)', 'ADIKA SHAHRIZZAT AFLYN BIN BAHARIN (SIPITANG)', 'NOUR EL SHAM BIN JUDIN (BEAUFORT)', 'NURHADIAHTUL BINTI AHMAD (KENINGAU)', 'MUHAMMAD HAFIZUDDIN IZZAT BIN HAMDAN (RANAU)', 'MAS UMMU AIMAN WASILAH BINTI JEFLIN (KOTA BELUD)', 'NURIZZ ZAYANI BINTI NURQHAIRANIZAM (PAPAR)', 'INTAN MAYSARAH BINTI ABDUL HANI (TUARAN)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'MOHAMAD FARA AIDITH BIN MOHD MASAMBA (LAHAD DATU)', 'DAYANG SHAHEERA SYAZADAMIA BINTI ABDULLAH (PENAMPANG)', 'NAJWA AZZIEATTUL DANIAH BINTI KASLAN (BELURAN)', 'NUR ALYA SYUHADA BINTI AKHBAR (TAWAU)'
@@ -1743,7 +2122,7 @@
             }
         }
         
-        /* --- Image Zoom Modal Logic (Used for Peta Lokasi & Keputusan Rasmi) --- */
+        /* --- Image Zoom Modal Logic (Used for Peta Lokasi) --- */
         let currentImgScale = 1;
         let isDragging = false;
         let startX, startY, currentX = 0, currentY = 0;
@@ -1812,25 +2191,6 @@
         function stopDrag() {
             isDragging = false;
             document.getElementById('img-scroll-area').classList.remove('cursor-grabbing');
-        }
-        
-        /* --- Handle PDF Upload for Result & Ulasan Tab --- */
-        function handlePdfUpload(event, containerId, placeholderId) {
-            const file = event.target.files[0];
-            if (file && file.type === "application/pdf") {
-                const fileURL = URL.createObjectURL(file);
-                
-                const container = document.getElementById(containerId);
-                const placeholder = document.getElementById(placeholderId);
-                
-                // Use embed/iframe for viewing PDF directly in browser
-                container.innerHTML = `<iframe src="${fileURL}" width="100%" height="100%" style="border: none;"></iframe>`;
-                
-                container.classList.remove('hidden');
-                placeholder.classList.add('hidden');
-            } else if (file) {
-                alert("Sila muat naik fail dalam format PDF sahaja.");
-            }
         }
         
         /* --- Buku Pelawat Logic --- */
