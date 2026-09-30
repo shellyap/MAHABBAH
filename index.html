@@ -162,32 +162,32 @@
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('jk_induk_pengelola', this)"><i class="fa-solid fa-sitemap w-6 text-center mr-2"></i> 4. JK Induk & Pengelola</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('jk_pelaksana', this)"><i class="fa-solid fa-users-gear w-6 text-center mr-2"></i> 5. JK Pelaksana</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('lokasi', this)"><i class="fa-solid fa-map-location-dot w-6 text-center mr-2"></i> 6. Lokasi & Bilik Pertandingan</button></li>
-                
-                <!-- NEW MAP TAB HERE -->
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('peta_lokasi', this)"><i class="fa-solid fa-map w-6 text-center mr-2"></i> 7. Peta Lokasi</button></li>
-                
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('kehadiran', this)"><i class="fa-solid fa-users w-6 text-center mr-2"></i> 8. Hakim & Kehadiran</button></li>
                 <li><button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm" onclick="showSection('aturcara', this)"><i class="fa-solid fa-clock w-6 text-center mr-2"></i> 9. Aturcara & Penutup</button></li>
-                
+                <li>
+                    <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-yellow-300 hover:bg-yellow-400/10 hover:border-l-yellow-400 transition-colors" onclick="showSection('keputusan_rasmi', this)">
+                        <i class="fa-solid fa-trophy w-6 text-center mr-2"></i> 10. Keputusan & Ulasan
+                    </button>
+                </li>
                 <li>
                     <a href="https://photos.app.goo.gl/MSjHcstEmf5A2KVc8" target="_blank" class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-pink-300 hover:bg-pink-400/10 hover:border-l-pink-400 transition-colors">
-                        <i class="fa-solid fa-images w-6 text-center mr-2"></i> 10. Galeri & Aktiviti <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
+                        <i class="fa-solid fa-images w-6 text-center mr-2"></i> 11. Galeri & Aktiviti <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-auto opacity-70"></i>
                     </a>
                 </li>
-
                 <li>
-                    <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors" onclick="showSection('daftar_kehadiran', this)">
-                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 11. Daftar Kehadiran
+                    <button class="glass-nav-item flex items-center w-full text-left px-4 py-3 rounded-lg text-sm text-blue-300 hover:bg-blue-400/10 hover:border-l-blue-400 transition-colors" onclick="showSection('daftar_kehadiran', this)">
+                        <i class="fa-solid fa-clipboard-user w-6 text-center mr-2"></i> 12. Daftar Kehadiran
                     </button>
                 </li>
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-emerald-300 hover:bg-emerald-400/10 hover:border-l-emerald-400 transition-colors" onclick="showSection('maklum_balas', this)">
-                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 12. Analisis Kepuasan Pelanggan
+                        <i class="fa-solid fa-chart-pie w-6 text-center mr-2"></i> 13. Analisis Kepuasan Pelanggan
                     </button>
                 </li>
                 <li>
                     <button class="glass-nav-item w-full text-left px-4 py-3 rounded-lg text-sm text-purple-300 hover:bg-purple-400/10 hover:border-l-purple-400 transition-colors" onclick="showSection('buku_pelawat', this)">
-                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 13. Buku Pelawat Digital
+                        <i class="fa-solid fa-address-book w-6 text-center mr-2"></i> 14. Buku Pelawat Digital
                     </button>
                 </li>
                 
@@ -207,6 +207,7 @@
             <span class="hidden md:inline text-sm font-medium">Audio Dimainkan</span>
         </button>
 
+        <!-- Mobile Header -->
         <header class="md:hidden bg-slate-900/80 backdrop-blur-md border-b border-white/10 p-3.5 sticky top-0 z-40 flex items-center justify-between">
             <div class="flex items-center w-[80%]">
                 <button id="open-sidebar" class="text-white mr-3 flex items-center bg-white/10 hover:bg-white/20 px-3 py-1.5 rounded-md border border-white/20 transition-colors flex-shrink-0">
@@ -308,6 +309,7 @@
             <section id="acara" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Acara Yang Dipertandingkan</h2>
                 
+                <!-- Petunjuk Interaktif -->
                 <div class="glass-panel p-4 rounded-xl mb-6 flex items-start bg-yellow-400/10 border border-yellow-400/30 shadow-lg shadow-yellow-500/5">
                     <div class="bg-yellow-500 p-2 rounded-full mr-4 flex-shrink-0 animate-bounce shadow-md shadow-yellow-500/20 mt-1">
                         <i class="fa-solid fa-hand-pointer text-slate-900 text-sm w-4 h-4 flex items-center justify-center"></i>
@@ -516,6 +518,7 @@
             <section id="jk_pelaksana" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Jawatankuasa Pelaksana</h2>
                 
+                <!-- Info Boxes JK Pelaksana -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center mb-6">
                     <div class="glass-panel bg-white/5 p-4 rounded-xl border border-white/10 hover:bg-white/10 hover:border-yellow-400/50 transition-all group">
                         <div class="text-4xl font-bold text-yellow-400 mb-1 group-hover:scale-110 transition-transform flex justify-center items-center">
@@ -537,6 +540,7 @@
                     </div>
                 </div>
 
+                <!-- Smart Search Bar -->
                 <div class="mb-4 relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fa-solid fa-search text-gray-400"></i>
@@ -567,7 +571,7 @@
                                 </tr>
                                 <tr>
                                     <td class="text-center">3.</td>
-                                    <td><strong>URUSETIA</strong><br>En. Julairin bin Sharin (Ketua)<br>SEMUA PENOLONG KANAN/PENYELARAS PPKI<br>Siti Norbayah binti Samion<br>Pengetua SMK(A) Mohd Ali<br>Pn. Floriaty Paiman<br>SMK Mat Salleh<br>Pn. Nooridah Sablee<br>SMK Matupang Jaya<br>Pn. Marina Semion<br>SK Pekan Dua<br>Pn. Azurah Akimin<br>SK Kilimu<br>Pn. Sherlly Duis<br><br><strong>URUSETIA HAKIM</strong><br>Ahmad Fikri bin Soinin<br>Siti Atiqah binti Mohmad Jeofrey<br>Sarah Faiznur binti Jenuil</td>
+                                    <td><strong>URUSETIA</strong><br>En. Julairin bin Sharin (Ketua)<br>SEMUA PENOLONG KANAN/PENYELARAS PPKI<br>Siti Norbayah binti Samion<br>SMK Mat Salleh<br>Pn. Floriaty Paiman<br>SMK Mat Salleh<br>Pn. Nooridah Sablee<br>SMK Matupang Jaya<br>Pn. Marina Semion<br>SK Pekan Dua<br>Pn. Azurah Akimin<br>SK Kilimu<br>Pn. Sherlly Duis<br><br><strong>URUSETIA HAKIM</strong><br>Ahmad Fikri bin Soinin<br>Siti Atiqah binti Mohmad Jeofrey<br>Sarah Faiznur binti Jenuil</td>
                                     <td>Menyelaras maklumat peserta dan hakim<br>Menyediakan borang penghakiman<br>Menempah Banner<br>Menguruskan borang penyertaan<br>Memeriksa dokumen<br>Penyediaan perfailan<br>Menyediakan borang ulasan hakim<br>Pencatat pemenang<br>Menyelaras keperluan dan pergerakan hakim<br>Mengumpul borang pemarkahan/ulasan hakim<br>Membuat semakan awal supaya markah dan borang lengkap sebelum diserahkan kepada urusetia<br>Memastikan kerahsiaan markah dan keputusan pertandingan terpelihara.</td>
                                 </tr>
                                 <tr>
@@ -784,8 +788,7 @@
                     </div>
                 </div>
             </section>
-
-            <!-- NEW SECTION: Peta Lokasi -->
+            
             <section id="peta_lokasi" class="section-content">
                 <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Peta Lokasi Pertandingan</h2>
                 
@@ -799,13 +802,13 @@
                     </div>
                     
                     <div class="bg-black/30 p-3 rounded-xl border border-white/10 relative group">
-                        <p class="text-xs text-center text-gray-400 mb-3 italic"><i class="fa-solid fa-circle-info mr-1"></i> Klik pada gambar di bawah untuk besarkan paparan peta.</p>
+                        <p class="text-xs text-center text-gray-400 mb-3 italic"><i class="fa-solid fa-search-plus mr-1"></i> Klik pada gambar di bawah untuk besarkan paparan peta.</p>
                         
-                        <div class="overflow-hidden rounded-lg relative flex justify-center cursor-pointer" onclick="openMapModal()">
+                        <div class="overflow-hidden rounded-lg relative flex justify-center cursor-pointer" onclick="openImageModal('https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg')">
                             <img src="https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg" alt="Pelan Lokasi Pertandingan" class="w-full max-w-4xl h-auto object-contain rounded-lg shadow-2xl hover:opacity-80 transition-opacity duration-300 border border-white/5">
                             <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                                 <div class="bg-slate-900/80 text-white px-4 py-2 rounded-full backdrop-blur-md flex items-center border border-white/20 shadow-xl">
-                                    <i class="fa-solid fa-expand mr-2"></i> Besarkan
+                                    <i class="fa-solid fa-expand mr-2"></i> Besarkan Peta
                                 </div>
                             </div>
                         </div>
@@ -1063,15 +1066,79 @@
                 </div>
 
             </section>
+            
+            <section id="keputusan_rasmi" class="section-content">
+                <h2 class="text-3xl font-bold font-amiri text-yellow-400 mb-6 border-b border-white/20 pb-2">Keputusan & Ulasan Rasmi</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Keputusan Rasmi (PDF) -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[600px]">
+                        <div class="flex items-center mb-4 flex-shrink-0">
+                            <i class="fa-solid fa-trophy text-3xl text-yellow-400 mr-4"></i>
+                            <div>
+                                <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Dokumen PDF</p>
+                                <p class="text-xl font-bold text-white">Keputusan Rasmi</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black/30 p-4 rounded-xl border border-white/10 relative text-center flex-1 flex flex-col">
+                            <div class="mb-4 flex-shrink-0">
+                                <label for="upload-result-pdf" class="cursor-pointer bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors inline-flex items-center shadow-lg">
+                                    <i class="fa-solid fa-file-pdf mr-2"></i> Muat Naik Keputusan (PDF)
+                                </label>
+                                <input type="file" id="upload-result-pdf" accept="application/pdf" class="hidden" onchange="handlePdfUpload(event, 'result-pdf-container', 'result-pdf-placeholder')">
+                            </div>
+
+                            <div id="result-pdf-placeholder" class="flex-1 border-2 border-dashed border-white/20 rounded-lg bg-white/5 flex flex-col items-center justify-center">
+                                <i class="fa-regular fa-file-pdf text-5xl text-gray-500 mb-3"></i>
+                                <p class="text-gray-400 text-sm">Belum ada dokumen PDF dimuat naik.</p>
+                            </div>
+                            
+                            <div id="result-pdf-container" class="hidden flex-1 w-full h-full rounded-lg overflow-hidden border border-white/10 bg-white">
+                                <!-- PDF embed tag will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ulasan Hakim (PDF) -->
+                    <div class="glass-panel p-6 rounded-xl flex flex-col h-[600px]">
+                        <div class="flex items-center mb-4 flex-shrink-0">
+                            <i class="fa-solid fa-comment-dots text-3xl text-emerald-400 mr-4"></i>
+                            <div>
+                                <p class="text-sm text-gray-300 uppercase tracking-widest font-semibold">Dokumen PDF</p>
+                                <p class="text-xl font-bold text-white">Ulasan Hakim</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-black/30 p-4 rounded-xl border border-white/10 relative text-center flex-1 flex flex-col">
+                            <div class="mb-4 flex-shrink-0">
+                                <label for="upload-ulasan-pdf" class="cursor-pointer bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 px-6 rounded-full text-sm transition-colors inline-flex items-center shadow-lg">
+                                    <i class="fa-solid fa-file-pdf mr-2"></i> Muat Naik Ulasan (PDF)
+                                </label>
+                                <input type="file" id="upload-ulasan-pdf" accept="application/pdf" class="hidden" onchange="handlePdfUpload(event, 'ulasan-pdf-container', 'ulasan-pdf-placeholder')">
+                            </div>
+                            
+                            <div id="ulasan-pdf-placeholder" class="flex-1 border-2 border-dashed border-white/20 rounded-lg bg-white/5 flex flex-col items-center justify-center">
+                                <i class="fa-regular fa-file-pdf text-5xl text-gray-500 mb-3"></i>
+                                <p class="text-gray-400 text-sm">Belum ada dokumen PDF dimuat naik.</p>
+                            </div>
+
+                            <div id="ulasan-pdf-container" class="hidden flex-1 w-full h-full rounded-lg overflow-hidden border border-white/10 bg-white">
+                                <!-- PDF embed tag will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section id="daftar_kehadiran" class="section-content">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-white/20 pb-4 gap-4">
                     <div>
-                        <h2 class="text-3xl font-bold font-amiri text-yellow-400">Analisis Pendaftaran Kehadiran</h2>
-                        <p class="text-gray-300 text-sm mt-1">Laporan pendaftaran secara langsung dari Google Form.</p>
+                        <h2 class="text-3xl font-bold font-amiri text-yellow-400">Daftar Kehadiran</h2>
+                        <p class="text-gray-300 text-sm mt-1">Data dikemas kini secara langsung dari pangkalan data pendaftaran.</p>
                     </div>
-                    <a href="https://forms.gle/JWV6BcTmQHZ4XUhy6" target="_blank" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2.5 px-6 rounded-full text-sm transition-colors flex items-center shadow-lg shadow-blue-500/20 flex-shrink-0">
-                        <i class="fa-solid fa-up-right-from-square mr-2"></i> Borang Kehadiran
+                    <a href="https://forms.gle/JWV6BcTmQHZ4XUhy6" target="_blank" class="bg-blue-500 hover:bg-blue-400 text-slate-900 font-bold py-2.5 px-6 rounded-full text-sm transition-colors flex items-center shadow-lg shadow-blue-500/20 flex-shrink-0">
+                        <i class="fa-solid fa-clipboard-check mr-2"></i> Borang Pendaftaran
                     </a>
                 </div>
 
@@ -1079,7 +1146,7 @@
                     <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Hadir</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Jumlah Pendaftaran</p>
                                 <h3 class="text-3xl font-bold text-white" id="stat-daftar-total">-</h3>
                             </div>
                             <div class="bg-blue-500/20 p-3 rounded-lg text-blue-400">
@@ -1087,50 +1154,53 @@
                             </div>
                         </div>
                     </div>
-                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-yellow-500">
+                    
+                    <div class="glass-panel p-5 rounded-xl border-t-4 border-t-emerald-500">
                         <div class="flex justify-between items-start">
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Kategori Tertinggi</p>
                                 <h3 class="text-xl font-bold text-white mt-1" id="stat-daftar-top-cat">-</h3>
                             </div>
-                            <div class="bg-yellow-500/20 p-3 rounded-lg text-yellow-400">
-                                <i class="fa-solid fa-medal text-xl"></i>
+                            <div class="bg-emerald-500/20 p-3 rounded-lg text-emerald-400">
+                                <i class="fa-solid fa-chart-simple text-xl"></i>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="glass-panel p-5 rounded-xl border-t-4 border-t-purple-500">
                         <div class="flex justify-between items-start">
                             <div>
-                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Tarikh Terkini</p>
+                                <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Rekod Terkini</p>
                                 <h3 class="text-xl font-bold text-white mt-1" id="stat-daftar-terkini">-</h3>
                             </div>
                             <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400">
-                                <i class="fa-solid fa-clock text-xl"></i>
+                                <i class="fa-solid fa-clock-rotate-left text-xl"></i>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                    <div class="glass-panel p-6 rounded-xl lg:col-span-1 flex flex-col">
-                        <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-bar text-blue-400 mr-2"></i> Pecahan Kategori</h3>
-                        <div class="flex-1 relative w-full min-h-[250px]">
+                    <div class="glass-panel p-6 rounded-xl lg:col-span-1 flex flex-col h-[350px]">
+                        <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-column text-blue-400 mr-2"></i> Pecahan Kategori</h3>
+                        <div class="flex-1 relative w-full">
                             <canvas id="kehadiranChart"></canvas>
                         </div>
                     </div>
 
                     <div class="glass-panel rounded-xl overflow-hidden lg:col-span-2">
-                        <h3 class="bg-black/40 text-blue-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-list mr-2"></i> Senarai Kehadiran Terkini</h3>
-                        <div class="overflow-x-auto h-[250px] overflow-y-auto">
+                        <h3 class="bg-black/40 text-blue-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-list mr-2"></i> 10 Pendaftaran Terkini</h3>
+                        <div class="overflow-x-auto h-[290px] overflow-y-auto">
                             <table class="verbatim-table w-full relative">
                                 <thead class="sticky top-0 z-10 bg-slate-900 shadow-md">
                                     <tr>
-                                        <th class="w-12 text-center">Bil</th>
+                                        <th class="w-12 text-center">BIL</th>
                                         <th>Nama & Tarikh</th>
-                                        <th>Perincian / Kategori</th>
+                                        <th class="w-1/3">Kategori</th>
                                     </tr>
                                 </thead>
                                 <tbody id="daftar-tbody">
+                                    <!-- Data akan dimasukkan di sini oleh JavaScript -->
                                 </tbody>
                             </table>
                         </div>
@@ -1149,7 +1219,6 @@
                     </a>
                 </div>
 
-                <!-- Numerical Analysis (Stat Cards) -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     <div class="glass-panel p-5 rounded-xl border-t-4 border-t-blue-500">
                         <div class="flex justify-between items-start">
@@ -1205,9 +1274,7 @@
                     </div>
                 </div>
 
-                <!-- Graphical Analysis (Charts) -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                    <!-- Pie Chart -->
                     <div class="glass-panel p-6 rounded-xl col-span-1 flex flex-col">
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-pie text-emerald-400 mr-2"></i> Demografi Responden</h3>
                         <div class="flex-1 relative w-full flex items-center justify-center min-h-[250px]">
@@ -1215,7 +1282,6 @@
                         </div>
                     </div>
 
-                    <!-- Bar Chart -->
                     <div class="glass-panel p-6 rounded-xl lg:col-span-2 flex flex-col">
                         <h3 class="text-lg font-bold text-white mb-4 border-b border-white/10 pb-2"><i class="fa-solid fa-chart-column text-blue-400 mr-2"></i> Analisis Aspek Penilaian (Skala 1-5)</h3>
                         <div class="flex-1 relative w-full min-h-[250px]">
@@ -1224,7 +1290,6 @@
                     </div>
                 </div>
                 
-                <!-- Feedback Verbatim Table -->
                 <div class="glass-panel rounded-xl overflow-hidden">
                     <h3 class="bg-black/40 text-emerald-300 font-bold p-4 border-b border-white/10 flex items-center"><i class="fa-solid fa-comment-dots mr-2"></i> Ulasan & Cadangan Terpilih</h3>
                     <div class="overflow-x-auto h-[300px] overflow-y-auto">
@@ -1242,7 +1307,6 @@
                         </table>
                     </div>
                 </div>
-
             </section>
 
             <section id="buku_pelawat" class="section-content">
@@ -1250,7 +1314,6 @@
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     
-                    <!-- Borang Buku Pelawat -->
                     <div class="glass-panel p-6 rounded-xl h-fit border-t-4 border-t-purple-500">
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center"><i class="fa-solid fa-pen-nib text-purple-400 mr-3"></i> Tinggalkan Jejak Anda</h3>
                         
@@ -1274,7 +1337,6 @@
                         </form>
                     </div>
 
-                    <!-- Paparan Senarai Pelawat -->
                     <div class="glass-panel p-6 rounded-xl flex flex-col h-[500px]">
                         <h3 class="text-xl font-bold text-white mb-4 flex items-center border-b border-white/10 pb-3"><i class="fa-solid fa-comments text-purple-400 mr-3"></i> Senarai Jejak Pelawat</h3>
                         
@@ -1305,6 +1367,7 @@
 
         </div>
 
+        <!-- Hakim Modal Pop-up -->
         <div id="hakim-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
             <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-md overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="hakim-modal-content">
                 <div class="p-4 border-b border-white/10 flex justify-between items-center bg-slate-800/50">
@@ -1320,6 +1383,7 @@
             </div>
         </div>
 
+        <!-- Peserta Modal Pop-up -->
         <div id="peserta-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/90 backdrop-blur-sm opacity-0 transition-opacity duration-300">
             <div class="bg-slate-900 border border-white/20 rounded-2xl w-11/12 max-w-lg overflow-hidden shadow-2xl transform scale-95 transition-transform duration-300" id="peserta-modal-content">
                 <div class="p-4 border-b border-white/10 flex justify-between items-center bg-slate-800/50">
@@ -1334,14 +1398,33 @@
                 </div>
             </div>
         </div>
-
-        <!-- Map Modal Pop-up -->
-        <div id="map-modal" class="fixed inset-0 z-[150] hidden flex-col items-center justify-center bg-slate-950/95 backdrop-blur-sm opacity-0 transition-opacity duration-300">
-            <button onclick="closeMapModal()" class="absolute top-4 right-4 md:top-6 md:right-6 text-gray-400 hover:text-white transition-colors bg-black/50 hover:bg-black/80 rounded-full p-2 z-50">
-                <i class="fa-solid fa-times text-2xl w-8 h-8 flex items-center justify-center"></i>
-            </button>
-            <div class="w-full h-full p-4 md:p-10 flex items-center justify-center transform scale-95 transition-transform duration-300" id="map-modal-content" onclick="closeMapModal()">
-                <img src="https://i.postimg.cc/3Jt2T4wq/peta-lokasi.jpg" alt="Pelan Lokasi Besarkan" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" onclick="event.stopPropagation()">
+        
+        <!-- Image Zoom Modal Pop-up -->
+        <div id="image-zoom-modal" class="fixed inset-0 z-[200] hidden flex-col bg-slate-900/95 backdrop-blur-md opacity-0 transition-opacity duration-300">
+            <!-- Toolbar -->
+            <div class="bg-slate-800 border-b border-white/10 p-3 md:p-4 flex justify-between items-center z-10 shadow-xl">
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <button onclick="zoomImage(0.2)" class="bg-white/10 hover:bg-white/20 text-white p-2 md:px-4 md:py-2 rounded-lg transition-colors flex items-center" title="Zoom In">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i> <span class="hidden md:inline ml-2 text-sm font-medium">Besarkan</span>
+                    </button>
+                    <button onclick="zoomImage(-0.2)" class="bg-white/10 hover:bg-white/20 text-white p-2 md:px-4 md:py-2 rounded-lg transition-colors flex items-center" title="Zoom Out">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i> <span class="hidden md:inline ml-2 text-sm font-medium">Kecilkan</span>
+                    </button>
+                    <button onclick="resetImageZoom()" class="bg-white/10 hover:bg-white/20 text-white p-2 md:px-4 md:py-2 rounded-lg transition-colors flex items-center" title="Reset">
+                        <i class="fa-solid fa-compress"></i> <span class="hidden md:inline ml-2 text-sm font-medium">Reset</span>
+                    </button>
+                    <span id="img-zoom-level" class="text-yellow-400 font-mono text-sm ml-2 md:ml-4 font-bold bg-black/30 px-3 py-1 rounded">100%</span>
+                </div>
+                <button onclick="closeImageModal()" class="bg-red-500 hover:bg-red-600 text-white p-2 md:px-6 md:py-2 rounded-lg transition-colors flex items-center shadow-lg">
+                    <i class="fa-solid fa-times text-lg"></i> <span class="hidden md:inline ml-2 font-bold">Tutup</span>
+                </button>
+            </div>
+            
+            <!-- Viewer Area -->
+            <div class="flex-1 overflow-auto p-4 md:p-10 flex justify-center items-center cursor-move" id="img-scroll-area" onmousedown="startDrag(event)" onmousemove="doDrag(event)" onmouseup="stopDrag()" onmouseleave="stopDrag()">
+                <div class="transition-transform duration-200 origin-center" id="img-zoom-wrapper" style="transform: scale(1);">
+                    <img id="modal-zoomed-image" src="" alt="Zoomed Image" class="max-w-none max-h-none shadow-2xl rounded-lg" draggable="false">
+                </div>
             </div>
         </div>
 
@@ -1477,6 +1560,7 @@
             safePlay();
         });
 
+        /* --- Hakim Data --- */
         const hakimData = {
             'juri': { title: 'Senarai Juri (50 Orang)', names: ['SULIT'] },
             'pengerusi': { title: 'Pengerusi Jemaah Hakim', names: ['SULIT'] },
@@ -1530,6 +1614,7 @@
             }
         }
 
+        /* --- Peserta Data --- */
         const pesertaData = {
             'tilawah_bp_rendah': { title: 'Tilawah Al-Quran (BP Terbuka Rendah)', names: [
                 'MUHAMMAD ABI HURAIRAH BIN SUHATMAN (KOTA MARUDU)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'ALYA ASYURA BINTI ABDULLAH (RANAU)', 'MOHAMMAD AAKIF RIFHAN BIN AZMEER REZA (KOTA BELUD)', 'MOHAMMAD ABDUL RAHMAN BIN SARIPAI (PAPAR)', 'MUHAMMAD ADAM NAUFAL BIN MOHD BASIR (KOTA KINABALU)', 'MOHAMAD IRWANSHAH BIN MOHD JUMAT NOR (TAWAU)'
@@ -1547,7 +1632,7 @@
                 'NUR AWLIYA KAUTSAR BINTI MUHAMAD KHAIRUL ZAIYEM (KINABATANGAN)', 'MUHAMMAD AIDIL AQMAL B. MOHD AZMI (KOTA MARUDU)', 'NUR FATIHAH BINTI REFPAHI (KUALA PENYU)', 'MUHAMMAD LUQMAN HAKIM BIN MOHD SHAHRUL NIZAM (BEAUFORT)', 'AMMAR LOQUEMAN BIN SORIADI (KENINGAU)', 'PUTRA ADAM BIN MOHD NORDIN AZMAIN (RANAU)', 'MOHAMAD HYAIKAL BIN ABDUL MANAF (KOTA BELUD)', 'MUHAMMAD HANAFI BIN RODY (PAPAR)', 'KARL QARLEEF RIZKY BIN DENY SETIAWAN (TUARAN)', 'MUHAMMAD DARISH ISYRAFF B ISMAIL (KOTA KINABALU)', 'NUR ANIS ATIERA BINTI ABU BAKAR (KUNAK)', 'MUHAMMAD FAAIZ HADIF BIN MOHD ZULHAIMI (PENAMPANG)', 'HAZRIL BIN HAZMAN (TAWAU)', 'UWAIS ALQARNI BIN JULKARNAE (SANDAKAN)'
             ] },
             'hafazan_bp_menengah': { title: 'Hafazan Al-Quran (BP Terbuka Menengah)', names: [
-                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)', 'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)', 'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)', 'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)', 'HAIKAL QAYYUM NASRUL FADHRULLAH (TUARAN)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'NABIL QUSYAIRY BIN YUSUF (KUNAK)', 'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)'
+                'PUTRY SAFFIYYAH NURFATIN NAZYRA BINTI MOHD NASRI (SANDAKAN)', 'MUHAMMAD ABDUL MUHAYMIN BIN ABDUL HADI LIEW (KUDAT)', 'ZULFAHMI BIN ANDI RAUF (SIPITANG)', 'MOHAMAD ADAM IRFAN BIN SAMNEH (BEAUFORT)', 'MOHD AMIRUL SYAIFIEZAL BIN MITUS (KENINGAU)', 'NUR HANNAH DAMIA BINTI NAZRUL (PAPAR)', 'MUHAMMAD IMAN BIN AZHAR (KOTA KINABALU)', 'NABIL QUSYAIRY BIN YUSUF (KUNAK)', 'MUHAMMAD WAFIQ MARZUQI BIN MOHAMMAD MARWAN (PENAMPANG)', 'ZUNNATUL RASUL (BELURAN)', 'ILMAN ZAFRAN BIN SAINUDIN (TAWAU)', 'NURUL AISYAH BINTI SENTRIO (RANAU)', 'RAYYAN FIRRASH BIN MARSIDI (KOTA BELUD)'
             ] },
             'bercerita_bp_rendah': { title: 'Bercerita Kisah dari Al-Quran (BP Terbuka Rendah)', names: [
                 'MUHAMMAD RAYYAN SYARIFUDDIN BIN KAHARUDDIN (KINABATANGAN)', 'ARIANA AWFIAH BINTI MOHD RIDHUAN (SANDAKAN)', 'NUR HANN ISA BINTI ROY (KOTA MARUDU)', 'MUHAMMAD NOR HAZIQ BIN MD JASNIA (KUALA PENYU)', 'NUFAIL ANAQI BIN ABDULLAH (BEAUFORT)', 'MUHAMMAD AMMAR MIFZHAL BIN FAIDI (KENINGAU)', 'ANGELEY ROSLEE (RANAU)', 'NUR AQILAH UFAIRAH BINTI MOHD ALIM (KOTA BELUD)', 'NUR NATASHA FARHANA BINTI SUHAINI (PAPAR)', 'NURFADZIELAH BINTI ABDULLAH (TUARAN)', 'HATADI HAUZAN BIN HAMLEY (KOTA KINABALU)', 'RAFIQ RAYYAN BIN RIDWAN (KUNAK)', 'HAZLIANA BINTI ABDULLAH (PENAMPANG)', 'MOHAMMAD AQIL AIMAN BIN PALMAN (TAWAU)'
@@ -1658,36 +1743,97 @@
             }
         }
         
-        // --- Map Modal Logic ---
-        function openMapModal() {
-            const modal = document.getElementById('map-modal');
-            const content = document.getElementById('map-modal-content');
-            if(modal && content) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-                setTimeout(() => {
-                    modal.classList.remove('opacity-0');
-                    content.classList.remove('scale-95');
-                    content.classList.add('scale-100');
-                }, 10);
-            }
+        /* --- Image Zoom Modal Logic (Used for Peta Lokasi & Keputusan Rasmi) --- */
+        let currentImgScale = 1;
+        let isDragging = false;
+        let startX, startY, currentX = 0, currentY = 0;
+        
+        function openImageModal(imgSrc) {
+            const modal = document.getElementById('image-zoom-modal');
+            const zoomedImg = document.getElementById('modal-zoomed-image');
+            
+            zoomedImg.src = imgSrc;
+            resetImageZoom();
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+            }, 10);
         }
-
-        function closeMapModal() {
-            const modal = document.getElementById('map-modal');
-            const content = document.getElementById('map-modal-content');
-            if(modal && content) {
-                modal.classList.add('opacity-0');
-                content.classList.remove('scale-100');
-                content.classList.add('scale-95');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('flex');
-                }, 300);
+        
+        function closeImageModal() {
+            const modal = document.getElementById('image-zoom-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+        
+        function zoomImage(step) {
+            currentImgScale += step;
+            if (currentImgScale < 0.5) currentImgScale = 0.5;
+            if (currentImgScale > 3.0) currentImgScale = 3.0;
+            
+            updateImageTransform();
+            document.getElementById('img-zoom-level').innerText = Math.round(currentImgScale * 100) + '%';
+        }
+        
+        function resetImageZoom() {
+            currentImgScale = 1;
+            currentX = 0;
+            currentY = 0;
+            updateImageTransform();
+            document.getElementById('img-zoom-level').innerText = '100%';
+        }
+        
+        function updateImageTransform() {
+            const wrapper = document.getElementById('img-zoom-wrapper');
+            wrapper.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentImgScale})`;
+        }
+        
+        function startDrag(e) {
+            if (currentImgScale <= 1) return; 
+            isDragging = true;
+            startX = e.clientX - currentX;
+            startY = e.clientY - currentY;
+            document.getElementById('img-scroll-area').classList.add('cursor-grabbing');
+        }
+        
+        function doDrag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            currentX = e.clientX - startX;
+            currentY = e.clientY - startY;
+            updateImageTransform();
+        }
+        
+        function stopDrag() {
+            isDragging = false;
+            document.getElementById('img-scroll-area').classList.remove('cursor-grabbing');
+        }
+        
+        /* --- Handle PDF Upload for Result & Ulasan Tab --- */
+        function handlePdfUpload(event, containerId, placeholderId) {
+            const file = event.target.files[0];
+            if (file && file.type === "application/pdf") {
+                const fileURL = URL.createObjectURL(file);
+                
+                const container = document.getElementById(containerId);
+                const placeholder = document.getElementById(placeholderId);
+                
+                // Use embed/iframe for viewing PDF directly in browser
+                container.innerHTML = `<iframe src="${fileURL}" width="100%" height="100%" style="border: none;"></iframe>`;
+                
+                container.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            } else if (file) {
+                alert("Sila muat naik fail dalam format PDF sahaja.");
             }
         }
         
-        // --- Buku Pelawat Logic ---
+        /* --- Buku Pelawat Logic --- */
         addSafeListener('guestbook-form', 'submit', function(e) {
             e.preventDefault();
             
@@ -1743,6 +1889,7 @@
             }, 3000);
         });
         
+        /* --- CSV Parser Helper --- */
         function parseCSV(str) {
             const arr = [];
             let quote = false; 
@@ -1763,6 +1910,7 @@
             return arr;
         }
 
+        /* --- Analysis Logic: Maklum Balas --- */
         let feedbackChartsInitialized = false;
         let feedbackCharts = {};
         
@@ -1979,6 +2127,7 @@
             });
         }
 
+        /* --- Analysis Logic: Pendaftaran Kehadiran --- */
         let pendaftaranChartsInitialized = false;
         let kehadiranChartInstance = null;
 
